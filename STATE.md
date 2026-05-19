@@ -29,9 +29,9 @@
 | 16 | CV/Resume embeddable | FEITO | resume/ | fb15bbe |
 | 17 | Certificações | FEITO | index.html | 8877692 |
 | 18 | Analytics simples | FEITO | assets/js/analytics.js | 8877692 |
-| 19 | Performance / Lighthouse 95+ | PENDENTE | — | — |
-| 20 | Favicon + OG images | FEITO | assets/images/ | — |
-| 21 | Final review + push | PENDENTE | — | — |
+| 19 | Performance / Lighthouse 95+ | FEITO | index.html | 22d5e50 |
+| 20 | Favicon + OG images | FEITO | assets/images/ | 97fd910 |
+| 21 | Final review + push | FEITO | — | 22d5e50 |
 
 ## Como Retomar
 1. Leia este STATE.md
