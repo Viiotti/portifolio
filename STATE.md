@@ -26,11 +26,12 @@
 | 13 | Sitemap.xml + robots.txt | FEITO | sitemap.xml, robots.txt | 8877692 |
 | 14 | Tema light/dark toggle | FEITO | assets/css/style.css | 8877692 |
 | 15 | Animações avançadas (particles) | FEITO | assets/js/particles.js | 8877692 |
-| 16 | CV/Resume embeddable | PENDENTE | resume/ | — |
+| 16 | CV/Resume embeddable | FEITO | resume/ | fb15bbe |
 | 17 | Certificações | FEITO | index.html | 8877692 |
 | 18 | Analytics simples | FEITO | assets/js/analytics.js | 8877692 |
 | 19 | Performance / Lighthouse 95+ | PENDENTE | — | — |
-| 20 | Final review + push | FEITO | — | 8877692 |
+| 20 | Favicon + OG images | FEITO | assets/images/ | — |
+| 21 | Final review + push | PENDENTE | — | — |
 
 ## Como Retomar
 1. Leia este STATE.md
