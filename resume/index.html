@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV — Rafael Viiotti</title>
+    <meta name="description" content="Currículo de Rafael Viiotti - Engenheiro de Software especializado em IA, Automação, QA e Segurança.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://viiotti.github.io/portifolio/resume/">
+    <style>
+        :root {
+            --bg: #ffffff;
+            --text: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --muted: #888888;
+            --accent: #00d4aa;
+            --border: #e0e0e0;
+            --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-mono: 'SF Mono', 'Fira Code', monospace;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: var(--font-sans);
+            background: #f5f5f5;
+            color: var(--text);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+        .page {
+            max-width: 210mm;
+            margin: 40px auto;
+            background: var(--bg);
+            padding: 48px 56px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+        }
+        header { border-bottom: 2px solid var(--accent); padding-bottom: 24px; margin-bottom: 32px; }
+        h1 { font-size: 2rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; }
+        .subtitle { font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 16px; }
+        .contact-row {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+        .contact-row a { color: var(--muted); text-decoration: none; }
+        .contact-row a:hover { color: var(--accent); }
+        h2 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            margin: 32px 0 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border);
+        }
+        .entry { margin-bottom: 20px; }
+        .entry-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px; flex-wrap: wrap; gap: 8px; }
+        .entry-title { font-weight: 600; font-size: 1rem; }
+        .entry-date { font-family: var(--font-mono); font-size: 0.8rem; color: var(--muted); }
+        .entry-subtitle { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 6px; }
+        .entry-desc { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; }
+        .entry-desc ul { padding-left: 18px; }
+        .entry-desc li { margin-bottom: 3px; }
+        .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+        .skill-group h3 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 8px; }
+        .skill-group p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; }
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+        .print-btn {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(0,212,170,0.3);
+        }
+        .print-btn:hover { background: #00b894; }
+        @media print {
+            body { background: #fff; }
+            .page { margin: 0; box-shadow: none; padding: 24px 32px; }
+            .print-btn { display: none; }
+            h2 { page-break-after: avoid; }
+            .entry { page-break-inside: avoid; }
+        }
+        @media (max-width: 768px) {
+            .page { margin: 0; padding: 24px; }
+            .skills-grid { grid-template-columns: 1fr; }
+            .two-col { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <header>
+            <h1>Rafael Viiotti</h1>
+            <p class="subtitle">Engenheiro de Software — IA · Automação · QA · Security</p>
+            <div class="contact-row">
+                <span>rafael@viiotti.dev</span>
+                <span>·</span>
+                <a href="https://github.com/Viiotti">github.com/Viiotti</a>
+                <span>·</span>
+                <a href="https://linkedin.com/in/rafaelviiotti">linkedin.com/in/rafaelviiotti</a>
+                <span>·</span>
+                <a href="https://viiotti.github.io/portifolio">viiotti.github.io/portifolio</a>
+            </div>
+        </header>
+
+        <h2>Resumo</h2>
+        <p class="entry-desc">Engenheiro de software com foco em Inteligência Artificial, Automação de Processos, Quality Assurance e Segurança da Informação. Experiência em deploy de LLMs locais, pipelines CI/CD, testes automatizados e hardening de infraestrutura. Busca constante por soluções que reduzam trabalho manual e aumentem confiabilidade.</p>
+
+        <h2>Experiência</h2>
+
+        <div class="entry">
+            <div class="entry-header">
+                <span class="entry-title">Engenheiro de IA & Automação</span>
+                <span class="entry-date">2024 — Presente</span>
+            </div>
+            <div class="entry-subtitle">Projeto Pessoal / Consultoria</div>
+            <div class="entry-desc">
+                <ul>
+                    <li>Arquitetura e deploy de LLMs locais (llama.cpp, vLLM) com orquestração Docker</li>
+                    <li>Construção de pipelines RAG para processamento de documentos</li>
+                    <li>Desenvolvimento de agentes autônomos para automação de workflows</li>
+                    <li>Criação de ferramentas open-source para personalização de CV com IA</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="entry">
+            <div class="entry-header">
+                <span class="entry-title">QA Engineer & Security Advocate</span>
+                <span class="entry-date">2022 — 2024</span>
+            </div>
+            <div class="entry-subtitle">Projeto Pessoal / Consultoria</div>
+            <div class="entry-desc">
+                <ul>
+                    <li>Implementação de testes automatizados (Pytest, Selenium, k6)</li>
+                    <li>Fuzzing e property-based testing para APIs REST</li>
+                    <li>Análise de vulnerabilidades e hardening de containers Docker</li>
+                    <li>Integração de SAST/DAST em pipelines CI/CD (GitHub Actions)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="entry">
+            <div class="entry-header">
+                <span class="entry-title">DevOps & SRE</span>
+                <span class="entry-date">2020 — 2022</span>
+            </div>
+            <div class="entry-subtitle">Projeto Pessoal / Consultoria</div>
+            <div class="entry-desc">
+                <ul>
+                    <li>Infraestrutura como código com Ansible e Terraform</li>
+                    <li>Orquestração de containers com Docker e Kubernetes</li>
+                    <li>Monitoramento com Prometheus, Grafana e alertas</li>
+                    <li>Práticas de segurança em ambientes cloud-native</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="two-col">
+            <div>
+                <h2>Skills</h2>
+                <div class="skills-grid" style="grid-template-columns: 1fr 1fr;">
+                    <div class="skill-group">
+                        <h3>IA / ML</h3>
+                        <p>Python, PyTorch, LLMs, RAG, Agents, NLP, Embeddings, Fine-tuning, Quantização</p>
+                    </div>
+                    <div class="skill-group">
+                        <h3>Automação</h3>
+                        <p>Docker, Kubernetes, CI/CD, GitHub Actions, Ansible, Terraform, Linux</p>
+                    </div>
+                    <div class="skill-group">
+                        <h3>QA</h3>
+                        <p>Pytest, Selenium, E2E, k6, Fuzzing, Property-based, Coverage</p>
+                    </div>
+                    <div class="skill-group">
+                        <h3>Security</h3>
+                        <p>SAST, DAST, OWASP, Hardening, Vault, Pentest Básico, Trivy</p>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h2>Certificações</h2>
+                <div class="entry" style="margin-bottom: 12px;">
+                    <div class="entry-header" style="margin-bottom: 2px;">
+                        <span class="entry-title" style="font-size: 0.9rem;">TensorFlow Developer</span>
+                        <span class="entry-date">2024</span>
+                    </div>
+                    <div class="entry-subtitle" style="font-size: 0.8rem;">Google</div>
+                </div>
+                <div class="entry" style="margin-bottom: 12px;">
+                    <div class="entry-header" style="margin-bottom: 2px;">
+                        <span class="entry-title" style="font-size: 0.9rem;">AWS Security Specialty</span>
+                        <span class="entry-date">2023</span>
+                    </div>
+                    <div class="entry-subtitle" style="font-size: 0.8rem;">Amazon Web Services</div>
+                </div>
+                <div class="entry" style="margin-bottom: 12px;">
+                    <div class="entry-header" style="margin-bottom: 2px;">
+                        <span class="entry-title" style="font-size: 0.9rem;">Docker Certified Associate</span>
+                        <span class="entry-date">2023</span>
+                    </div>
+                    <div class="entry-subtitle" style="font-size: 0.8rem;">Docker</div>
+                </div>
+                <div class="entry" style="margin-bottom: 12px;">
+                    <div class="entry-header" style="margin-bottom: 2px;">
+                        <span class="entry-title" style="font-size: 0.9rem;">ISTQB Advanced Level</span>
+                        <span class="entry-date">2022</span>
+                    </div>
+                    <div class="entry-subtitle" style="font-size: 0.8rem;">ISTQB</div>
+                </div>
+            </div>
+        </div>
+
+        <h2>Projetos Destacados</h2>
+        <div class="entry">
+            <div class="entry-header">
+                <span class="entry-title">tottii-env</span>
+                <span class="entry-date">github.com/Viiotti/tottii-env</span>
+            </div>
+            <div class="entry-desc">Dotfiles e ambiente de desenvolvimento automatizado com scripts idempotentes.</div>
+        </div>
+        <div class="entry">
+            <div class="entry-header">
+                <span class="entry-title">cv-tailor</span>
+                <span class="entry-date">github.com/Viiotti/cv-tailor</span>
+            </div>
+            <div class="entry-desc">Ferramenta de personalização de currículos com IA, análise de vagas e geração auditável.</div>
+        </div>
+        <div class="entry">
+            <div class="entry-header">
+                <span class="entry-title">tottii-lab</span>
+                <span class="entry-date">github.com/Viiotti/tottii-lab</span>
+            </div>
+            <div class="entry-desc">Homelab completo com Proxmox, Docker, Traefik, Prometheus e práticas de segurança.</div>
+        </div>
+        <div class="entry">
+            <div class="entry-header">
+                <span class="entry-title">ollama-tools</span>
+                <span class="entry-date">github.com/Viiotti/ollama-tools</span>
+            </div>
+            <div class="entry-desc">Toolkit para execução local de LLMs com Ollama, automação e benchmarking.</div>
+        </div>
+    </div>
+
+    <button class="print-btn" onclick="window.print()">🖨️ Imprimir / Salvar PDF</button>
+</body>
+</html>

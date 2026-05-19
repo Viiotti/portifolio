@@ -15,22 +15,22 @@
 | 2 | CSS dark theme responsivo | FEITO | assets/css/style.css | c443956 |
 | 3 | JS interações (typing, scroll, menu) | FEITO | assets/js/main.js | c443956 |
 | 4 | Deploy GitHub Pages | FEITO | — | c443956 |
-| 5 | README.md completo | PENDENTE | README.md | — |
-| 6 | SEO completo (OG, Twitter, Schema) | PENDENTE | index.html | — |
-| 7 | PWA (manifest, service worker) | PENDENTE | manifest.json, sw.js | — |
-| 8 | GitHub API (repos dinâmicos) | PENDENTE | assets/js/github.js | — |
-| 9 | Blog / Escritos técnicos | PENDENTE | blog/ | — |
-| 10 | Timeline de experiência | PENDENTE | index.html | — |
-| 11 | Sistema de skills/progresso | PENDENTE | index.html | — |
-| 12 | Página 404 customizada | PENDENTE | 404.html | — |
-| 13 | Sitemap.xml + robots.txt | PENDENTE | sitemap.xml, robots.txt | — |
-| 14 | Tema light/dark toggle | PENDENTE | assets/css/style.css | — |
-| 15 | Animações avançadas (particles) | PENDENTE | assets/js/particles.js | — |
+| 5 | README.md completo | FEITO | README.md | 8877692 |
+| 6 | SEO completo (OG, Twitter, Schema) | FEITO | index.html | 8877692 |
+| 7 | PWA (manifest, service worker) | FEITO | manifest.json, sw.js | 8877692 |
+| 8 | GitHub API (repos dinâmicos) | FEITO | assets/js/github.js | 8877692 |
+| 9 | Blog / Escritos técnicos | FEITO | blog/ | 8877692 |
+| 10 | Timeline de experiência | FEITO | index.html | 8877692 |
+| 11 | Sistema de skills/progresso | FEITO | index.html | 8877692 |
+| 12 | Página 404 customizada | FEITO | 404.html | 8877692 |
+| 13 | Sitemap.xml + robots.txt | FEITO | sitemap.xml, robots.txt | 8877692 |
+| 14 | Tema light/dark toggle | FEITO | assets/css/style.css | 8877692 |
+| 15 | Animações avançadas (particles) | FEITO | assets/js/particles.js | 8877692 |
 | 16 | CV/Resume embeddable | PENDENTE | resume/ | — |
-| 17 | Certificações | PENDENTE | index.html | — |
-| 18 | Analytics simples | PENDENTE | assets/js/analytics.js | — |
+| 17 | Certificações | FEITO | index.html | 8877692 |
+| 18 | Analytics simples | FEITO | assets/js/analytics.js | 8877692 |
 | 19 | Performance / Lighthouse 95+ | PENDENTE | — | — |
-| 20 | Final review + push | PENDENTE | — | — |
+| 20 | Final review + push | FEITO | — | 8877692 |
 
 ## Como Retomar
 1. Leia este STATE.md
