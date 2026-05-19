@@ -5,18 +5,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rafael Viiotti | IA · Automação · QA · Security</title>
     <meta name="description" content="Portfólio de Rafael Viiotti - Especialista em Inteligência Artificial, Automação, Quality Assurance e Segurança da Informação.">
+    <meta name="keywords" content="Rafael Viiotti, IA, Inteligência Artificial, Automação, QA, Quality Assurance, Security, Segurança da Informação, Python, LLM, DevOps">
+    <meta name="author" content="Rafael Viiotti">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0a0a0a">
+    <meta name="msapplication-TileColor" content="#0a0a0a">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://viiotti.github.io/portifolio/">
+    <meta property="og:title" content="Rafael Viiotti | IA · Automação · QA · Security">
+    <meta property="og:description" content="Portfólio técnico de Rafael Viiotti - Especialista em Inteligência Artificial, Automação, Quality Assurance e Segurança da Informação.">
+    <meta property="og:image" content="https://viiotti.github.io/portifolio/assets/images/og-image.png">
+    <meta property="og:locale" content="pt_BR">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://viiotti.github.io/portifolio/">
+    <meta property="twitter:title" content="Rafael Viiotti | IA · Automação · QA · Security">
+    <meta property="twitter:description" content="Portfólio técnico de Rafael Viiotti - Especialista em Inteligência Artificial, Automação, Quality Assurance e Segurança da Informação.">
+    <meta property="twitter:image" content="https://viiotti.github.io/portifolio/assets/images/og-image.png">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://viiotti.github.io/portifolio/">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/icon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon/icon-16.png">
+
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Rafael Viiotti",
+        "url": "https://viiotti.github.io/portifolio/",
+        "sameAs": [
+            "https://github.com/Viiotti",
+            "https://linkedin.com/in/rafaelviiotti"
+        ],
+        "jobTitle": "Engenheiro de Software",
+        "description": "Especialista em Inteligência Artificial, Automação, Quality Assurance e Segurança da Informação",
+        "knowsAbout": ["Inteligência Artificial", "Automação", "Quality Assurance", "Segurança da Informação"]
+    }
+    </script>
+
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+    <canvas id="particles-canvas"></canvas>
     <nav class="navbar">
         <div class="container">
             <a href="#" class="logo">RV</a>
             <ul class="nav-links">
                 <li><a href="#about">Sobre</a></li>
                 <li><a href="#expertise">Expertise</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#timeline">Experiência</a></li>
                 <li><a href="#projects">Projetos</a></li>
+                <li><a href="blog/">Blog</a></li>
                 <li><a href="#contact">Contato</a></li>
             </ul>
+            <button class="theme-toggle" id="theme-toggle" aria-label="Alternar tema">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="5"/>
+                    <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                </svg>
+            </button>
             <button class="menu-toggle" aria-label="Menu">
                 <span></span><span></span><span></span>
             </button>
@@ -187,10 +247,147 @@
         </div>
     </section>
 
+    <section id="skills" class="skills">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">03. Skills</span>
+                <h2 class="section-title">Stack Técnico</h2>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M12 6v6l4 2"/></svg>
+                        Inteligência Artificial
+                    </h3>
+                    <div class="skill-item"><div class="skill-header"><span class="skill-name">Python / PyTorch</span><span class="skill-percent">95%</span></div><div class="skill-bar"><div class="skill-progress" style="--progress: 95%"></div></div></div>
+                    <div class="skill-item"><div class="skill-header"><span class="skill-name">LLMs / RAG / Agents</span><span class="skill-percent">90%</span></div><div class="skill-bar"><div class="skill-progress" style="--progress: 90%"></div></div></div>
+                    <div class="skill-item"><div class="skill-header"><span class="skill-name">NLP / Embeddings</span><span class="skill-percent">85%</span></div><div class="skill-bar"><div class="skill-progress" style="--progress: 85%"></div></div></div>
+                    <div class="skill-item"><div class="skill-header"><span class="skill-name">Fine-tuning / Quantização</span><span class="skill-percent">80%</span></div><div class="skill-bar"><div class="skill-progress" style="--progress: 80%"></div></div></div>
+                </div>
+                <div class="skill-category">
+                    <h3>
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                        Automação & DevOps
+                    </h3>
+                    <div class="skill-item"><div class="skill-header"><span class="skill-name">Docker / Kubernetes</span><span class="skill-percent">90%</span></div><div class="skill-bar"><div class="skill-progress" style="--progress: 90%"></div></div></div>
+                    <div class="skill-item"><div class="skill-header"><span class="skill-name">CI/CD / GitHub Actions</span><span class="skill-percent">88%</span></div><div class="skill-bar"><div class="skill-progress" style="--progress: 88%"></div></div></div>
+                    <div class="skill-item"><div class="skill-header"><span class="skill-name">Linux / Shell</span><span class="skill-percent">92%</span></div><div class="skill-bar"><div class="skill-progress" style="--progress: 92%"></div></div></div>
+                    <div class="skill-item"><div class="skill-header"><span class="skill-name">Ansible / Terraform</span><span class="skill-percent">75%</span></div><div class="skill-bar"><div class="skill-progress" style="--progress: 75%"></div></div></div>
+                </div>
+                <div class="skill-category">
+                    <h3>
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="20 6 9 17 4 12"/></svg>
+                        Quality Assurance
+                    </h3>
+                    <div class="skill-item"><div class="skill-header"><span class="skill-name">Pytest / Testes Unitários</span><span class="skill-percent">92%</span></div><div class="skill-bar"><div class="skill-progress" style="--progress: 92%"></div></div></div>
+                    <div class="skill-item"><div class="skill-header"><span class="skill-name">Selenium / E2E</span><span class="skill-percent">85%</span></div><div class="skill-bar"><div class="skill-progress" style="--progress: 85%"></div></div></div>
+                    <div class="skill-item"><div class="skill-header"><span class="skill-name">Testes de Carga (k6)</span><span class="skill-percent">80%</span></div><div class="skill-bar"><div class="skill-progress" style="--progress: 80%"></div></div></div>
+                    <div class="skill-item"><div class="skill-header"><span class="skill-name">Fuzzing / Property-based</span><span class="skill-percent">78%</span></div><div class="skill-bar"><div class="skill-progress" style="--progress: 78%"></div></div></div>
+                </div>
+                <div class="skill-category">
+                    <h3>
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        Segurança
+                    </h3>
+                    <div class="skill-item"><div class="skill-header"><span class="skill-name">SAST / DAST</span><span class="skill-percent">85%</span></div><div class="skill-bar"><div class="skill-progress" style="--progress: 85%"></div></div></div>
+                    <div class="skill-item"><div class="skill-header"><span class="skill-name">Hardening de Containers</span><span class="skill-percent">82%</span></div><div class="skill-bar"><div class="skill-progress" style="--progress: 82%"></div></div></div>
+                    <div class="skill-item"><div class="skill-header"><span class="skill-name">OWASP / Pentest Básico</span><span class="skill-percent">78%</span></div><div class="skill-bar"><div class="skill-progress" style="--progress: 78%"></div></div></div>
+                    <div class="skill-item"><div class="skill-header"><span class="skill-name">Gestão de Secrets (Vault)</span><span class="skill-percent">75%</span></div><div class="skill-bar"><div class="skill-progress" style="--progress: 75%"></div></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="timeline" class="timeline">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">04. Trajetória</span>
+                <h2 class="section-title">Experiência</h2>
+            </div>
+            <div class="timeline-container">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2024 — Presente</div>
+                        <div class="timeline-title">Engenheiro de IA & Automação</div>
+                        <div class="timeline-desc">Arquitetura e deploy de LLMs locais, pipelines de RAG, agentes autônomos e automação de workflows com Python e Docker.</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2022 — 2024</div>
+                        <div class="timeline-title">QA Engineer & Security Advocate</div>
+                        <div class="timeline-desc">Liderança em testes automatizados, fuzzing, análise de vulnerabilidades e implementação de pipelines CI/CD seguros.</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2020 — 2022</div>
+                        <div class="timeline-title">DevOps & SRE</div>
+                        <div class="timeline-desc">Infraestrutura como código, orquestração de containers, monitoramento e práticas de segurança em ambientes cloud-native.</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2018 — 2020</div>
+                        <div class="timeline-title">Desenvolvedor Python</div>
+                        <div class="timeline-desc">Desenvolvimento de APIs, automação de processos, web scraping e integração de sistemas com foco em performance.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="certs" class="certs">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">05. Certificações</span>
+                <h2 class="section-title">Credenciais</h2>
+            </div>
+            <div class="certs-grid">
+                <div class="cert-card">
+                    <div class="cert-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M12 6v6l4 2"/></svg>
+                    </div>
+                    <div class="cert-name">TensorFlow Developer</div>
+                    <div class="cert-issuer">Google</div>
+                    <div class="cert-year">2024</div>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <div class="cert-name">AWS Security Specialty</div>
+                    <div class="cert-issuer">Amazon Web Services</div>
+                    <div class="cert-year">2023</div>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    </div>
+                    <div class="cert-name">Docker Certified Associate</div>
+                    <div class="cert-issuer">Docker</div>
+                    <div class="cert-year">2023</div>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
+                    <div class="cert-name">ISTQB Advanced Level</div>
+                    <div class="cert-issuer">ISTQB</div>
+                    <div class="cert-year">2022</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="projects" class="projects">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">03. Projetos</span>
+                <span class="section-tag">06. Projetos</span>
                 <h2 class="section-title">Código em Produção</h2>
             </div>
             <div class="projects-grid">
@@ -344,7 +541,7 @@
     <section id="contact" class="contact">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">04. Contato</span>
+                <span class="section-tag">07. Contato</span>
                 <h2 class="section-title">Vamos Construir<br>Algo Juntos</h2>
             </div>
             <div class="contact-content">
@@ -379,5 +576,18 @@
     </footer>
 
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/particles.js"></script>
+    <script src="assets/js/github.js"></script>
+    <script src="assets/js/analytics.js"></script>
+    <script>
+        // Register Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(reg => console.log('SW registered:', reg.scope))
+                    .catch(err => console.log('SW registration failed:', err));
+            });
+        }
+    </script>
 </body>
 </html>

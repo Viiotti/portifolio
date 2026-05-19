@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deploy de LLMs Locais em Produção | Rafael Viiotti</title>
+    <meta name="description" content="Como orquestrar modelos locais com llama.cpp e vLLM em produção.">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0a0a0a">
+    <link rel="canonical" href="https://viiotti.github.io/portifolio/blog/posts/llm-local-producao.html">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <style>
+        .post-hero { padding: 120px 0 40px; }
+        .post-meta { display: flex; gap: 16px; align-items: center; margin-bottom: 24px; flex-wrap: wrap; }
+        .post-meta .date { font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-main); }
+        .post-meta .tags { display: flex; gap: 8px; }
+        .post-meta .tags span { font-family: var(--font-mono); font-size: 0.7rem; padding: 4px 10px; background: var(--bg-secondary); border-radius: 4px; color: var(--text-muted); border: 1px solid var(--border); }
+        .post-content { max-width: 720px; margin: 0 auto; padding: 40px 0 100px; }
+        .post-content h2 { font-size: 1.5rem; margin: 40px 0 16px; color: var(--text-primary); }
+        .post-content h3 { font-size: 1.2rem; margin: 32px 0 12px; color: var(--text-primary); }
+        .post-content p { color: var(--text-secondary); line-height: 1.8; margin-bottom: 16px; }
+        .post-content ul, .post-content ol { color: var(--text-secondary); line-height: 1.8; margin-bottom: 16px; padding-left: 24px; }
+        .post-content li { margin-bottom: 8px; }
+        .post-content code { font-family: var(--font-mono); font-size: 0.85rem; background: var(--bg-card); padding: 2px 6px; border-radius: 4px; color: var(--accent-main); }
+        .post-content pre { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 20px; overflow-x: auto; margin: 20px 0; }
+        .post-content pre code { background: none; padding: 0; color: var(--text-secondary); }
+        .back-link { display: inline-flex; align-items: center; gap: 8px; color: var(--accent-main); text-decoration: none; font-weight: 500; margin-bottom: 40px; }
+        .back-link:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="../../" class="logo">RV</a>
+            <ul class="nav-links">
+                <li><a href="../../#about">Sobre</a></li>
+                <li><a href="../../#expertise">Expertise</a></li>
+                <li><a href="../../#projects">Projetos</a></li>
+                <li><a href="../../#contact">Contato</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="post-hero">
+        <div class="container">
+            <a href="../" class="back-link">← Voltar ao Blog</a>
+            <h1>Deploy de LLMs Locais em Produção</h1>
+            <div class="post-meta">
+                <span class="date">19 de Maio de 2025</span>
+                <div class="tags"><span>LLM</span><span>vLLM</span><span>Produção</span></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container post-content">
+        <p>Executar Large Language Models localmente deixou de ser apenas um exercício acadêmico. Com a evolução de ferramentas como <strong>llama.cpp</strong>, <strong>vLLM</strong> e <strong>Text Generation Inference</strong>, é possível — e viável — rodar modelos de bilhões de parâmetros em hardware acessível, com latência competitiva em relação a APIs comerciais.</p>
+
+        <h2>Por que Local?</h2>
+        <p>Três razões principais justificam o deploy local:</p>
+        <ul>
+            <li><strong>Privacidade:</strong> dados nunca saem da infraestrutura</li>
+            <li><strong>Custo:</strong> sem taxas por token em volume</li>
+            <li><strong>Controle:</strong> fine-tuning, quantização e otimização sob demanda</li>
+        </ul>
+
+        <h2>Arquitetura de Produção</h2>
+        <p>Um setup mínimo mas robusto envolve:</p>
+        <ol>
+            <li><strong>vLLM</strong> como inference engine (batching contínuo, alta throughput)</li>
+            <li><strong>Docker</strong> para containerização e reproducibilidade</li>
+            <li><strong>Traefik</strong> como reverse proxy com TLS automático</li>
+            <li><strong>Prometheus + Grafana</strong> para observabilidade</li>
+        </ol>
+
+        <h3>Exemplo: Dockerfile</h3>
+        <pre><code>FROM vllm/vllm-openai:latest
+
+ENV MODEL_NAME="meta-llama/Llama-2-7b-chat-hf"
+ENV QUANTIZATION="awq"
+
+EXPOSE 8000
+
+CMD python -m vllm.entrypoints.openai.api_server \
+    --model $MODEL_NAME \
+    --quantization $QUANTIZATION \
+    --tensor-parallel-size 1 \
+    --max-model-len 4096</code></pre>
+
+        <h2>Segurança</h2>
+        <p>Modelos locais não estão imunes a vulnerabilidades. Ataques de <em>prompt injection</em>, <em>jailbreaking</em> e exfiltração de dados via contexto são reais. Mitigue com:</p>
+        <ul>
+            <li>Input sanitization em camada de aplicação</li>
+            <li>Rate limiting agressivo por usuário/sessão</li>
+            <li>Logging de prompts e respostas para auditoria</li>
+            <li>Isolamento de rede (VLANs, firewalls)</li>
+        </ul>
+
+        <h2>Conclusão</h2>
+        <p>Deploy local de LLMs é uma escolha técnica válida para cenários onde controle, privacidade e custo são prioritários. A stack open-source evoluiu o suficiente para competir com soluções proprietárias em muitos casos de uso.</p>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Projetado e construído por Rafael Viiotti</p>
+        </div>
+    </footer>
+</body>
+</html>

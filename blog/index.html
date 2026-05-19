@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | Rafael Viiotti</title>
+    <meta name="description" content="Artigos técnicos sobre IA, Automação, QA e Segurança.">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0a0a0a">
+    <link rel="canonical" href="https://viiotti.github.io/portifolio/blog/">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <style>
+        .blog-hero { padding: 120px 0 60px; text-align: center; }
+        .blog-hero h1 { font-size: 2.5rem; margin-bottom: 16px; }
+        .blog-hero p { color: var(--text-secondary); font-size: 1.1rem; }
+        .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; padding: 40px 0 100px; }
+        .blog-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 28px; transition: var(--transition); text-decoration: none; color: inherit; display: block; }
+        .blog-card:hover { border-color: var(--border-hover); transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.4); }
+        .blog-card .date { font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-main); margin-bottom: 12px; }
+        .blog-card h3 { font-size: 1.15rem; margin-bottom: 12px; color: var(--text-primary); }
+        .blog-card p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; }
+        .blog-card .tags { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+        .blog-card .tags span { font-family: var(--font-mono); font-size: 0.7rem; padding: 4px 10px; background: var(--bg-secondary); border-radius: 4px; color: var(--text-muted); border: 1px solid var(--border); }
+        .back-link { display: inline-flex; align-items: center; gap: 8px; color: var(--accent-main); text-decoration: none; font-weight: 500; margin-bottom: 40px; }
+        .back-link:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="../" class="logo">RV</a>
+            <ul class="nav-links">
+                <li><a href="../#about">Sobre</a></li>
+                <li><a href="../#expertise">Expertise</a></li>
+                <li><a href="../#projects">Projetos</a></li>
+                <li><a href="../#contact">Contato</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="blog-hero">
+        <div class="container">
+            <a href="../" class="back-link">← Voltar ao Portfolio</a>
+            <h1>Blog Técnico</h1>
+            <p>Artigos, tutoriais e reflexões sobre IA, Automação, QA e Segurança.</p>
+        </div>
+    </section>
+
+    <section class="container">
+        <div class="blog-grid">
+            <a href="posts/llm-local-producao.html" class="blog-card">
+                <div class="date">19 MAI 2025</div>
+                <h3>Deploy de LLMs Locais em Produção</h3>
+                <p>Como orquestrar modelos locais com llama.cpp e vLLM, garantindo performance e segurança em ambientes produtivos.</p>
+                <div class="tags"><span>LLM</span><span>vLLM</span><span>Produção</span></div>
+            </a>
+
+            <a href="posts/pipeline-cicd-seguro.html" class="blog-card">
+                <div class="date">15 MAI 2025</div>
+                <h3>Pipelines CI/CD Seguros por Design</h3>
+                <p>Hardening de pipelines GitHub Actions: SAST, DAST, secrets scanning e defesa em profundidade para automação.</p>
+                <div class="tags"><span>CI/CD</span><span>Security</span><span>DevOps</span></div>
+            </a>
+
+            <a href="posts/automacao-testes-ia.html" class="blog-card">
+                <div class="date">10 MAI 2025</div>
+                <h3>Automação de Testes com IA Generativa</h3>
+                <p>Usando LLMs para gerar casos de teste, fuzzing inteligente e análise de cobertura automatizada.</p>
+                <div class="tags"><span>QA</span><span>IA</span><span>Automação</span></div>
+            </a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Projetado e construído por Rafael Viiotti</p>
+        </div>
+    </footer>
+</body>
+</html>

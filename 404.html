@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 — Página Não Encontrada | Rafael Viiotti</title>
+    <meta name="robots" content="noindex, follow">
+    <meta name="theme-color" content="#0a0a0a">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .error-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 24px;
+        }
+        .error-code {
+            font-family: var(--font-mono);
+            font-size: clamp(4rem, 12vw, 8rem);
+            font-weight: 800;
+            color: var(--accent-main);
+            line-height: 1;
+            margin-bottom: 16px;
+            opacity: 0.8;
+        }
+        .error-message {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+        }
+        .error-terminal {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px 24px;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+            display: inline-block;
+            text-align: left;
+        }
+        .error-terminal .cmd { color: var(--text-secondary); }
+        .error-terminal .err { color: var(--accent-sec); }
+    </style>
+</head>
+<body>
+    <div class="error-page">
+        <div>
+            <div class="error-code">404</div>
+            <p class="error-message">Página não encontrada</p>
+            <div class="error-terminal">
+                <span class="prompt">$</span> <span class="cmd">curl</span> <span class="str">https://viiotti.github.io<span id="path"></span></span><br>
+                <span class="err">curl: (404) Not Found</span>
+            </div>
+            <div>
+                <a href="/portifolio/" class="btn btn-primary">Voltar ao Início</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('path').textContent = window.location.pathname;
+    </script>
+</body>
+</html>
