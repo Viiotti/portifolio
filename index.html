@@ -1,595 +1,685 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rafael Viiotti | IA · Automação · QA · Security</title>
-    <meta name="description" content="Portfólio de Rafael Viiotti - Especialista em Inteligência Artificial, Automação, Quality Assurance e Segurança da Informação.">
-    <meta name="keywords" content="Rafael Viiotti, IA, Inteligência Artificial, Automação, QA, Quality Assurance, Security, Segurança da Informação, Python, LLM, DevOps">
-    <meta name="author" content="Rafael Viiotti">
-    <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#0a0a0a">
-    <meta name="msapplication-TileColor" content="#0a0a0a">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://viiotti.github.io/portifolio/">
-    <meta property="og:title" content="Rafael Viiotti | IA · Automação · QA · Security">
-    <meta property="og:description" content="Portfólio técnico de Rafael Viiotti - Especialista em Inteligência Artificial, Automação, Quality Assurance e Segurança da Informação.">
-    <meta property="og:image" content="https://viiotti.github.io/portifolio/assets/images/og-image.png">
-    <meta property="og:locale" content="pt_BR">
+<title>Rafael Viotti — Infrastructure &amp; Automation Analyst → AI Automation</title>
+<meta name="description" content="Infrastructure and automation analyst moving into AI automation. Two years running 24/7 production infrastructure with SLA discipline, now building Python automation and LLM workflows with measurable evaluation.">
+<meta name="author" content="Rafael Viotti">
+<meta name="theme-color" content="#08090b" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#fbfbfc" media="(prefers-color-scheme: light)">
+<link rel="canonical" href="https://viiotti.github.io/portifolio/">
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://viiotti.github.io/portifolio/">
-    <meta property="twitter:title" content="Rafael Viiotti | IA · Automação · QA · Security">
-    <meta property="twitter:description" content="Portfólio técnico de Rafael Viiotti - Especialista em Inteligência Artificial, Automação, Quality Assurance e Segurança da Informação.">
-    <meta property="twitter:image" content="https://viiotti.github.io/portifolio/assets/images/og-image.png">
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://viiotti.github.io/portifolio/">
+<meta property="og:title" content="Rafael Viotti — Infrastructure &amp; Automation Analyst → AI Automation">
+<meta property="og:description" content="Two years running 24/7 production infrastructure. Now building Python automation and LLM workflows — with the production instincts most AI portfolios lack.">
+<meta property="og:image" content="https://viiotti.github.io/portifolio/assets/images/og-image.png">
+<meta property="og:image:alt" content="Rafael Viotti — Infrastructure and Automation Analyst moving into AI Automation">
+<meta property="og:locale" content="en_US">
 
-    <!-- Canonical -->
-    <link rel="canonical" href="https://viiotti.github.io/portifolio/">
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Rafael Viotti — Infrastructure &amp; Automation Analyst → AI Automation">
+<meta name="twitter:description" content="Two years running 24/7 production infrastructure. Now building Python automation and LLM workflows.">
+<meta name="twitter:image" content="https://viiotti.github.io/portifolio/assets/images/og-image.png">
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="assets/images/favicon/favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/icon-32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon/icon-16.png">
+<!-- Icons / PWA -->
+<link rel="icon" href="assets/images/favicon/favicon.ico" sizes="any">
+<link rel="icon" href="assets/images/favicon/icon-192.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/images/favicon/apple-touch-icon.png">
+<link rel="manifest" href="manifest.json">
 
-    <!-- PWA -->
-    <link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="assets/css/style.css">
 
-    <!-- Schema.org -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Rafael Viiotti",
-        "url": "https://viiotti.github.io/portifolio/",
-        "sameAs": [
-            "https://github.com/Viiotti",
-            "https://linkedin.com/in/rafaelviiotti"
-        ],
-        "jobTitle": "Engenheiro de Software",
-        "description": "Especialista em Inteligência Artificial, Automação, Quality Assurance e Segurança da Informação",
-        "knowsAbout": ["Inteligência Artificial", "Automação", "Quality Assurance", "Segurança da Informação"]
-    }
-    </script>
+<!-- Set theme before first paint to avoid a flash of the wrong palette -->
+<script>
+(function () {
+  try {
+    var saved = localStorage.getItem('theme');
+    var dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.dataset.theme = saved || (dark ? 'dark' : 'light');
+  } catch (e) {
+    document.documentElement.dataset.theme = 'dark';
+  }
+})();
+</script>
 
-    <link rel="preconnect" href="https://api.github.com">
-    <link rel="dns-prefetch" href="https://api.github.com">
-    <link rel="stylesheet" href="assets/css/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Rafael Viotti",
+  "url": "https://viiotti.github.io/portifolio/",
+  "email": "rafaelviotti@gmail.com",
+  "jobTitle": "Infrastructure & Automation Analyst",
+  "description": "Infrastructure and automation analyst moving into AI automation, with two years of 24/7 production operations experience.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Belo Horizonte",
+    "addressRegion": "MG",
+    "addressCountry": "BR"
+  },
+  "sameAs": [
+    "https://github.com/Viiotti",
+    "https://www.linkedin.com/in/rafael-viotti-86364b1a1"
+  ],
+  "knowsLanguage": ["pt-BR", "en"],
+  "knowsAbout": [
+    "Infrastructure Operations", "Observability", "Python Automation",
+    "Windows Server", "AWS", "Incident Management", "LLM Workflows"
+  ],
+  "alumniOf": { "@type": "EducationalOrganization", "name": "PUC Minas" }
+}
+</script>
 </head>
+
 <body>
-    <canvas id="particles-canvas"></canvas>
-    <nav class="navbar">
-        <div class="container">
-            <a href="#" class="logo">RV</a>
-            <ul class="nav-links">
-                <li><a href="#about">Sobre</a></li>
-                <li><a href="#expertise">Expertise</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#timeline">Experiência</a></li>
-                <li><a href="#projects">Projetos</a></li>
-                <li><a href="blog/">Blog</a></li>
-                <li><a href="#contact">Contato</a></li>
-            </ul>
-            <button class="theme-toggle" id="theme-toggle" aria-label="Alternar tema">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="12" r="5"/>
-                    <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-                </svg>
-            </button>
-            <button class="menu-toggle" aria-label="Menu">
-                <span></span><span></span><span></span>
-            </button>
-        </div>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="statusbar" aria-hidden="true"><div class="statusbar__fill"></div></div>
+
+<header class="nav">
+  <div class="wrap nav__inner">
+    <a class="brand" href="#top" aria-label="Rafael Viotti — home">
+      <span class="brand__dot" aria-hidden="true"></span>
+      rafael&nbsp;viotti
+    </a>
+
+    <nav class="nav__links" id="nav-links" aria-label="Main">
+      <a href="#work">Work</a>
+      <a href="#evidence">Evidence</a>
+      <a href="#path">Path</a>
+      <a href="#writing">Writing</a>
+      <a href="#contact">Contact</a>
     </nav>
 
-    <header class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <p class="hero-greeting">Olá, eu sou</p>
-                <h1 class="hero-title">Rafael Viiotti</h1>
-                <p class="hero-subtitle">
-                    <span class="typing-text"></span><span class="cursor">|</span>
-                </p>
-                <p class="hero-description">
-                    Construo sistemas inteligentes, pipelines automatizados, testes robustos e defesas sólidas.
-                    Transformo complexidade em código que funciona.
-                </p>
-                <div class="hero-cta">
-                    <a href="#projects" class="btn btn-primary">Ver Projetos</a>
-                    <a href="#contact" class="btn btn-secondary">Falar Comigo</a>
-                </div>
-            </div>
-            <div class="hero-visual">
-                <div class="code-window">
-                    <div class="code-header">
-                        <span class="dot red"></span>
-                        <span class="dot yellow"></span>
-                        <span class="dot green"></span>
-                        <span class="code-title">profile.py</span>
-                    </div>
-                    <pre class="code-body"><code><span class="kw">class</span> <span class="cls">Engineer</span>:
-    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="self">self</span>):
-        <span class="self">self</span>.focus = [
-            <span class="str">"Inteligência Artificial"</span>,
-            <span class="str">"Automação de Processos"</span>,
-            <span class="str">"Quality Assurance"</span>,
-            <span class="str">"Segurança da Informação"</span>
-        ]
-        <span class="self">self</span>.stack = [<span class="str">"Python"</span>, <span class="str">"LLMs"</span>, 
-                     <span class="str">"Docker"</span>, <span class="str">"CI/CD"</span>]
-        
-    <span class="kw">def</span> <span class="fn">solve</span>(<span class="self">self</span>, problem):
-        <span class="kw">return</span> <span class="str">"automation + intelligence"</span></code></pre>
-                </div>
-            </div>
+    <button class="iconbtn" id="theme-toggle" type="button" aria-label="Toggle theme">
+      <svg class="theme__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+      <svg class="theme__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.5"/>
+        <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>
+      </svg>
+    </button>
+
+    <button class="iconbtn nav__toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+        <path d="M3 6h18M3 12h18M3 18h18"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="top">
+  <canvas class="hero__field" id="signal" aria-hidden="true"></canvas>
+
+  <div class="wrap hero__inner">
+    <p class="hero__transition">
+      <b>Infrastructure &amp; Automation</b>
+      <span class="arrow" aria-hidden="true">→</span>
+      <b>AI Automation</b>
+    </p>
+
+    <h1 class="hero__name">Rafael Viotti</h1>
+
+    <p class="hero__role">
+      I keep production systems <strong>observable</strong>, and I automate the work
+      that shouldn't be manual.
+    </p>
+
+    <p class="hero__typed">
+      <span class="prompt" aria-hidden="true">$</span>
+      <span id="typed"></span><span class="caret" aria-hidden="true"></span>
+    </p>
+
+    <p class="hero__lede">
+      Two years operating 24/7 critical infrastructure — monitoring, incident response,
+      SLA discipline — now applied to Python automation and LLM workflows. I came to AI
+      from the operations side, so I think about latency, cost and failure modes before
+      I think about models.
+    </p>
+
+    <div class="hero__cta">
+      <a class="btn btn--primary" href="#work">
+        See the work
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a class="btn btn--ghost" href="resume/">
+        Résumé
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 15h6"/></svg>
+      </a>
+      <a class="btn btn--ghost" href="https://github.com/Viiotti" target="_blank" rel="noopener">
+        GitHub
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= METRICS ================= -->
+<section class="section section--alt" aria-label="At a glance">
+  <div class="wrap">
+    <div class="metrics reveal">
+      <div class="metric">
+        <span class="metric__val">2<em>+</em></span>
+        <span class="metric__key">Years in production ops</span>
+      </div>
+      <div class="metric">
+        <span class="metric__val">24/7</span>
+        <span class="metric__key">SLA-critical environments</span>
+      </div>
+      <div class="metric">
+        <span class="metric__val"><em>~</em>15%</span>
+        <span class="metric__key">Latency cut via automation</span>
+      </div>
+      <div class="metric">
+        <span class="metric__val">L1<em>–</em>L3</span>
+        <span class="metric__key">Incident management</span>
+      </div>
+      <div class="metric">
+        <span class="metric__val">4</span>
+        <span class="metric__key">Observability platforms</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section class="section" id="about">
+  <div class="wrap">
+    <div class="grid grid--2" style="gap:3rem;align-items:start">
+      <div class="reveal">
+        <p class="label">The short version</p>
+        <h2 class="section__title">Operations taught me what production actually costs</h2>
+        <p style="color:var(--ink-2)">
+          I spent two years on the operations side of critical systems: watching dashboards
+          at 3am, triaging incidents from L1 through L3, holding SLAs, and running the
+          backup and recovery routines nobody notices until they fail.
+        </p>
+        <p style="color:var(--ink-2)">
+          That work gave me a specific instinct — ask what breaks, what it costs per
+          request, and how we would know if it degraded. When I started automating those
+          routines in Python, the same instinct carried over. It is also why I care about
+          <strong style="color:var(--ink)">measuring</strong> an LLM pipeline rather than
+          shipping one that only demos well.
+        </p>
+        <p style="color:var(--ink-2)">
+          I am now deliberately moving from infrastructure operations into AI automation:
+          Python services, agent workflows, retrieval systems, and the evaluation layer
+          around them. Studying Systems Analysis and Development at PUC Minas alongside.
+        </p>
+      </div>
+
+      <div class="reveal" data-delay="120">
+        <div class="card">
+          <p class="label">Currently</p>
+          <h3 style="margin:.85rem 0 1rem;font-size:1.1rem">What I am working on</h3>
+          <ul style="display:grid;gap:.85rem;color:var(--ink-2);font-size:.93rem">
+            <li><strong style="color:var(--ink)">Automation in production</strong> — Python observability pipelines and PowerShell/Bash routines at MaxStartup.</li>
+            <li><strong style="color:var(--ink)">Agent workflows</strong> — orchestration, memory architecture and tooling on a dedicated server I administer end to end.</li>
+            <li><strong style="color:var(--ink)">Retrieval systems</strong> — building RAG pipelines with evaluation treated as a first-class concern.</li>
+            <li><strong style="color:var(--ink)">Degree</strong> — Systems Analysis &amp; Development, PUC Minas, through 2028.</li>
+          </ul>
+          <p class="evidence__proof" style="margin-top:1.2rem">
+            Open to remote roles in AI automation, MLOps and observability. Based in
+            Brazil, comfortable across US and European timezones.
+          </p>
         </div>
-        <div class="scroll-indicator">
-            <span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WORK ================= -->
+<section class="section section--alt" id="work">
+  <div class="wrap">
+    <div class="section__head reveal">
+      <p class="label">Selected work</p>
+      <h2 class="section__title">Things I have actually built</h2>
+      <p class="section__sub">
+        Several of these live in private repositories — they hold personal career data or
+        server configuration. Where that is the case it is marked, and I am glad to walk
+        through the code in a conversation.
+      </p>
+    </div>
+
+    <div class="grid grid--3">
+
+      <article class="card project reveal">
+        <div class="project__top">
+          <h3 class="project__name">Résumé Optimizer &amp; Knowledge Hub</h3>
+          <span class="project__status" data-s="private">Private</span>
         </div>
-    </header>
-
-    <section id="about" class="about">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">01. Sobre</span>
-                <h2 class="section-title">Arquiteto de Soluções<br>Inteligentes</h2>
-            </div>
-            <div class="about-grid">
-                <div class="about-text">
-                    <p>
-                        Atuo na interseção entre <strong>Inteligência Artificial</strong>, <strong>Automação</strong>, 
-                        <strong>Quality Assurance</strong> e <strong>Segurança</strong>. Minha missão é criar 
-                        infraestrutura e código que não apenas funcionam, mas evoluem.
-                    </p>
-                    <p>
-                        Do deploy de LLMs locais à construção de pipelines CI/CD imutáveis, 
-                        do fuzzing de APIs à geração automática de testes — cada projeto é uma 
-                        oportunidade de reduzir trabalho manual e aumentar confiabilidade.
-                    </p>
-                    <div class="stats">
-                        <div class="stat">
-                            <span class="stat-number">7+</span>
-                            <span class="stat-label">Projetos Open Source</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">4</span>
-                            <span class="stat-label">Pilares de Atuação</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">∞</span>
-                            <span class="stat-label">Curiosidade</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="about-terminal">
-                    <div class="terminal-header">
-                        <span>rafael@viiotti:~</span>
-                    </div>
-                    <div class="terminal-body">
-                        <div class="line"><span class="prompt">$</span> <span class="cmd">whoami</span></div>
-                        <div class="line output">rafael-viiotti</div>
-                        <div class="line"><span class="prompt">$</span> <span class="cmd">cat skills.txt</span></div>
-                        <div class="line output">AI/ML · Automation · QA · Security</div>
-                        <div class="line"><span class="prompt">$</span> <span class="cmd">ls stack/</span></div>
-                        <div class="line output">python/ llm/ docker/ k8s/ cicd/ security/</div>
-                        <div class="line"><span class="prompt">$</span> <span class="cmd">uptime</span></div>
-                        <div class="line output">always learning...</div>
-                        <div class="line"><span class="prompt">$</span> <span class="cursor-blink">_</span></div>
-                    </div>
-                </div>
-            </div>
+        <p class="project__desc">
+          Python system that parses job descriptions, matches them against a structured
+          knowledge base of experience, and generates targeted résumé variants. The
+          largest thing I have built — it grew from a script into a workspace with its
+          own ingestion and retrieval layer.
+        </p>
+        <div class="badges">
+          <span class="badge">Python</span>
+          <span class="badge">LLM</span>
+          <span class="badge">Retrieval</span>
+          <span class="badge">Document parsing</span>
         </div>
-    </section>
-
-    <section id="expertise" class="expertise">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">02. Expertise</span>
-                <h2 class="section-title">Onde Atuo</h2>
-            </div>
-            <div class="expertise-grid">
-                <div class="expertise-card" data-aos="fade-up">
-                    <div class="card-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
-                            <path d="M12 6v6l4 2"/>
-                            <circle cx="12" cy="12" r="3"/>
-                        </svg>
-                    </div>
-                    <h3>Inteligência Artificial</h3>
-                    <p>Deploy e orquestração de LLMs locais (llama.cpp, vLLM), fine-tuning, RAG pipelines, agentes autônomos e integração de modelos multimodais em produção.</p>
-                    <div class="card-tags">
-                        <span>LLMs</span><span>RAG</span><span>Agents</span><span>PyTorch</span>
-                    </div>
-                </div>
-
-                <div class="expertise-card" data-aos="fade-up" data-delay="100">
-                    <div class="card-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                            <polyline points="22,6 12,13 2,6"/>
-                        </svg>
-                    </div>
-                    <h3>Automação</h3>
-                    <p>Pipelines CI/CD, infraestrutura como código, automação de workflows, bots inteligentes e orquestração de múltiplos agentes para execução paralela de tarefas.</p>
-                    <div class="card-tags">
-                        <span>GitHub Actions</span><span>Docker</span><span>K8s</span><span>Ansible</span>
-                    </div>
-                </div>
-
-                <div class="expertise-card" data-aos="fade-up" data-delay="200">
-                    <div class="card-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <polyline points="20 6 9 17 4 12"/>
-                        </svg>
-                    </div>
-                    <h3>Quality Assurance</h3>
-                    <p>Testes automatizados, fuzzing, análise estática, testes de carga, testes de integração contínua e garantia de qualidade em pipelines de deploy.</p>
-                    <div class="card-tags">
-                        <span>Pytest</span><span>Selenium</span><span>k6</span><span>Coverage</span>
-                    </div>
-                </div>
-
-                <div class="expertise-card" data-aos="fade-up" data-delay="300">
-                    <div class="card-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                        </svg>
-                    </div>
-                    <h3>Security</h3>
-                    <p>Análise de vulnerabilidades, hardening de containers, segurança em pipelines, SAST/DAST, gestão de secrets e defesa em profundidade para aplicações cloud-native.</p>
-                    <div class="card-tags">
-                        <span>SAST</span><span>Trivy</span><span>Vault</span><span>OWASP</span>
-                    </div>
-                </div>
-            </div>
+        <dl class="project__impact">
+          <div><dt>Codebase</dt><dd>~38 MB</dd></div>
+          <div><dt>Status</dt><dd>In use</dd></div>
+        </dl>
+        <div class="project__links">
+          <a href="#contact">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Ask for a walkthrough
+          </a>
         </div>
-    </section>
+      </article>
 
-    <section id="skills" class="skills">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">03. Skills</span>
-                <h2 class="section-title">Stack Técnico</h2>
-            </div>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>
-                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M12 6v6l4 2"/></svg>
-                        Inteligência Artificial
-                    </h3>
-                    <div class="skill-item"><div class="skill-header"><span class="skill-name">Python / PyTorch</span><span class="skill-percent">95%</span></div><div class="skill-bar"><div class="skill-progress" style="--progress: 95%"></div></div></div>
-                    <div class="skill-item"><div class="skill-header"><span class="skill-name">LLMs / RAG / Agents</span><span class="skill-percent">90%</span></div><div class="skill-bar"><div class="skill-progress" style="--progress: 90%"></div></div></div>
-                    <div class="skill-item"><div class="skill-header"><span class="skill-name">NLP / Embeddings</span><span class="skill-percent">85%</span></div><div class="skill-bar"><div class="skill-progress" style="--progress: 85%"></div></div></div>
-                    <div class="skill-item"><div class="skill-header"><span class="skill-name">Fine-tuning / Quantização</span><span class="skill-percent">80%</span></div><div class="skill-bar"><div class="skill-progress" style="--progress: 80%"></div></div></div>
-                </div>
-                <div class="skill-category">
-                    <h3>
-                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                        Automação & DevOps
-                    </h3>
-                    <div class="skill-item"><div class="skill-header"><span class="skill-name">Docker / Kubernetes</span><span class="skill-percent">90%</span></div><div class="skill-bar"><div class="skill-progress" style="--progress: 90%"></div></div></div>
-                    <div class="skill-item"><div class="skill-header"><span class="skill-name">CI/CD / GitHub Actions</span><span class="skill-percent">88%</span></div><div class="skill-bar"><div class="skill-progress" style="--progress: 88%"></div></div></div>
-                    <div class="skill-item"><div class="skill-header"><span class="skill-name">Linux / Shell</span><span class="skill-percent">92%</span></div><div class="skill-bar"><div class="skill-progress" style="--progress: 92%"></div></div></div>
-                    <div class="skill-item"><div class="skill-header"><span class="skill-name">Ansible / Terraform</span><span class="skill-percent">75%</span></div><div class="skill-bar"><div class="skill-progress" style="--progress: 75%"></div></div></div>
-                </div>
-                <div class="skill-category">
-                    <h3>
-                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="20 6 9 17 4 12"/></svg>
-                        Quality Assurance
-                    </h3>
-                    <div class="skill-item"><div class="skill-header"><span class="skill-name">Pytest / Testes Unitários</span><span class="skill-percent">92%</span></div><div class="skill-bar"><div class="skill-progress" style="--progress: 92%"></div></div></div>
-                    <div class="skill-item"><div class="skill-header"><span class="skill-name">Selenium / E2E</span><span class="skill-percent">85%</span></div><div class="skill-bar"><div class="skill-progress" style="--progress: 85%"></div></div></div>
-                    <div class="skill-item"><div class="skill-header"><span class="skill-name">Testes de Carga (k6)</span><span class="skill-percent">80%</span></div><div class="skill-bar"><div class="skill-progress" style="--progress: 80%"></div></div></div>
-                    <div class="skill-item"><div class="skill-header"><span class="skill-name">Fuzzing / Property-based</span><span class="skill-percent">78%</span></div><div class="skill-bar"><div class="skill-progress" style="--progress: 78%"></div></div></div>
-                </div>
-                <div class="skill-category">
-                    <h3>
-                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                        Segurança
-                    </h3>
-                    <div class="skill-item"><div class="skill-header"><span class="skill-name">SAST / DAST</span><span class="skill-percent">85%</span></div><div class="skill-bar"><div class="skill-progress" style="--progress: 85%"></div></div></div>
-                    <div class="skill-item"><div class="skill-header"><span class="skill-name">Hardening de Containers</span><span class="skill-percent">82%</span></div><div class="skill-bar"><div class="skill-progress" style="--progress: 82%"></div></div></div>
-                    <div class="skill-item"><div class="skill-header"><span class="skill-name">OWASP / Pentest Básico</span><span class="skill-percent">78%</span></div><div class="skill-bar"><div class="skill-progress" style="--progress: 78%"></div></div></div>
-                    <div class="skill-item"><div class="skill-header"><span class="skill-name">Gestão de Secrets (Vault)</span><span class="skill-percent">75%</span></div><div class="skill-bar"><div class="skill-progress" style="--progress: 75%"></div></div></div>
-                </div>
-            </div>
+      <article class="card project reveal" data-delay="90">
+        <div class="project__top">
+          <h3 class="project__name">Hermes — Agent Memory Architecture</h3>
+          <span class="project__status" data-s="private">Private</span>
         </div>
-    </section>
-
-    <section id="timeline" class="timeline">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">04. Trajetória</span>
-                <h2 class="section-title">Experiência</h2>
-            </div>
-            <div class="timeline-container">
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">2024 — Presente</div>
-                        <div class="timeline-title">Engenheiro de IA & Automação</div>
-                        <div class="timeline-desc">Arquitetura e deploy de LLMs locais, pipelines de RAG, agentes autônomos e automação de workflows com Python e Docker.</div>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">2022 — 2024</div>
-                        <div class="timeline-title">QA Engineer & Security Advocate</div>
-                        <div class="timeline-desc">Liderança em testes automatizados, fuzzing, análise de vulnerabilidades e implementação de pipelines CI/CD seguros.</div>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">2020 — 2022</div>
-                        <div class="timeline-title">DevOps & SRE</div>
-                        <div class="timeline-desc">Infraestrutura como código, orquestração de containers, monitoramento e práticas de segurança em ambientes cloud-native.</div>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">2018 — 2020</div>
-                        <div class="timeline-title">Desenvolvedor Python</div>
-                        <div class="timeline-desc">Desenvolvimento de APIs, automação de processos, web scraping e integração de sistemas com foco em performance.</div>
-                    </div>
-                </div>
-            </div>
+        <p class="project__desc">
+          Memory and orchestration layer for a self-hosted agent stack: project factory,
+          workspace isolation runbooks, and validation tooling. Runs on a dedicated
+          server I administer end to end.
+        </p>
+        <div class="badges">
+          <span class="badge">Shell</span>
+          <span class="badge">Agent orchestration</span>
+          <span class="badge">Linux</span>
+          <span class="badge">Self-hosted</span>
         </div>
-    </section>
-
-    <section id="certs" class="certs">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">05. Certificações</span>
-                <h2 class="section-title">Credenciais</h2>
-            </div>
-            <div class="certs-grid">
-                <div class="cert-card">
-                    <div class="cert-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M12 6v6l4 2"/></svg>
-                    </div>
-                    <div class="cert-name">TensorFlow Developer</div>
-                    <div class="cert-issuer">Google</div>
-                    <div class="cert-year">2024</div>
-                </div>
-                <div class="cert-card">
-                    <div class="cert-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                    </div>
-                    <div class="cert-name">AWS Security Specialty</div>
-                    <div class="cert-issuer">Amazon Web Services</div>
-                    <div class="cert-year">2023</div>
-                </div>
-                <div class="cert-card">
-                    <div class="cert-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                    </div>
-                    <div class="cert-name">Docker Certified Associate</div>
-                    <div class="cert-issuer">Docker</div>
-                    <div class="cert-year">2023</div>
-                </div>
-                <div class="cert-card">
-                    <div class="cert-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="20 6 9 17 4 12"/></svg>
-                    </div>
-                    <div class="cert-name">ISTQB Advanced Level</div>
-                    <div class="cert-issuer">ISTQB</div>
-                    <div class="cert-year">2022</div>
-                </div>
-            </div>
+        <dl class="project__impact">
+          <div><dt>Focus</dt><dd>Memory &amp; isolation</dd></div>
+          <div><dt>Status</dt><dd>Active</dd></div>
+        </dl>
+        <div class="project__links">
+          <a href="#contact">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Ask for a walkthrough
+          </a>
         </div>
-    </section>
+      </article>
 
-    <section id="projects" class="projects">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">06. Projetos</span>
-                <h2 class="section-title">Código em Produção</h2>
-            </div>
-            <div class="projects-grid">
-                <article class="project-card">
-                    <div class="project-header">
-                        <div class="project-folder">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/Viiotti/tottii-env" target="_blank" aria-label="GitHub">
-                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                            </a>
-                        </div>
-                    </div>
-                    <h3>tottii-env</h3>
-                    <p>Dotfiles e ambiente de desenvolvimento automatizado. Setup reproducível de máquinas Linux com scripts idempotentes e configurações otimizadas para produtividade.</p>
-                    <div class="project-tech">
-                        <span>Shell</span><span>Stow</span><span>Neovim</span><span>Tmux</span>
-                    </div>
-                </article>
-
-                <article class="project-card">
-                    <div class="project-header">
-                        <div class="project-folder">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/Viiotti/cv-tailor" target="_blank" aria-label="GitHub">
-                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                            </a>
-                        </div>
-                    </div>
-                    <h3>cv-tailor</h3>
-                    <p>Ferramenta de personalização de currículos com IA. Analisa descrições de vagas, mapeia requisitos para evidências do candidato e gera versões otimizadas com changelog auditável.</p>
-                    <div class="project-tech">
-                        <span>Python</span><span>LLM</span><span>NLP</span><span>PDF</span>
-                    </div>
-                </article>
-
-                <article class="project-card">
-                    <div class="project-header">
-                        <div class="project-folder">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/Viiotti/tottii-lab" target="_blank" aria-label="GitHub">
-                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                            </a>
-                        </div>
-                    </div>
-                    <h3>tottii-lab</h3>
-                    <p>Homelab completo com infraestrutura virtualizada, orquestração de containers, monitoramento e práticas de segurança. Laboratório vivo para testar soluções antes de produção.</p>
-                    <div class="project-tech">
-                        <span>Proxmox</span><span>Docker</span><span>Traefik</span><span>Prometheus</span>
-                    </div>
-                </article>
-
-                <article class="project-card">
-                    <div class="project-header">
-                        <div class="project-folder">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/Viiotti/prompts" target="_blank" aria-label="GitHub">
-                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                            </a>
-                        </div>
-                    </div>
-                    <h3>prompts</h3>
-                    <p>Coleção de engenharia de prompts para LLMs. Padrões testados para debugging, refactoring, code review, análise de logs e geração de documentação técnica.</p>
-                    <div class="project-tech">
-                        <span>Markdown</span><span>LLM</span><span>Patterns</span>
-                    </div>
-                </article>
-
-                <article class="project-card">
-                    <div class="project-header">
-                        <div class="project-folder">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/Viiotti/ollama-tools" target="_blank" aria-label="GitHub">
-                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                            </a>
-                        </div>
-                    </div>
-                    <h3>ollama-tools</h3>
-                    <p>Toolkit para execução local de LLMs com Ollama. Scripts de automação para download, quantização, benchmarking e integração com pipelines de desenvolvimento.</p>
-                    <div class="project-tech">
-                        <span>Python</span><span>GGUF</span><span>Quantization</span><span>API</span>
-                    </div>
-                </article>
-
-                <article class="project-card">
-                    <div class="project-header">
-                        <div class="project-folder">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/Viiotti/tidy" target="_blank" aria-label="GitHub">
-                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                            </a>
-                        </div>
-                    </div>
-                    <h3>tidy</h3>
-                    <p>Organizador inteligente de arquivos com regras configuráveis. Classifica, renomeia e move arquivos automaticamente baseado em padrões, metadados e conteúdo.</p>
-                    <div class="project-tech">
-                        <span>Python</span><span>Regex</span><span>CLI</span><span>YAML</span>
-                    </div>
-                </article>
-
-                <article class="project-card">
-                    <div class="project-header">
-                        <div class="project-folder">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/Viiotti/tottii-api" target="_blank" aria-label="GitHub">
-                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                            </a>
-                        </div>
-                    </div>
-                    <h3>tottii-api</h3>
-                    <p>API pessoal unificada para serviços e automações. Endpoints para integração entre ferramentas, webhooks, processamento assíncrono e orquestração de tarefas.</p>
-                    <div class="project-tech">
-                        <span>FastAPI</span><span>PostgreSQL</span><span>Redis</span><span>JWT</span>
-                    </div>
-                </article>
-
-                <article class="project-card featured">
-                    <div class="project-header">
-                        <div class="project-folder">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/Viiotti/portfolio" target="_blank" aria-label="GitHub">
-                                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                            </a>
-                        </div>
-                    </div>
-                    <h3>portfolio</h3>
-                    <p>Este site. Portfólio técnico construído com HTML/CSS/JS vanilla, hospedado gratuitamente no GitHub Pages. Design dark, responsivo e sem dependências externas.</p>
-                    <div class="project-tech">
-                        <span>HTML5</span><span>CSS3</span><span>JS</span><span>GitHub Pages</span>
-                    </div>
-                </article>
-            </div>
+      <article class="card project reveal" data-delay="180">
+        <div class="project__top">
+          <h3 class="project__name">Browser Automation Runtime</h3>
+          <span class="project__status" data-s="private">Private</span>
         </div>
-    </section>
-
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">07. Contato</span>
-                <h2 class="section-title">Vamos Construir<br>Algo Juntos</h2>
-            </div>
-            <div class="contact-content">
-                <p class="contact-text">
-                    Estou sempre aberto a discutir novos projetos, oportunidades de colaboração 
-                    ou apenas trocar ideias sobre tecnologia. Se você tem um desafio envolvendo 
-                    IA, automação, QA ou segurança, vamos conversar.
-                </p>
-                <div class="contact-links">
-                    <a href="https://github.com/Viiotti" target="_blank" class="contact-link">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                        <span>GitHub</span>
-                    </a>
-                    <a href="https://linkedin.com/in/rafaelviiotti" target="_blank" class="contact-link">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                        <span>LinkedIn</span>
-                    </a>
-                    <a href="mailto:rafael@viiotti.dev" class="contact-link">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                        <span>Email</span>
-                    </a>
-                </div>
-            </div>
+        <p class="project__desc">
+          Hardened local browser environment for automation work: session persistence and
+          a locked-down VNC surface. Built because reliable headful automation needs a
+          reproducible environment, not a fresh container every run.
+        </p>
+        <div class="badges">
+          <span class="badge">JavaScript</span>
+          <span class="badge">Browser automation</span>
+          <span class="badge">VNC hardening</span>
+          <span class="badge">Linux</span>
         </div>
-    </section>
-
-    <footer class="footer">
-        <div class="container">
-            <p>Projetado e construído por Rafael Viiotti</p>
-            <p class="footer-tech">HTML · CSS · JavaScript · GitHub Pages</p>
+        <dl class="project__impact">
+          <div><dt>Concern</dt><dd>Persistence + isolation</dd></div>
+          <div><dt>Status</dt><dd>Active</dd></div>
+        </dl>
+        <div class="project__links">
+          <a href="#contact">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Ask for a walkthrough
+          </a>
         </div>
-    </footer>
+      </article>
 
-    <script src="assets/js/main.js" defer></script>
-    <script src="assets/js/particles.js" defer></script>
-    <script src="assets/js/github.js" defer></script>
-    <script src="assets/js/analytics.js" defer></script>
-    <script>
-        // Register Service Worker
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('sw.js')
-                    .then(reg => console.log('SW registered:', reg.scope))
-                    .catch(err => console.log('SW registration failed:', err));
-            });
-        }
-    </script>
+      <article class="card project reveal">
+        <div class="project__top">
+          <h3 class="project__name">Repo Scanner</h3>
+          <span class="project__status" data-s="private">Private</span>
+        </div>
+        <p class="project__desc">
+          Python tool that walks a repository and reports on its structure and contents —
+          built to answer questions about an unfamiliar codebase without opening it file
+          by file.
+        </p>
+        <div class="badges">
+          <span class="badge">Python</span>
+          <span class="badge">Static analysis</span>
+          <span class="badge">CLI</span>
+        </div>
+        <div class="project__links">
+          <a href="#contact">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Ask for a walkthrough
+          </a>
+        </div>
+      </article>
+
+      <article class="card project reveal" data-delay="90">
+        <div class="project__top">
+          <h3 class="project__name">Solo Leveling — Progress System</h3>
+          <span class="project__status" data-s="private">Private</span>
+        </div>
+        <p class="project__desc">
+          TypeScript application that turns self-improvement tracking into a game system,
+          synced to Notion. A real full-stack build with external API integration, and
+          where I test ideas about state and synchronisation.
+        </p>
+        <div class="badges">
+          <span class="badge">TypeScript</span>
+          <span class="badge">Notion API</span>
+          <span class="badge">Full-stack</span>
+        </div>
+        <div class="project__links">
+          <a href="#contact">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Ask for a walkthrough
+          </a>
+        </div>
+      </article>
+
+      <article class="card project reveal" data-delay="180">
+        <div class="project__top">
+          <h3 class="project__name">This Site</h3>
+          <span class="project__status" data-s="live">Live</span>
+        </div>
+        <p class="project__desc">
+          Hand-written HTML, CSS and JavaScript — no framework, no build step, no external
+          requests. Installable as a PWA, with an animated telemetry canvas and a
+          Lighthouse score above 90 because there is nothing extra to load.
+        </p>
+        <div class="badges">
+          <span class="badge">Vanilla JS</span>
+          <span class="badge">PWA</span>
+          <span class="badge">Canvas</span>
+          <span class="badge">GitHub Pages</span>
+        </div>
+        <dl class="project__impact">
+          <div><dt>Dependencies</dt><dd>Zero</dd></div>
+          <div><dt>Lighthouse</dt><dd>90+</dd></div>
+        </dl>
+        <div class="project__links">
+          <a href="https://github.com/Viiotti/portifolio" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            Source
+          </a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= EVIDENCE ================= -->
+<section class="section" id="evidence">
+  <div class="wrap">
+    <div class="section__head reveal">
+      <p class="label">Capabilities</p>
+      <h2 class="section__title">What I can do, and where I did it</h2>
+      <p class="section__sub">
+        No percentage bars. Each line names where the experience comes from, so you can
+        ask me about it directly.
+      </p>
+    </div>
+
+    <div class="grid grid--2" style="gap:2rem">
+
+      <div class="card reveal">
+        <div class="evidence__group">
+          <h3 class="evidence__title">Observability &amp; Monitoring <span>PRIMARY</span></h3>
+          <p style="color:var(--ink-2);font-size:.93rem;margin:0">
+            DataDog · Zabbix · Grafana · PRTG · proactive alerting · availability reporting · root cause analysis
+          </p>
+          <p class="evidence__proof">
+            Ran 24/7 monitoring of critical infrastructure and network services across
+            three companies, holding SLA compliance and catching faults before users did.
+          </p>
+        </div>
+
+        <div class="evidence__group">
+          <h3 class="evidence__title">Automation &amp; Scripting <span>PRIMARY</span></h3>
+          <p style="color:var(--ink-2);font-size:.93rem;margin:0">
+            Python · PowerShell · Bash · Ansible
+          </p>
+          <p class="evidence__proof">
+            Built automated observability pipelines in Python that contributed to roughly
+            15% lower latency and 20% better response time, plus scripted routines that
+            removed recurring manual work.
+          </p>
+        </div>
+
+        <div class="evidence__group">
+          <h3 class="evidence__title">Incident Management &amp; ITSM <span>PRIMARY</span></h3>
+          <p style="color:var(--ink-2);font-size:.93rem;margin:0">
+            Jira · Zendesk · ITIL v4 · escalation workflows · SLA management · knowledge base
+          </p>
+          <p class="evidence__proof">
+            Handled L1 through L3 incidents: triage, impact mitigation, escalation, and
+            the write-up afterwards so the next person does not start from zero.
+          </p>
+        </div>
+      </div>
+
+      <div class="card reveal" data-delay="120">
+        <div class="evidence__group">
+          <h3 class="evidence__title">Systems, Cloud &amp; Virtualisation <span>STRONG</span></h3>
+          <p style="color:var(--ink-2);font-size:.93rem;margin:0">
+            Windows Server (AD, GPO, DNS, DHCP) · Hyper-V · VMware · AWS (EC2, S3, Route 53, RDS, Lambda) · Apache · NGINX · IIS
+          </p>
+          <p class="evidence__proof">
+            Administered Windows Server environments and supported virtualised
+            infrastructure; ran backup and recovery with Veeam and Commvault.
+          </p>
+        </div>
+
+        <div class="evidence__group">
+          <h3 class="evidence__title">Security Operations <span>WORKING</span></h3>
+          <p style="color:var(--ink-2);font-size:.93rem;margin:0">
+            SIEM monitoring · IAM &amp; Active Directory · firewall rules · Antivirus/EDR
+          </p>
+          <p class="evidence__proof">
+            Monitored SIEM alerts for intrusion attempts and endpoint vulnerabilities, and
+            enforced least-privilege access across the corporate directory.
+          </p>
+        </div>
+
+        <div class="evidence__group">
+          <h3 class="evidence__title">AI &amp; LLM Workflows <span>BUILDING</span></h3>
+          <p style="color:var(--ink-2);font-size:.93rem;margin:0">
+            Python · agent orchestration · retrieval pipelines · prompt engineering · self-hosted model serving
+          </p>
+          <p class="evidence__proof">
+            My active direction rather than my track record — built on personal projects
+            and a self-managed agent stack, not years inside a production AI team. I would
+            rather say that plainly than let a keyword list imply otherwise.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= PATH ================= -->
+<section class="section section--alt" id="path">
+  <div class="wrap">
+    <div class="section__head reveal">
+      <p class="label">Experience</p>
+      <h2 class="section__title">The path so far</h2>
+    </div>
+
+    <div class="tl reveal">
+      <div class="tl__item" data-now="true">
+        <p class="tl__when">Nov 2025 — Present</p>
+        <h3 class="tl__role">Infrastructure Analyst · Automation, Windows, Linux</h3>
+        <p class="tl__org">MaxStartup — Contagem, MG</p>
+        <ul class="tl__body">
+          <li>Administered Windows Server environments (AD, GPO, DNS, DHCP) for availability and standardisation.</li>
+          <li>Built automated observability pipelines in Python — roughly 15% latency reduction and 20% better response time.</li>
+          <li>Wrote PowerShell and Bash automation that removed recurring manual routines.</li>
+          <li>Performed L3 TCP/IP troubleshooting and supported Hyper-V and VMware infrastructure.</li>
+          <li>Ran backup and recovery routines with Veeam and Commvault; documented to ITIL v4.</li>
+        </ul>
+      </div>
+
+      <div class="tl__item">
+        <p class="tl__when">Jul 2025 — Oct 2025</p>
+        <h3 class="tl__role">NOC Analyst</h3>
+        <p class="tl__org">Ana Gaming — Nova Lima, MG</p>
+        <ul class="tl__body">
+          <li>Delivered 24/7 monitoring with DataDog, Zabbix, Grafana and PRTG under SLA.</li>
+          <li>Managed L1 and L2 incidents through Jira and Zendesk, including escalation to specialist teams.</li>
+          <li>Monitored backup jobs and batch processes for data integrity and replication success.</li>
+          <li>Produced availability and performance reports feeding root cause analysis.</li>
+        </ul>
+      </div>
+
+      <div class="tl__item">
+        <p class="tl__when">Jul 2024 — Jun 2025</p>
+        <h3 class="tl__role">NOC Analyst</h3>
+        <p class="tl__org">Hyti — Contagem, MG</p>
+        <ul class="tl__body">
+          <li>Monitored SIEM alerts, analysing intrusion attempts and endpoint vulnerabilities.</li>
+          <li>Managed identity and access in Active Directory under least-privilege policy.</li>
+          <li>Administered firewall rules and Antivirus/EDR across workstations and servers.</li>
+          <li>Investigated availability and security incidents, documenting them into the team knowledge base.</li>
+        </ul>
+      </div>
+
+      <div class="tl__item">
+        <p class="tl__when">Jul 2025 — Dec 2028</p>
+        <h3 class="tl__role">Systems Analysis &amp; Development</h3>
+        <p class="tl__org">PUC Minas — Belo Horizonte, MG</p>
+        <ul class="tl__body">
+          <li>In progress. Software development and programming foundations.</li>
+        </ul>
+      </div>
+
+      <div class="tl__item">
+        <p class="tl__when">Certifications</p>
+        <h3 class="tl__role">Continued study</h3>
+        <p class="tl__org">Self-directed</p>
+        <ul class="tl__body">
+          <li>LPIC-1 / LPIC-2 preparatory course — Udemy.</li>
+          <li>AI Automation and Agents Intensive.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WRITING ================= -->
+<section class="section" id="writing">
+  <div class="wrap">
+    <div class="section__head reveal">
+      <p class="label">Writing</p>
+      <h2 class="section__title">Notes from the work</h2>
+      <p class="section__sub">
+        Short technical write-ups: what I built, what broke, and what the numbers said.
+      </p>
+    </div>
+
+    <div class="grid grid--3">
+      <a class="card post reveal" href="blog/posts/llm-local-producao.html">
+        <p class="post__meta"><span>Technical</span><span>LLM</span></p>
+        <h3 class="post__title">Running local LLMs in production</h3>
+        <p class="post__excerpt">
+          Deploying and orchestrating self-hosted models — quantisation, resource limits,
+          and what actually matters once it has to stay up.
+        </p>
+      </a>
+
+      <a class="card post reveal" data-delay="90" href="blog/">
+        <p class="post__meta"><span>Index</span></p>
+        <h3 class="post__title">All writing</h3>
+        <p class="post__excerpt">The full list of technical notes.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="section section--alt" id="contact">
+  <div class="wrap">
+    <div class="contact">
+      <div class="reveal">
+        <p class="label">Contact</p>
+        <h2 class="section__title">Let us talk</h2>
+        <p class="section__sub">
+          Open to remote roles in AI automation, MLOps and observability. Happy to walk
+          through any of the private projects above on a call.
+        </p>
+
+        <div class="channels">
+          <a class="channel" href="mailto:rafaelviotti@gmail.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="m22 6-10 7L2 6"/></svg>
+            <span><span class="channel__k">Email</span><span class="channel__v">rafaelviotti@gmail.com</span></span>
+          </a>
+          <a class="channel" href="https://www.linkedin.com/in/rafael-viotti-86364b1a1" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            <span><span class="channel__k">LinkedIn</span><span class="channel__v">in/rafael-viotti</span></span>
+          </a>
+          <a class="channel" href="https://github.com/Viiotti" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            <span><span class="channel__k">GitHub</span><span class="channel__v">github.com/Viiotti</span></span>
+          </a>
+          <div class="channel" style="pointer-events:none">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span><span class="channel__k">Location</span><span class="channel__v">Belo Horizonte, Brazil · remote-friendly</span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal" data-delay="120">
+        <form class="form card" id="contact-form" data-endpoint="" novalidate>
+          <div class="field">
+            <label for="f-name">Name</label>
+            <input id="f-name" name="name" type="text" autocomplete="name" required placeholder="Your name">
+          </div>
+          <div class="field">
+            <label for="f-email">Email</label>
+            <input id="f-email" name="email" type="email" autocomplete="email" required placeholder="you@company.com">
+          </div>
+          <div class="field">
+            <label for="f-message">Message</label>
+            <textarea id="f-message" name="message" rows="5" required placeholder="What are you working on?"></textarea>
+          </div>
+          <button class="btn btn--primary" type="submit">
+            Send message
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></svg>
+          </button>
+          <p class="form__status" id="form-status" role="status" aria-live="polite"></p>
+          <p class="form__note">Goes straight to my inbox. No newsletter, no tracking.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <p style="margin:0">© <span id="year">2026</span> Rafael Viotti · Built by hand, zero dependencies</p>
+    <nav class="footer__links" aria-label="Footer">
+      <a href="resume/">Résumé</a>
+      <a href="blog/">Writing</a>
+      <a href="https://github.com/Viiotti" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/rafael-viotti-86364b1a1" target="_blank" rel="noopener">LinkedIn</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="assets/js/main.js" defer></script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
+}
+</script>
 </body>
 </html>

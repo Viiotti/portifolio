@@ -1,273 +1,364 @@
-/* ============================================
-   Rafael Viiotti Portfolio — Interactions
-   ============================================ */
+/* ==========================================================================
+   Rafael Viotti — Portfolio interactions
+   Vanilla JS, no dependencies. Every effect degrades gracefully and
+   honours prefers-reduced-motion.
+   ========================================================================== */
 
-document.addEventListener('DOMContentLoaded', () => {
-    // Typing effect
-    initTypingEffect();
-    
-    // Scroll animations
-    initScrollAnimations();
-    
-    // Mobile menu
-    initMobileMenu();
-    
-    // Navbar scroll effect
-    initNavbarScroll();
-});
+(() => {
+  'use strict';
 
-/* ============================================
-   TYPING EFFECT
-   ============================================ */
+  const $  = (sel, root = document) => root.querySelector(sel);
+  const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-function initTypingEffect() {
-    const phrases = [
-        'Inteligência Artificial',
-        'Automação de Processos',
-        'Quality Assurance',
-        'Segurança da Informação'
-    ];
-    
-    const element = document.querySelector('.typing-text');
-    if (!element) return;
-    
-    let phraseIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    let typingSpeed = 100;
-    
-    function type() {
-        const currentPhrase = phrases[phraseIndex];
-        
-        if (isDeleting) {
-            element.textContent = currentPhrase.substring(0, charIndex - 1);
-            charIndex--;
-            typingSpeed = 50;
-        } else {
-            element.textContent = currentPhrase.substring(0, charIndex + 1);
-            charIndex++;
-            typingSpeed = 100;
-        }
-        
-        if (!isDeleting && charIndex === currentPhrase.length) {
-            typingSpeed = 2000;
-            isDeleting = true;
-        } else if (isDeleting && charIndex === 0) {
-            isDeleting = false;
-            phraseIndex = (phraseIndex + 1) % phrases.length;
-            typingSpeed = 500;
-        }
-        
-        setTimeout(type, typingSpeed);
-    }
-    
-    type();
-}
+  /* --- Theme ------------------------------------------------------------- */
+  // Initial theme is set by an inline script in <head> to avoid a flash.
+  // This only wires the toggle.
 
-/* ============================================
-   SCROLL ANIMATIONS
-   ============================================ */
+  function initTheme() {
+    const btn = $('#theme-toggle');
+    if (!btn) return;
 
-function initScrollAnimations() {
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
+    const sync = () => {
+      const dark = document.documentElement.dataset.theme !== 'light';
+      btn.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+      btn.setAttribute('aria-pressed', String(!dark));
     };
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-    
-    document.querySelectorAll('[data-aos]').forEach(el => {
-        observer.observe(el);
-    });
-    
-    // Also observe section headers and other elements
-    document.querySelectorAll('.section-header, .about-grid, .contact-content').forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(el);
-    });
-    
-    // Override for observed elements
-    const originalCallback = observer.callback;
-    observer.disconnect();
-    
-    const newObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-                newObserver.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-    
-    document.querySelectorAll('.section-header, .about-grid, .contact-content').forEach(el => {
-        newObserver.observe(el);
-    });
-    
-    // Stagger animation for cards
-    const cardObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry, index) => {
-            if (entry.isIntersecting) {
-                const delay = entry.target.dataset.delay || 0;
-                setTimeout(() => {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }, parseInt(delay));
-                cardObserver.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-    
-    document.querySelectorAll('.expertise-card, .project-card').forEach((el, index) => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        el.dataset.delay = (index % 3) * 100;
-        cardObserver.observe(el);
-    });
-}
 
-/* ============================================
-   MOBILE MENU
-   ============================================ */
+    btn.addEventListener('click', () => {
+      const next = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+      document.documentElement.dataset.theme = next;
+      try { localStorage.setItem('theme', next); } catch (_) {}
+      sync();
+    });
 
-function initMobileMenu() {
-    const toggle = document.querySelector('.menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
-    
-    if (!toggle || !navLinks) return;
-    
-    toggle.addEventListener('click', () => {
-        toggle.classList.toggle('active');
-        navLinks.classList.toggle('active');
+    sync();
+  }
+
+  /* --- Nav --------------------------------------------------------------- */
+
+  function initNav() {
+    const nav    = $('.nav');
+    const links  = $('.nav__links');
+    const toggle = $('.nav__toggle');
+    if (!nav) return;
+
+    const onScroll = () => { nav.dataset.stuck = String(window.scrollY > 8); };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    if (!links || !toggle) return;
+
+    const close = () => {
+      links.dataset.open = 'false';
+      toggle.setAttribute('aria-expanded', 'false');
+    };
+    const open = () => {
+      links.dataset.open = 'true';
+      toggle.setAttribute('aria-expanded', 'true');
+    };
+
+    toggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      links.dataset.open === 'true' ? close() : open();
     });
-    
-    // Close menu on link click
-    navLinks.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            toggle.classList.remove('active');
-            navLinks.classList.remove('active');
-        });
-    });
-    
-    // Close menu on click outside
+
+    $$('a', links).forEach((a) => a.addEventListener('click', close));
+
     document.addEventListener('click', (e) => {
-        if (!toggle.contains(e.target) && !navLinks.contains(e.target)) {
-            toggle.classList.remove('active');
-            navLinks.classList.remove('active');
-        }
+      if (links.dataset.open !== 'true') return;
+      if (!links.contains(e.target) && !toggle.contains(e.target)) close();
     });
-}
 
-/* ============================================
-   NAVBAR SCROLL EFFECT
-   ============================================ */
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') close();
+    });
 
-function initNavbarScroll() {
-    const navbar = document.querySelector('.navbar');
-    if (!navbar) return;
-    
-    let lastScroll = 0;
-    
+    close();
+  }
+
+  /* --- Scroll progress --------------------------------------------------- */
+
+  function initProgress() {
+    const fill = $('.statusbar__fill');
+    if (!fill) return;
+
+    let queued = false;
+    const update = () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = max > 0 ? (window.scrollY / max) * 100 : 0;
+      fill.style.width = Math.min(100, Math.max(0, pct)) + '%';
+      queued = false;
+    };
+
     window.addEventListener('scroll', () => {
-        const currentScroll = window.pageYOffset;
-        
-        if (currentScroll > 50) {
-            navbar.style.background = 'rgba(10, 10, 10, 0.95)';
-            navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.3)';
-        } else {
-            navbar.style.background = 'rgba(10, 10, 10, 0.8)';
-            navbar.style.boxShadow = 'none';
-        }
-        
-        lastScroll = currentScroll;
-    });
-}
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(update);
+    }, { passive: true });
 
-/* ============================================
-   SMOOTH SCROLL FOR ANCHOR LINKS
-   ============================================ */
+    update();
+  }
 
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
+  /* --- Smooth anchor scroll (accounts for fixed nav) --------------------- */
+
+  function initAnchors() {
+    $$('a[href^="#"]').forEach((a) => {
+      a.addEventListener('click', (e) => {
+        const id = a.getAttribute('href');
+        if (!id || id === '#') return;
+        const target = document.getElementById(id.slice(1));
+        if (!target) return;
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            const offset = 80;
-            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-            });
+        const top = target.getBoundingClientRect().top + window.scrollY - 74;
+        window.scrollTo({ top, behavior: reduced ? 'auto' : 'smooth' });
+        history.replaceState(null, '', id);
+      });
+    });
+  }
+
+  /* --- Reveal on scroll -------------------------------------------------- */
+
+  function initReveal() {
+    const items = $$('.reveal');
+    if (!items.length) return;
+
+    if (reduced || !('IntersectionObserver' in window)) {
+      items.forEach((el) => el.classList.add('is-in'));
+      return;
+    }
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const delay = Number(entry.target.dataset.delay || 0);
+        setTimeout(() => entry.target.classList.add('is-in'), delay);
+        io.unobserve(entry.target);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px' });
+
+    items.forEach((el) => io.observe(el));
+  }
+
+  /* --- Typed line -------------------------------------------------------- */
+
+  function initTyped() {
+    const el = $('#typed');
+    if (!el) return;
+
+    const lines = [
+      'building RAG pipelines with measurable evals',
+      'automating infrastructure operations in Python',
+      'monitoring what runs in production',
+      'turning ops experience into AI systems',
+    ];
+
+    if (reduced) { el.textContent = lines[0]; return; }
+
+    let li = 0, ci = 0, deleting = false;
+
+    const tick = () => {
+      const line = lines[li];
+      el.textContent = line.slice(0, deleting ? --ci : ++ci);
+
+      let wait = deleting ? 34 : 62;
+      if (!deleting && ci === line.length) { wait = 2400; deleting = true; }
+      else if (deleting && ci === 0)       { deleting = false; li = (li + 1) % lines.length; wait = 420; }
+
+      setTimeout(tick, wait);
+    };
+
+    setTimeout(tick, 700);
+  }
+
+  /* --- Hero signal field ------------------------------------------------
+     Animated telemetry traces. This is the signature visual: it reads as
+     a monitoring graph, which is the honest metaphor for this profile.
+     Pauses when offscreen or when the tab is hidden.
+     ---------------------------------------------------------------------- */
+
+  function initSignalField() {
+    const canvas = $('#signal');
+    if (!canvas || reduced) return;
+
+    const ctx = canvas.getContext('2d', { alpha: true });
+    if (!ctx) return;
+
+    let w = 0, h = 0, dpr = 1, raf = null, t = 0, visible = true;
+
+    const traces = [
+      { amp: 0.13, freq: 1.5, speed: 0.0055, width: 1.6, alpha: 0.55, y: 0.42 },
+      { amp: 0.09, freq: 2.4, speed: 0.0080, width: 1.1, alpha: 0.34, y: 0.55 },
+      { amp: 0.06, freq: 3.6, speed: 0.0110, width: 0.9, alpha: 0.20, y: 0.66 },
+    ];
+
+    const accentOf = () =>
+      getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#00d4aa';
+
+    function resize() {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const rect = canvas.getBoundingClientRect();
+      w = Math.max(1, rect.width);
+      h = Math.max(1, rect.height);
+      canvas.width  = Math.round(w * dpr);
+      canvas.height = Math.round(h * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, w, h);
+      const accent = accentOf();
+
+      // Faint grid — the dashboard substrate
+      ctx.strokeStyle = accent;
+      ctx.globalAlpha = 0.05;
+      ctx.lineWidth = 1;
+      const step = 64;
+      ctx.beginPath();
+      for (let x = (t * 0.35) % step; x < w; x += step) {
+        ctx.moveTo(x, 0); ctx.lineTo(x, h);
+      }
+      for (let y = 0; y < h; y += step) {
+        ctx.moveTo(0, y); ctx.lineTo(w, y);
+      }
+      ctx.stroke();
+
+      // Traces
+      traces.forEach((tr) => {
+        ctx.beginPath();
+        ctx.globalAlpha = tr.alpha;
+        ctx.strokeStyle = accent;
+        ctx.lineWidth = tr.width;
+        ctx.lineJoin = 'round';
+
+        const baseY = h * tr.y;
+        const amp = h * tr.amp;
+
+        for (let x = 0; x <= w; x += 3) {
+          const p = x / w;
+          // Two summed sines + a slow envelope: organic, never repeats visibly
+          const y = baseY
+            + Math.sin(p * Math.PI * 2 * tr.freq + t * tr.speed) * amp
+            + Math.sin(p * Math.PI * 2 * tr.freq * 0.41 - t * tr.speed * 1.6) * amp * 0.42;
+          x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
         }
+        ctx.stroke();
+      });
+
+      ctx.globalAlpha = 1;
+    }
+
+    function loop() {
+      t += 1;
+      draw();
+      raf = requestAnimationFrame(loop);
+    }
+
+    function start() { if (!raf && visible) loop(); }
+    function stop()  { if (raf) { cancelAnimationFrame(raf); raf = null; } }
+
+    resize();
+    start();
+
+    let rt;
+    window.addEventListener('resize', () => {
+      clearTimeout(rt);
+      rt = setTimeout(() => { resize(); draw(); }, 150);
     });
-});
 
-/* ============================================
-   THEME TOGGLE
-   ============================================ */
-
-function initThemeToggle() {
-    const toggle = document.getElementById('theme-toggle');
-    if (!toggle) return;
-
-    const savedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const currentTheme = savedTheme || (prefersDark ? 'dark' : 'light');
-
-    document.documentElement.setAttribute('data-theme', currentTheme);
-    updateThemeIcon(currentTheme);
-
-    toggle.addEventListener('click', () => {
-        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-        const newTheme = isDark ? 'light' : 'dark';
-        document.documentElement.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-        updateThemeIcon(newTheme);
+    document.addEventListener('visibilitychange', () => {
+      document.hidden ? stop() : start();
     });
-}
 
-function updateThemeIcon(theme) {
-    const toggle = document.getElementById('theme-toggle');
-    if (!toggle) return;
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver((entries) => {
+        visible = entries[0].isIntersecting;
+        visible ? start() : stop();
+      }, { threshold: 0 }).observe(canvas);
+    }
+  }
 
-    toggle.innerHTML = theme === 'dark'
-        ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
-        : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
-}
+  /* --- Contact form -----------------------------------------------------
+     Posts to the endpoint in data-endpoint (Web3Forms / Formspree / any
+     JSON form API). With no endpoint configured it falls back to a
+     prefilled mailto so the form is never a dead end.
+     ---------------------------------------------------------------------- */
 
-/* ============================================
-   SKILLS ANIMATION
-   ============================================ */
+  function initForm() {
+    const form = $('#contact-form');
+    if (!form) return;
 
-function initSkillsAnimation() {
-    const skillBars = document.querySelectorAll('.skill-progress');
-    if (skillBars.length === 0) return;
+    const status = $('#form-status');
+    const submit = $('button[type="submit"]', form);
+    const say = (msg, ok) => {
+      if (!status) return;
+      status.textContent = msg;
+      status.dataset.ok = String(ok);
+    };
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            }
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const data = Object.fromEntries(new FormData(form).entries());
+      const endpoint = form.dataset.endpoint || '';
+
+      if (!data.name || !data.email || !data.message) {
+        say('Please fill in name, email and message.', false);
+        return;
+      }
+
+      // No backend wired yet → hand off to the mail client, losing nothing.
+      if (!endpoint || endpoint.includes('YOUR_')) {
+        const subject = encodeURIComponent(`Portfolio contact — ${data.name}`);
+        const body = encodeURIComponent(`${data.message}\n\n—\n${data.name}\n${data.email}`);
+        window.location.href = `mailto:rafaelviotti@gmail.com?subject=${subject}&body=${body}`;
+        say('Opening your email client…', true);
+        return;
+      }
+
+      const original = submit ? submit.textContent : '';
+      if (submit) { submit.disabled = true; submit.textContent = 'Sending…'; }
+      say('', true);
+
+      try {
+        const res = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(data),
         });
-    }, { threshold: 0.2 });
+        if (!res.ok) throw new Error(String(res.status));
+        form.reset();
+        say('Message sent. I will get back to you shortly.', true);
+      } catch (_) {
+        say('Could not send. Email me directly at rafaelviotti@gmail.com.', false);
+      } finally {
+        if (submit) { submit.disabled = false; submit.textContent = original; }
+      }
+    });
+  }
 
-    skillBars.forEach(bar => observer.observe(bar));
-}
+  /* --- Footer year ------------------------------------------------------- */
 
-// Initialize theme and skills
-document.addEventListener('DOMContentLoaded', () => {
-    initThemeToggle();
-    initSkillsAnimation();
-});
+  function initYear() {
+    const el = $('#year');
+    if (el) el.textContent = String(new Date().getFullYear());
+  }
+
+  /* --- Boot -------------------------------------------------------------- */
+
+  const boot = () => {
+    initTheme();
+    initNav();
+    initProgress();
+    initAnchors();
+    initReveal();
+    initTyped();
+    initSignalField();
+    initForm();
+    initYear();
+  };
+
+  document.readyState === 'loading'
+    ? document.addEventListener('DOMContentLoaded', boot)
+    : boot();
+})();
