@@ -3,7 +3,7 @@
 - **Data:** 2026-10-06
 - **Decisões:** Rafael Viotti · redação: Claude Code
 - **Status:** aguardando revisão do Rafael (inclui confirmar a abordagem da §4)
-- **Mockups:** canvas privado "Rastro — Direção Visual" no claude.ai. Direção escolhida: **A · Telemetry**.
+- **Mockups:** canvas privado "Rastro — Direção Visual" no claude.ai. Direção escolhida: **A · Telemetry**. Todas as telas de referência estão listadas na §13.
 
 ---
 
@@ -299,6 +299,9 @@ docs/       arquitetura, relatório de avaliação
 - Um Durable Object por site.
 - Heartbeat a cada 30 s.
 - "Agora" = sessões com heartbeat nos últimos 60 s.
+- **Limites do plano grátis** (Durable Objects com SQLite, disponíveis no Workers Free desde abril de 2025): 100 mil requisições/dia e 100 mil gravações de linha/dia.
+  - Um heartbeat a cada 30 s é 120 requisições por hora de visita. O limite diário cobre ~830 horas de visita por dia.
+  - A presença fica em memória no Durable Object; **não se grava uma linha por heartbeat**. Só eventos (§9.1) vão para o D1.
 
 ### 9.3 Painel público `/telemetry`
 **Mostra:**
@@ -370,3 +373,31 @@ Endpoint `GET /api/stats/public`. Os valores abaixo são só exemplo do formato:
 ## 12. Fora de escopo, por ora
 
 Versão em português do portfólio · newsletter · palestras · A/B automatizado sem tráfego suficiente · outros conjuntos de documentos no Rastro.
+
+## 13. Design de referência (canvas)
+
+Telas validadas renderizando no runtime real do editor, no desktop e, nas páginas, também a 390 px.
+
+| Grupo | Tela | Mostra |
+|---|---|---|
+| Rastro | Replay · Retrieve (A · Telemetry) | Mapa de embeddings, top 5 por cosseno, waterfall parcial |
+| Rastro | Replay · Rerank | Gráfico de mudança de posição (antes → depois), novo top 5 |
+| Rastro | Replay · Answer | Resposta com citações agrupadas, fontes, waterfall completo com TTFT, custo no dispositivo e em API |
+| Rastro | Live | Pergunta livre, consentimento para baixar o modelo, onde cada etapa roda, medição no dispositivo |
+| Rastro | Evaluation report | Tabela de configurações, recall@k, recall por lei, exemplos de falha |
+| Rastro | Mobile replay | Chips de etapa, mapa recolhível, player fixo no rodapé |
+| Portfólio | Home | Hero com prévia do Rastro, métricas verificáveis, trabalho, escrita, trajetória, contato duplo |
+| Portfólio | Contact | Abas vaga/projeto (interativas), relógio de fuso calculado ao vivo |
+| Portfólio | Telemetry | Ao vivo, visitas, fontes, Web Vitals, relatório do agente tarjado |
+| Portfólio | Case study | Formato fixo da §7.4, decisões com custo, arquitetura offline/online |
+
+Os números das telas são ilustrativos e todas trazem o selo "Mockup · illustrative values". Os textos legais são reais.
+
+### Cores validadas
+Validadas com o script do skill de visualização: banda de luminosidade, croma, separação para daltonismo e contraste sobre a superfície escura.
+
+- **Destaque (marca):** `#00d4aa`. Usado só para a pergunta e para a interface, nunca como categoria.
+- **Fontes nos mapas:** CF/88 `#3a8ee0`, CLT `#c47a00`, CDC `#c056a8`. Comparando todos os pares, a pior separação para daltonismo é ΔE 9,7 (meta: ≥ 8).
+- **Séries do relatório:** `#00a385`, `#8a63e8`, `#d0603a`. Comparando pares adjacentes, a pior separação para daltonismo é ΔE 19,3.
+
+As cores das fontes legais valem em todas as telas: a mesma lei tem sempre a mesma cor.
