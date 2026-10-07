@@ -1,0 +1,182 @@
+---
+import Base from '../layouts/Base.astro';
+import { href, metrics, now, path, person } from '../lib/site';
+
+const work = [
+  {
+    tag: 'Private · case study',
+    accent: true,
+    name: 'Self-hosted RAG platform',
+    desc: 'Collection-per-domain vector isolation, local embeddings with no external API, LLM trace instrumentation, and bounded agent delegation that fails closed. The index is rebuildable derived state.',
+    stack: 'Qdrant · Ollama · LlamaIndex · LangFuse · Python · Linux',
+    link: { label: 'Read the case study', url: href('/work/self-hosted-rag/') },
+  },
+  {
+    tag: 'Client work · 2026',
+    name: 'Company AI platform',
+    desc: "Six months as sole architect and developer of a company's AI integrations: a multi-agent knowledge system with trust-tiered knowledge, retrieval and autonomous workflows, built around data integrity and operational visibility.",
+    stack: 'LangGraph · Crawl4AI · Qdrant · LangFuse · Python',
+    link: { label: 'Ask for a walkthrough', url: href('/hire/') },
+  },
+  {
+    tag: 'In progress',
+    name: 'Retrieval benchmark',
+    desc: 'Golden sets, recall@k, latency percentiles and cost per query for retrieval over Brazilian Portuguese text. Public when the numbers are.',
+    stack: 'Python · evaluation · Brazilian Portuguese',
+  },
+  {
+    tag: 'Public · source',
+    name: 'This site',
+    desc: 'Static pages, self-hosted fonts, no cookies and no third-party requests. The footer measures this page in your browser.',
+    stack: 'Astro · TypeScript · GitHub Actions',
+    link: { label: 'Source on GitHub', url: 'https://github.com/Viiotti/portifolio' },
+  },
+];
+---
+
+<Base
+  title="Home"
+  path="/"
+  description="AI engineer with an operations background. I design and operate self-hosted retrieval infrastructure: vector search, local embeddings, LLM tracing and bounded agent orchestration."
+>
+  <section class="hero">
+    <div class="wrap hero__grid">
+      <div>
+        <p class="label">AI engineer · infrastructure · RAG · LLMOps</p>
+        <h1 class="hero__name">{person.name}</h1>
+        <p class="hero__sub">I build retrieval systems that stay up: instrumented, measured and recoverable.</p>
+        <p class="hero__lede">
+          I came to AI from operations: hardware, then network monitoring, then observability and
+          integrity analysis, before six months as sole architect of a company's AI platform. So I
+          think about latency, failure modes and recovery before I think about model choice.
+        </p>
+        <div class="hero__cta">
+          <a class="btn btn--primary" href="#work">See the work
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+          </a>
+          <a class="btn" href={href('/resume/')}>Résumé</a>
+          <a class="btn" href={person.github} rel="me">GitHub</a>
+        </div>
+        <p class="mono hero__where">{person.location} · remote · US and European hours</p>
+      </div>
+
+      <aside class="panel now" aria-labelledby="now-title">
+        <div class="now__head">
+          <h2 id="now-title" class="label">Currently</h2>
+          <span class="mono now__date">updated {now.updated}</span>
+        </div>
+        <ul class="now__list">
+          {now.items.map((item) => (
+            <li><strong>{item.title}</strong><span>{item.body}</span></li>
+          ))}
+        </ul>
+        <a class="now__more" href={href('/now/')}>More on the now page</a>
+      </aside>
+    </div>
+  </section>
+
+  <section class="metrics" aria-label="At a glance">
+    <div class="wrap metrics__grid">
+      {metrics.map((m) => (
+        <div><p class="mono metrics__value">{m.value}</p><p class="metrics__label">{m.label}</p></div>
+      ))}
+    </div>
+  </section>
+
+  <section id="work" class="section">
+    <div class="wrap">
+      <p class="label">Selected work</p>
+      <h2 class="section__title">What I have built</h2>
+      <p class="section__lede">Some of this runs on private infrastructure or holds client data, so the source is not public. I am glad to walk through the architecture on a call.</p>
+      <div class="work">
+        {work.map((w) => (
+          <article class="panel card">
+            <span class:list={['tag', { 'tag--accent': w.accent }]}>{w.tag}</span>
+            <h3 class="card__name">{w.name}</h3>
+            <p class="card__desc">{w.desc}</p>
+            <p class="mono card__stack">{w.stack}</p>
+            {w.link && <a class="btn card__link" href={w.link.url}>{w.link.label}</a>}
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <p class="label">Path</p>
+      <h2 class="section__title">Operations first. Models second.</h2>
+      <ol class="path">
+        {path.map((p) => (
+          <li class:list={['path__item', { 'path__item--now': 'current' in p }]}>
+            <p class="mono path__when">{p.when}</p>
+            <h3 class="path__role">{p.role}</h3>
+            <p class="path__org">{p.org}</p>
+          </li>
+        ))}
+      </ol>
+      <a class="path__more" href={href('/resume/')}>Full résumé</a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap contact">
+      <a class="panel contact__card contact__card--accent" href={href('/hire/')}>
+        <p class="label contact__label">Hiring</p>
+        <h2 class="contact__title">Need someone to run your AI infrastructure?</h2>
+        <p class="muted">Remote roles in AI infrastructure, LLMOps and RAG engineering. Brazil-based, working US and European hours.</p>
+        <span class="btn btn--primary">Talk about a role</span>
+      </a>
+      <a class="panel contact__card" href={href('/hire/?type=project')}>
+        <p class="label">Freelance</p>
+        <h2 class="contact__title">Have a retrieval or automation project?</h2>
+        <p class="muted">RAG systems, AI integrations and automation, scoped and measured. Tell me what is not working.</p>
+        <span class="btn">Describe the project</span>
+      </a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero { padding: 72px 0 64px; background-image: linear-gradient(color-mix(in srgb, var(--accent) 6%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in srgb, var(--accent) 6%, transparent) 1px, transparent 1px); background-size: 64px 64px; background-position: center top; }
+  .hero__grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 48px; align-items: center; }
+  .hero__name { margin-top: 18px; font-size: clamp(44px, 7vw, 72px); line-height: 1; letter-spacing: -0.04em; }
+  .hero__sub { margin-top: 22px; font-size: clamp(19px, 2.2vw, 24px); line-height: 1.35; color: var(--ink); max-width: 28ch; }
+  .hero__lede { margin-top: 18px; font-size: 16px; line-height: 1.7; color: var(--ink-2); max-width: 54ch; }
+  .hero__cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+  .hero__where { margin-top: 22px; font-size: 12px; color: var(--ink-3); }
+  .now { padding: 22px; background: color-mix(in srgb, var(--bg-raised) 92%, transparent); backdrop-filter: blur(6px); }
+  .now__head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .now__date { font-size: 11px; color: var(--ink-3); }
+  .now__list { list-style: none; display: grid; gap: 14px; margin-top: 16px; }
+  .now__list li { display: grid; gap: 3px; font-size: 14px; line-height: 1.55; }
+  .now__list strong { font-weight: 600; }
+  .now__list span { color: var(--ink-2); }
+  .now__more { display: inline-flex; align-items: center; min-height: 44px; margin-top: 6px; font-size: 14px; }
+  .metrics { border-top: 1px solid var(--line); padding: 36px 0; }
+  .metrics__grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); }
+  .metrics__value { font-size: 34px; font-weight: 500; letter-spacing: -0.03em; }
+  .metrics__label { margin-top: 4px; font-size: 13.5px; color: var(--ink-2); }
+  .work { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); margin-top: 32px; }
+  .card { padding: 22px; display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+  .card__name { font-size: 20px; }
+  .card__desc { font-size: 14.5px; line-height: 1.6; color: var(--ink-2); }
+  .card__stack { font-size: 12px; color: var(--ink-3); }
+  .card__link { margin-top: auto; }
+  .path { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(170px, 100%), 1fr)); margin-top: 32px; }
+  .path__item { position: relative; padding: 18px 16px 20px 0; border-top: 1px solid var(--line-2); }
+  .path__item::before { content: ''; position: absolute; top: -5px; left: 0; width: 9px; height: 9px; border-radius: 50%; background: var(--ink-3); }
+  .path__item--now::before { background: var(--accent); }
+  .path__when { font-size: 11.5px; color: var(--ink-3); }
+  .path__role { margin-top: 6px; font-size: 15px; font-weight: 500; letter-spacing: -0.01em; }
+  .path__org { margin-top: 4px; font-size: 13px; color: var(--ink-2); }
+  .path__more { display: inline-flex; align-items: center; min-height: 44px; margin-top: 8px; font-size: 14px; }
+  .contact { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); }
+  .contact__card { padding: 28px; display: flex; flex-direction: column; gap: 12px; align-items: flex-start; color: var(--ink); text-decoration: none; transition: border-color 0.18s var(--ease); }
+  .contact__card:hover { color: var(--ink); border-color: var(--ink-3); }
+  .contact__card--accent { border-color: var(--accent-line); }
+  .contact__label { color: var(--accent); }
+  .contact__title { font-size: 24px; }
+  .contact__card .btn { margin-top: 8px; }
+  @media (max-width: 900px) { .hero__grid { grid-template-columns: 1fr; } .hero { padding-top: 48px; } }
+</style>

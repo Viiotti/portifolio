@@ -1,0 +1,68 @@
+---
+import { href, person } from '../lib/site';
+const year = new Date().getFullYear();
+---
+
+<footer class="footer no-print">
+  <div class="wrap footer__inner">
+    <p class="footer__copy">© {year} {person.name}</p>
+    <nav class="footer__links" aria-label="Footer">
+      <a href={href('/privacy/')}>Privacy</a>
+      <a href={person.github} rel="me">GitHub</a>
+      <a href={person.linkedin} rel="me">LinkedIn</a>
+    </nav>
+    <p class="mono footer__meta">
+      <span>this page · LCP <b data-tel-lcp>—</b> · <b data-tel-kb>—</b> · <b data-tel-cookies>—</b> cookies</span>
+      <span><b data-clock>—</b> in Belo Horizonte</span>
+    </p>
+  </div>
+</footer>
+
+<style>
+  .footer { border-top: 1px solid var(--line); padding: 28px 0 40px; margin-top: 24px; }
+  .footer__inner { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 28px; }
+  .footer__copy { font-size: 13px; color: var(--ink-2); }
+  .footer__links { display: flex; gap: 4px; }
+  .footer__links a { font-size: 13px; color: var(--ink-2); text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; padding: 0 8px; }
+  .footer__links a:hover { color: var(--ink); }
+  .footer__meta { margin-left: auto; display: flex; flex-wrap: wrap; gap: 6px 20px; font-size: 12px; color: var(--ink-3); }
+  .footer__meta b { color: var(--ink); font-weight: 500; }
+  @media (max-width: 720px) { .footer__meta { margin-left: 0; } }
+</style>
+
+<script>
+  // Real measurements of this page in this browser. Anything the browser
+  // cannot measure stays "—".
+  const set = (sel: string, text: string) => {
+    const el = document.querySelector(sel);
+    if (el) el.textContent = text;
+  };
+
+  try {
+    const po = new PerformanceObserver((list) => {
+      const last = list.getEntries().at(-1);
+      if (last) set('[data-tel-lcp]', `${(last.startTime / 1000).toFixed(1)} s`);
+    });
+    po.observe({ type: 'largest-contentful-paint', buffered: true });
+    addEventListener('pointerdown', () => po.disconnect(), { once: true, capture: true });
+  } catch {}
+
+  const reportBytes = () => {
+    const nav = performance.getEntriesByType('navigation') as PerformanceNavigationTiming[];
+    const res = performance.getEntriesByType('resource') as PerformanceResourceTiming[];
+    const entries = [...nav, ...res];
+    if (!entries.length || entries.every((e) => !e.transferSize && !e.encodedBodySize)) return;
+    // transferSize is 0 for cached responses; encodedBodySize still counts what the page uses.
+    const bytes = entries.reduce((sum, e) => sum + (e.transferSize || e.encodedBodySize || 0), 0);
+    set('[data-tel-kb]', `${Math.max(1, Math.round(bytes / 1024))} KB`);
+  };
+  if (document.readyState === 'complete') reportBytes();
+  else addEventListener('load', () => setTimeout(reportBytes, 0), { once: true });
+
+  set('[data-tel-cookies]', String(document.cookie.split(';').filter((c) => c.trim()).length));
+
+  const clock = new Intl.DateTimeFormat('en-GB', { timeZone: 'America/Sao_Paulo', hour: '2-digit', minute: '2-digit' });
+  const tick = () => set('[data-clock]', clock.format(new Date()));
+  tick();
+  setInterval(tick, 30_000);
+</script>

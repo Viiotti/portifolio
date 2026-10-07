@@ -1,0 +1,262 @@
+---
+import Base from '../../layouts/Base.astro';
+import { href, person } from '../../lib/site';
+
+// Optional build-time configuration. Without a key the forms fall back to
+// opening the visitor's email client with the message already written.
+const formKey = import.meta.env.PUBLIC_WEB3FORMS_KEY ?? '';
+const calUrl = import.meta.env.PUBLIC_CAL_URL ?? '';
+---
+
+<Base
+  title="Contact"
+  path="/hire/"
+  description="Hire Rafael Viotti for a remote AI infrastructure, LLMOps or RAG engineering role, or describe a freelance project."
+>
+  <div class="wrap">
+    <header class="page-head">
+      <p class="label">Contact</p>
+      <h1>Let’s talk</h1>
+      <p>Two ways in. Pick the one that fits.</p>
+    </header>
+
+    <div class="tabs" role="tablist" aria-label="Reason for contact">
+      <button id="tab-hire" class="tab" type="button" role="tab" aria-selected="true" aria-controls="panel-hire" data-tab="hire">I’m hiring for a role</button>
+      <button id="tab-project" class="tab" type="button" role="tab" aria-selected="false" aria-controls="panel-project" data-tab="project" tabindex="-1">I have a project</button>
+    </div>
+
+    <div class="grid">
+      <section class="panel formbox">
+        <form id="panel-hire" role="tabpanel" aria-labelledby="tab-hire" class="form" data-form="hire" data-key={formKey} novalidate>
+          <div class="two">
+            <div class="field"><label for="h-name">Your name</label><input id="h-name" name="name" type="text" autocomplete="name" required /></div>
+            <div class="field"><label for="h-email">Work email</label><input id="h-email" name="email" type="email" autocomplete="email" required /></div>
+          </div>
+          <div class="two">
+            <div class="field"><label for="h-company">Company</label><input id="h-company" name="company" type="text" autocomplete="organization" /></div>
+            <div class="field"><label for="h-type">Engagement</label>
+              <select id="h-type" name="engagement"><option>Full-time</option><option>Contract</option><option>Not sure yet</option></select>
+            </div>
+          </div>
+          <div class="field"><label for="h-link">Link to the role <span class="opt">(optional)</span></label><input id="h-link" name="role_link" type="url" inputmode="url" placeholder="https://" /></div>
+          <div class="field"><label for="h-msg">What would I be working on?</label><textarea id="h-msg" name="message" rows="5" required></textarea></div>
+          <input class="hp" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <div class="actions">
+            <button class="btn btn--primary" type="submit">Send</button>
+            {calUrl && <a class="btn" href={calUrl}>Or book 20 minutes</a>}
+          </div>
+        </form>
+
+        <form id="panel-project" role="tabpanel" aria-labelledby="tab-project" class="form" data-form="project" data-key={formKey} hidden novalidate>
+          <div class="two">
+            <div class="field"><label for="p-name">Your name</label><input id="p-name" name="name" type="text" autocomplete="name" required /></div>
+            <div class="field"><label for="p-email">Email</label><input id="p-email" name="email" type="email" autocomplete="email" required /></div>
+          </div>
+          <div class="field"><label for="p-problem">What is not working, or what do you need built?</label><textarea id="p-problem" name="message" rows="5" required></textarea></div>
+          <div class="two">
+            <div class="field"><label for="p-when">Timeline</label>
+              <select id="p-when" name="timeline"><option>This month</option><option>In 1 to 3 months</option><option>Exploring</option></select>
+            </div>
+            <div class="field"><label for="p-budget">Budget <span class="opt">(optional)</span></label><input id="p-budget" name="budget" type="text" /></div>
+          </div>
+          <input class="hp" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <div class="actions"><button class="btn btn--primary" type="submit">Send project brief</button></div>
+        </form>
+
+        <p class="status" role="status" aria-live="polite" data-status></p>
+        <p class="note">
+          {formKey
+            ? 'Your message is delivered to my inbox by Web3Forms and nowhere else.'
+            : 'Sending opens your email app with the message already written.'}{' '}
+          <a href={href('/privacy/')}>Privacy</a>
+        </p>
+      </section>
+
+      <aside class="side">
+        <section class="panel tz" aria-labelledby="tz-title">
+          <h2 id="tz-title" class="label">Time zones · live</h2>
+          <p class="mono tz__time"><span data-tz-bh>—</span> <span class="tz__where">in Belo Horizonte</span></p>
+          <p class="tz__you" data-tz-you>Your time zone could not be read.</p>
+          <div class="tz__bars" aria-hidden="true">
+            <div class="tz__track"><div class="tz__band tz__band--me" data-band-me></div></div>
+            <div class="tz__track"><div class="tz__band tz__band--you" data-band-you></div><div class="tz__band tz__band--you" data-band-you2></div></div>
+          </div>
+          <div class="mono tz__axis" aria-hidden="true"><span>00</span><span>06</span><span>12</span><span>18</span><span>24 · BH time</span></div>
+          <div class="tz__legend" aria-hidden="true"><span><i class="tz__key tz__key--me"></i>my working day (09–18)</span><span><i class="tz__key tz__key--you"></i>yours</span></div>
+          <p class="tz__overlap" data-tz-overlap></p>
+        </section>
+
+        <section class="panel looking">
+          <h2 class="label">What I am looking for</h2>
+          <ul>
+            <li>Remote roles in AI infrastructure, LLMOps and RAG engineering</li>
+            <li>Brazil-based, working US and European hours</li>
+          </ul>
+          <a href={href('/resume/')}>Résumé</a>
+        </section>
+
+        <section class="panel channels" aria-label="Direct channels">
+          <a href={`mailto:${person.email}`}><span>Email</span><span class="mono">{person.email}</span></a>
+          <a href={person.linkedin} rel="me"><span>LinkedIn</span><span class="mono">{person.linkedinLabel}</span></a>
+          <a href={person.github} rel="me"><span>GitHub</span><span class="mono">{person.githubLabel}</span></a>
+        </section>
+      </aside>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .tabs { display: inline-flex; gap: 4px; margin-top: 28px; padding: 4px; border-radius: 12px; border: 1px solid var(--line); background: var(--bg-raised); max-width: 100%; }
+  .tab { min-height: 44px; border: 0; border-radius: 8px; background: transparent; color: var(--ink-2); font: 500 14px var(--sans); padding: 0 16px; cursor: pointer; }
+  .tab[aria-selected='true'] { background: var(--accent); color: var(--accent-ink); }
+  .grid { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 24px; align-items: start; margin: 20px 0 64px; }
+  .formbox { padding: 28px; }
+  .form { display: flex; flex-direction: column; gap: 18px; }
+  .two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  .field { display: flex; flex-direction: column; gap: 8px; }
+  .field label { font-size: 13.5px; color: var(--ink); }
+  .opt { color: var(--ink-3); }
+  .field input, .field select, .field textarea { min-height: 46px; border-radius: 10px; border: 1px solid var(--line-2); background: var(--bg-inset); color: var(--ink); font: 15px var(--sans); padding: 10px 14px; width: 100%; }
+  .field textarea { resize: vertical; line-height: 1.5; }
+  .field [aria-invalid='true'] { border-color: var(--warn); }
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+  .status { margin-top: 16px; font-size: 14px; }
+  .status:empty { display: none; }
+  .status[data-ok='true'] { color: var(--accent); }
+  .status[data-ok='false'] { color: var(--warn); }
+  .note { margin-top: 16px; font-size: 13px; color: var(--ink-3); }
+  .side { display: flex; flex-direction: column; gap: 16px; }
+  .tz { padding: 22px; }
+  .tz__time { margin-top: 12px; font-size: 30px; letter-spacing: -0.02em; }
+  .tz__where { font-size: 13px; color: var(--ink-3); }
+  .tz__you { margin-top: 8px; font-size: 14px; color: var(--ink-2); }
+  .tz__bars { display: grid; gap: 4px; margin-top: 18px; }
+  .tz__track { position: relative; height: 10px; border-radius: 5px; background: var(--bg-inset); }
+  .tz__band { position: absolute; top: 0; bottom: 0; border-radius: 5px; }
+  .tz__band--me { background: var(--accent); }
+  .tz__band--you { background: #8a63e8; }
+  .tz__axis { display: flex; justify-content: space-between; margin-top: 6px; font-size: 10.5px; color: var(--ink-3); }
+  .tz__legend { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 10px; font-size: 12.5px; color: var(--ink-2); }
+  .tz__legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .tz__key { width: 12px; height: 6px; border-radius: 3px; display: inline-block; }
+  .tz__key--me { background: var(--accent); }
+  .tz__key--you { background: #8a63e8; }
+  .tz__overlap { margin-top: 14px; font-weight: 500; }
+  .looking { padding: 22px; }
+  .looking ul { margin: 12px 0 0 18px; display: grid; gap: 8px; font-size: 14px; color: var(--ink-2); }
+  .looking a { display: inline-flex; align-items: center; min-height: 44px; margin-top: 4px; font-size: 14px; }
+  .channels { padding: 4px 22px; }
+  .channels a { display: flex; justify-content: space-between; gap: 16px; align-items: center; min-height: 48px; border-bottom: 1px solid var(--line); color: var(--ink); text-decoration: none; font-size: 14px; }
+  .channels a:last-child { border-bottom: 0; }
+  .channels a span:first-child { color: var(--ink-3); }
+  .channels .mono { font-size: 13px; overflow-wrap: anywhere; text-align: right; }
+  @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+  @media (max-width: 560px) { .two { grid-template-columns: 1fr; } .formbox { padding: 20px; } .tab { padding: 0 12px; font-size: 13.5px; } }
+</style>
+
+<script>
+  /* ---- Tabs ---------------------------------------------------------- */
+  const tabs = [...document.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
+  const select = (name: string, focus = false) => {
+    tabs.forEach((t) => {
+      const on = t.dataset.tab === name;
+      t.setAttribute('aria-selected', String(on));
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute('aria-controls')!)!.hidden = !on;
+      if (on && focus) t.focus();
+    });
+    const status = document.querySelector<HTMLElement>('[data-status]');
+    if (status) status.textContent = '';
+  };
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => select(t.dataset.tab!));
+    t.addEventListener('keydown', (e) => {
+      if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      const next = tabs[(i + (e.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length];
+      select(next.dataset.tab!, true);
+    });
+  });
+  if (new URLSearchParams(location.search).get('type') === 'project') select('project');
+
+  /* ---- Forms --------------------------------------------------------- */
+  const EMAIL = 'rafaelviotti@gmail.com';
+  const openedAt = Date.now();
+  const status = document.querySelector<HTMLElement>('[data-status]')!;
+  const say = (text: string, ok: boolean) => { status.textContent = text; status.dataset.ok = String(ok); };
+
+  document.querySelectorAll<HTMLFormElement>('form[data-form]').forEach((form) => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const fields = [...form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('[required]')];
+      let firstBad: HTMLElement | null = null;
+      fields.forEach((f) => {
+        const bad = !f.value.trim() || (f.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.value.trim()));
+        f.setAttribute('aria-invalid', String(bad));
+        if (bad && !firstBad) firstBad = f;
+      });
+      if (firstBad) { say('Please fill in your name, a valid email and a message.', false); (firstBad as HTMLElement).focus(); return; }
+
+      const data = Object.fromEntries(new FormData(form).entries()) as Record<string, string>;
+      const kind = form.dataset.form === 'project' ? 'Project' : 'Hiring';
+      // Honeypot ticked or submitted faster than a person can type: pretend it worked.
+      if (data.botcheck || Date.now() - openedAt < 3000) { form.reset(); say('Thanks, your message is on its way.', true); return; }
+      delete data.botcheck;
+
+      const key = form.dataset.key;
+      if (!key) {
+        const body = Object.entries(data).filter(([, v]) => v).map(([k, v]) => `${k}: ${v}`).join('\n');
+        location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(`${kind} — ${data.name}`)}&body=${encodeURIComponent(body)}`;
+        say('Your email app should open with the message ready to send.', true);
+        return;
+      }
+
+      const button = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
+      const label = button.textContent;
+      button.disabled = true; button.textContent = 'Sending…';
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({ access_key: key, subject: `${kind} — ${data.name}`, from_name: 'Portfolio contact form', form: form.dataset.form, ...data }),
+        });
+        if (!res.ok) throw new Error(String(res.status));
+        form.reset();
+        say('Sent. I will reply to the email you gave.', true);
+      } catch {
+        say(`It did not go through. Email me directly at ${EMAIL}.`, false);
+      } finally {
+        button.disabled = false; button.textContent = label;
+      }
+    });
+  });
+
+  /* ---- Time zones ---------------------------------------------------- */
+  const BH_OFFSET_MIN = -180; // America/Sao_Paulo has no daylight saving since 2019.
+  const set = (sel: string, text: string) => { const el = document.querySelector(sel); if (el) el.textContent = text; };
+  const band = (sel: string, start: number, width: number) => {
+    const el = document.querySelector<HTMLElement>(sel);
+    if (!el) return;
+    el.style.left = `${(start / 24) * 100}%`;
+    el.style.width = `${(width / 24) * 100}%`;
+    el.hidden = width <= 0;
+  };
+  const overlap = (a0: number, a1: number, b0: number, b1: number) => Math.max(0, Math.min(a1, b1) - Math.max(a0, b0));
+  const update = () => {
+    const now = new Date();
+    set('[data-tz-bh]', new Intl.DateTimeFormat('en-GB', { timeZone: 'America/Sao_Paulo', hour: '2-digit', minute: '2-digit' }).format(now));
+    const zone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const diff = (-now.getTimezoneOffset() - BH_OFFSET_MIN) / 60; // visitor minus BH, in hours
+    const abs = Math.abs(diff);
+    set('[data-tz-you]', `You are in ${zone ?? 'your time zone'}, ${diff === 0 ? 'the same time as me' : `${abs} h ${diff > 0 ? 'ahead of' : 'behind'} me`}.`);
+    band('[data-band-me]', 9, 9);
+    const start = (((9 - diff) % 24) + 24) % 24; // visitor's 09:00 in BH time
+    const end = start + 9;
+    band('[data-band-you]', start, Math.min(end, 24) - start);
+    band('[data-band-you2]', 0, Math.max(0, end - 24));
+    const shared = overlap(9, 18, start, end) + overlap(9, 18, start - 24, end - 24);
+    set('[data-tz-overlap]', shared > 0 ? `${shared} h of our working days overlap.` : 'Our working days do not overlap; I can start early or stay late.');
+  };
+  update();
+  setInterval(update, 30_000);
+</script>

@@ -1,0 +1,79 @@
+---
+import Base from '../../layouts/Base.astro';
+import { href } from '../../lib/site';
+
+// Only tools with a published use behind them (current site "Evidence" section and résumé).
+const groups = [
+  {
+    name: 'Retrieval & vectors',
+    tools: [
+      { name: 'Qdrant', use: 'Self-hosted vector search: one collection per domain, 20 collections, 16,005 points. Index rebuild and recovery, scroll profiling.' },
+      { name: 'LlamaIndex', use: 'Retrieval pipeline on the self-hosted platform.' },
+    ],
+  },
+  {
+    name: 'Embeddings & local inference',
+    tools: [
+      { name: 'Ollama', use: 'Local model serving, so embeddings never leave the machine and cost nothing per query.' },
+      { name: 'nomic-embed-text', use: '768-dimension embeddings, batch-embedded locally.' },
+    ],
+  },
+  {
+    name: 'Agents & ingestion',
+    tools: [
+      { name: 'LangGraph', use: 'Orchestration with hard limits: depth-one spawning, capped concurrency, leaf agents that cannot delegate or write memory.' },
+      { name: 'Crawl4AI', use: 'Ingestion for a multi-agent knowledge system (client work, 2026).' },
+    ],
+  },
+  {
+    name: 'LLM observability',
+    tools: [
+      { name: 'LangFuse v3, self-hosted', use: 'Trace instrumentation for retrieval and generation, run on my own infrastructure.' },
+      { name: 'ClickHouse · Postgres · MinIO · Redis', use: 'The services LangFuse v3 needs, operated alongside it.' },
+    ],
+  },
+  {
+    name: 'Infrastructure',
+    tools: [
+      { name: 'Linux · systemd', use: 'Every service runs as a managed unit on my own machines.' },
+      { name: 'WireGuard · nginx', use: 'VPN-only boundary; nothing exposed to the public internet.' },
+      { name: 'Docker', use: 'Packaging for self-hosted services.' },
+      { name: 'Backups & drills', use: 'Rehearsed recovery for application state, vector collections and knowledge files.' },
+    ],
+  },
+  {
+    name: 'Languages',
+    tools: [{ name: 'Python', use: 'Pipelines, automation and evaluation.' }],
+  },
+];
+---
+
+<Base title="Stack" path="/stack/" description="The self-hosted AI stack Rafael Viotti runs, and what each piece is for.">
+  <div class="wrap">
+    <header class="page-head">
+      <p class="label">Stack</p>
+      <h1>What I run, and why</h1>
+      <p>Every tool here is in use on a system I operate or have built. No logos, no percentages: one line on what it does for me.</p>
+    </header>
+    <div class="groups">
+      {groups.map((g) => (
+        <section class="group">
+          <h2 class="label">{g.name}</h2>
+          <dl>
+            {g.tools.map((t) => (<div class="tool"><dt>{t.name}</dt><dd>{t.use}</dd></div>))}
+          </dl>
+        </section>
+      ))}
+    </div>
+    <p class="more">How these fit together: <a href={href('/work/self-hosted-rag/')}>the self-hosted RAG platform case study</a>.</p>
+  </div>
+</Base>
+
+<style>
+  .groups { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(min(340px, 100%), 1fr)); margin-top: 32px; }
+  .group { border-top: 1px solid var(--line-2); padding-top: 16px; }
+  .group dl { margin: 12px 0 0; display: grid; gap: 14px; }
+  .tool dt { font-weight: 600; }
+  .tool dd { margin: 4px 0 0; color: var(--ink-2); font-size: 14.5px; line-height: 1.6; }
+  .more { margin: 40px 0 72px; color: var(--ink-2); }
+</style>

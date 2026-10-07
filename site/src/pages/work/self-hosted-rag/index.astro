@@ -1,0 +1,192 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { href } from '../../../lib/site';
+
+// Sources: the "Evidence" section and résumé "Selected Project" published on the
+// current site (commit f67e2b7). The platform's name and internals beyond these
+// stay private by Rafael's decision.
+
+const toc = [
+  ['Problem', 'problem'],
+  ['Constraints', 'constraints'],
+  ['Decisions', 'decisions'],
+  ['Architecture', 'architecture'],
+  ['Results', 'results'],
+  ['What I would do differently', 'differently'],
+];
+
+const constraints = [
+  'Documents and queries stay on my own machines',
+  'Zero cost per query, no rate limits',
+  'Knowledge domains must not leak into each other',
+  'Reachable only over a VPN',
+  'Any piece can be rebuilt after a failure',
+];
+
+const decisions = [
+  {
+    topic: 'Isolation',
+    chosen: 'One Qdrant collection per domain',
+    why: 'A query against one domain can never surface another domain’s passages, and each collection can be rebuilt on its own.',
+    cost: 'More collections to operate: 20 today.',
+  },
+  {
+    topic: 'Embeddings',
+    chosen: 'Local, with Ollama and nomic-embed-text (768 dimensions)',
+    why: 'Zero cost per query, no rate limits, and embeddings that never leave the machine.',
+    cost: 'RAM and CPU per batch. The right trade for this workload.',
+  },
+  {
+    topic: 'State',
+    chosen: 'The vector index is derived, rebuildable state',
+    why: 'Source files are the truth. When a collection was corrupted, I recovered it by rebuilding from source.',
+    cost: 'Re-embedding takes time, so rebuilds are rehearsed rather than improvised.',
+  },
+  {
+    topic: 'Observability',
+    chosen: 'LangFuse v3, self-hosted',
+    why: 'Full traces of every retrieval and generation, kept on my own infrastructure instead of a SaaS endpoint.',
+    cost: 'Four more services to run: ClickHouse, Postgres, MinIO and Redis.',
+  },
+  {
+    topic: 'Agents',
+    chosen: 'Bounded delegation that fails closed',
+    why: 'Depth-one spawning, capped concurrency, and leaf agents that cannot delegate or write memory. If a delegated provider is down, the work falls back inline.',
+    cost: 'Less autonomy by design: deep agent chains are not possible.',
+  },
+  {
+    topic: 'Access',
+    chosen: 'WireGuard-only boundary',
+    why: 'Nothing is exposed to the public internet; nginx and systemd services sit behind the VPN.',
+    cost: 'Every client needs a VPN peer.',
+  },
+];
+
+const results = [
+  { value: '20', label: 'collections operated' },
+  { value: '16,005', label: 'indexed points' },
+  { value: '0', label: 'external embedding API calls' },
+];
+---
+
+<Base
+  title="Self-hosted RAG platform"
+  path="/work/self-hosted-rag/"
+  description="Case study: a self-hosted retrieval platform with collection-per-domain isolation, local embeddings, self-hosted LLM tracing and bounded agent delegation."
+>
+  <div class="wrap">
+    <header class="page-head">
+      <p class="mono crumb"><a href={href('/#work')}>Work</a> / Self-hosted RAG platform</p>
+      <h1>A self-hosted RAG platform that treats its index as disposable</h1>
+      <p>Why the vector index is derived state, why embeddings never leave the machine, and what that costs.</p>
+    </header>
+
+    <dl class="meta">
+      <div><dt class="label">Role</dt><dd>Architect and operator, end to end</dd></div>
+      <div><dt class="label">Status</dt><dd>In production on my own infrastructure</dd></div>
+      <div><dt class="label">Stack</dt><dd>Qdrant, Ollama, LlamaIndex, LangFuse, Python, Linux</dd></div>
+      <div><dt class="label">Source</dt><dd>Private. Walkthrough on request</dd></div>
+    </dl>
+
+    <div class="layout">
+      <nav class="toc" aria-label="On this page">
+        <p class="label">On this page</p>
+        <ul>{toc.map(([label, id]) => <li><a href={`#${id}`}>{label}</a></li>)}</ul>
+      </nav>
+
+      <article class="prose">
+        <h2 id="problem">Problem</h2>
+        <p>
+          I wanted retrieval over several separate bodies of knowledge that I could run myself:
+          no documents or queries sent to a third party, no bill that grows with every question, and
+          no silent degradation when something underneath breaks.
+        </p>
+
+        <h2 id="constraints">Constraints</h2>
+        <ol class="constraints">
+          {constraints.map((c, i) => <li><span class="mono">{String(i + 1).padStart(2, '0')}</span>{c}</li>)}
+        </ol>
+
+        <h2 id="decisions">Decisions</h2>
+        <p>Each one has a cost. Here is what I picked and what I paid for it.</p>
+        <div class="decisions">
+          {decisions.map((d) => (
+            <div class="decision">
+              <div><p class="label">{d.topic}</p><p class="decision__chosen">{d.chosen}</p></div>
+              <div><p class="label">Why</p><p>{d.why}</p></div>
+              <div><p class="label">Cost</p><p>{d.cost}</p></div>
+            </div>
+          ))}
+        </div>
+
+        <h2 id="architecture">Architecture</h2>
+        <p>Everything below runs behind a WireGuard boundary. Source files are the only state that matters.</p>
+        <figure class="panel diagram" aria-label="Architecture overview">
+          <div class="flow">
+            <div class="box"><span class="mono step">1 →</span>Source files<small class="mono">knowledge by trust tier</small></div>
+            <div class="box"><span class="mono step">2 →</span>Ingest &amp; chunk<small class="mono">per domain</small></div>
+            <div class="box"><span class="mono step">3 →</span>Embed locally<small class="mono">Ollama · 768-d</small></div>
+            <div class="box"><span class="mono step">4 →</span>Index<small class="mono">Qdrant · 1 collection per domain</small></div>
+            <div class="box box--accent"><span class="mono step">5</span>Retrieve &amp; answer<small class="mono">bounded agents</small></div>
+          </div>
+          <div class="rail">
+            <span class="mono">LangFuse traces every step</span>
+            <span class="mono">Backups + rehearsed rebuilds</span>
+            <span class="mono">WireGuard-only access</span>
+          </div>
+        </figure>
+
+        <h2 id="results">Results</h2>
+        <div class="results">
+          {results.map((r) => <div class="panel result"><p class="mono result__value">{r.value}</p><p class="result__label">{r.label}</p></div>)}
+        </div>
+        <p>
+          Measured on the running deployment. A corrupted collection was recovered by rebuilding it from
+          source, which is why I argue that reindexing is a feature, not a failure.
+        </p>
+
+        <h2 id="differently">What I would do differently</h2>
+        <p>
+          I built the infrastructure before the measurement layer. It has traces and recovery drills, but
+          not yet a golden set that says how good retrieval actually is. Next time that comes first, and
+          it is what I am building now: a retrieval benchmark with recall@k, latency percentiles and cost per query.
+        </p>
+
+        <p class="back"><a href={href('/#work')}>← All work</a> · <a href={href('/hire/')}>Ask for a walkthrough</a></p>
+      </article>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .crumb { font-size: 13px; color: var(--ink-3); margin-bottom: 18px; }
+  .crumb a { color: var(--ink-2); }
+  .meta { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); margin: 32px 0 0; padding: 22px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .meta dd { margin: 8px 0 0; font-size: 14.5px; line-height: 1.5; color: var(--ink-2); }
+  .layout { display: grid; grid-template-columns: 200px minmax(0, 720px); gap: 64px; margin-top: 48px; padding-bottom: 48px; }
+  .toc { position: sticky; top: 92px; align-self: start; }
+  .toc ul { list-style: none; margin-top: 12px; border-left: 1px solid var(--line); }
+  .toc a { display: flex; align-items: center; min-height: 36px; padding-left: 12px; color: var(--ink-2); text-decoration: none; font-size: 14px; }
+  .toc a:hover { color: var(--ink); }
+  .prose > h2:first-child { margin-top: 0; }
+  .constraints { list-style: none; display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); padding: 0 !important; }
+  .constraints li { border: 1px solid var(--line-2); border-radius: 10px; padding: 12px 14px; font-size: 14px; line-height: 1.45; color: var(--ink); background: var(--bg-raised); }
+  .constraints span { display: block; font-size: 12px; color: var(--accent); margin-bottom: 4px; }
+  .decisions { border-top: 1px solid var(--line-2); }
+  .decision { display: grid; gap: 8px 20px; grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr)); padding: 16px 0; border-bottom: 1px solid var(--line); }
+  .decision p:not(.label) { margin-top: 6px; font-size: 14px; line-height: 1.55; color: var(--ink-2); }
+  .decision .decision__chosen { font-size: 15px; font-weight: 600; color: var(--ink); }
+  .diagram { margin: 20px 0 0; padding: 20px; }
+  .flow { display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(min(118px, 100%), 1fr)); }
+  .box { border: 1px solid var(--line-2); border-radius: 10px; padding: 12px; font-size: 13.5px; line-height: 1.4; background: var(--bg); display: grid; gap: 4px; }
+  .box--accent { border-color: var(--accent-line); }
+  .step { font-size: 11px; color: var(--ink-3); }
+  .box small { font-size: 11.5px; color: var(--ink-3); }
+  .rail { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line); font-size: 12px; color: var(--ink-2); }
+  .results { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr)); }
+  .result { padding: 16px 18px; }
+  .result__value { font-size: 28px; }
+  .result__label { margin-top: 4px; font-size: 13px; color: var(--ink-2); }
+  .back { margin-top: 48px !important; font-size: 15px !important; }
+  @media (max-width: 900px) { .layout { grid-template-columns: 1fr; gap: 0; } .toc { display: none; } }
+</style>

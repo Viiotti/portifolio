@@ -1,0 +1,33 @@
+---
+import Base from '../../layouts/Base.astro';
+import { href, now } from '../../lib/site';
+---
+
+<Base title="Now" path="/now/" description="What Rafael Viotti is working on right now.">
+  <div class="wrap narrow">
+    <header class="page-head">
+      <p class="label">Now · updated {now.updated}</p>
+      <h1>What I am working on</h1>
+      <p>A snapshot of where my time goes. When it changes, this page changes.</p>
+    </header>
+    <ol class="items">
+      {now.items.map((item, i) => (
+        <li class="panel item">
+          <span class="mono item__n">{String(i + 1).padStart(2, '0')}</span>
+          <div><h2 class="item__title">{item.title}</h2><p class="item__body">{item.body}</p></div>
+        </li>
+      ))}
+    </ol>
+    <p class="open">Open to remote roles in AI infrastructure, LLMOps and RAG engineering. <a href={href('/hire/')}>Get in touch</a>.</p>
+  </div>
+</Base>
+
+<style>
+  .narrow { max-width: 820px; }
+  .items { list-style: none; display: grid; gap: 12px; margin-top: 32px; }
+  .item { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 12px; padding: 20px 22px; }
+  .item__n { font-size: 12px; color: var(--accent); padding-top: 4px; }
+  .item__title { font-size: 18px; }
+  .item__body { margin-top: 6px; color: var(--ink-2); line-height: 1.65; }
+  .open { margin: 32px 0 72px; color: var(--ink-2); }
+</style>
