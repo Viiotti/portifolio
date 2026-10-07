@@ -147,7 +147,7 @@
     if (!el) return;
 
     const lines = [
-      'building RAG pipelines with measurable evals',
+      'building a retrieval evaluation benchmark',
       'automating infrastructure operations in Python',
       'monitoring what runs in production',
       'turning ops experience into AI systems',
@@ -184,19 +184,25 @@
     const ctx = canvas.getContext('2d', { alpha: true });
     if (!ctx) return;
 
-    let w = 0, h = 0, dpr = 1, raf = null, t = 0, visible = true;
+    let w = 0, h = 0, raf = null, t = 0, frame = 0, visible = true;
 
     const traces = [
-      { amp: 0.13, freq: 1.5, speed: 0.0055, width: 1.6, alpha: 0.55, y: 0.42 },
-      { amp: 0.09, freq: 2.4, speed: 0.0080, width: 1.1, alpha: 0.34, y: 0.55 },
-      { amp: 0.06, freq: 3.6, speed: 0.0110, width: 0.9, alpha: 0.20, y: 0.66 },
+      { amp: 0.13, freq: 1.5, speed: 0.011, width: 1.6, alpha: 0.55, y: 0.42 },
+      { amp: 0.09, freq: 2.4, speed: 0.016, width: 1.1, alpha: 0.34, y: 0.55 },
+      { amp: 0.06, freq: 3.6, speed: 0.022, width: 0.9, alpha: 0.20, y: 0.66 },
     ];
 
-    const accentOf = () =>
-      getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#00d4aa';
+    // Reading computed style every frame forces a style recalculation, so the
+    // accent is read once and again only when the theme changes.
+    let accent = '#00d4aa';
+    const readAccent = () => {
+      accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || accent;
+    };
+    readAccent();
+    new MutationObserver(readAccent).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
     function resize() {
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
       const rect = canvas.getBoundingClientRect();
       w = Math.max(1, rect.width);
       h = Math.max(1, rect.height);
@@ -207,36 +213,20 @@
 
     function draw() {
       ctx.clearRect(0, 0, w, h);
-      const accent = accentOf();
-
-      // Faint grid — the dashboard substrate
       ctx.strokeStyle = accent;
-      ctx.globalAlpha = 0.05;
-      ctx.lineWidth = 1;
-      const step = 64;
-      ctx.beginPath();
-      for (let x = (t * 0.35) % step; x < w; x += step) {
-        ctx.moveTo(x, 0); ctx.lineTo(x, h);
-      }
-      for (let y = 0; y < h; y += step) {
-        ctx.moveTo(0, y); ctx.lineTo(w, y);
-      }
-      ctx.stroke();
+      ctx.lineJoin = 'round';
 
-      // Traces
       traces.forEach((tr) => {
         ctx.beginPath();
         ctx.globalAlpha = tr.alpha;
-        ctx.strokeStyle = accent;
         ctx.lineWidth = tr.width;
-        ctx.lineJoin = 'round';
 
         const baseY = h * tr.y;
         const amp = h * tr.amp;
 
-        for (let x = 0; x <= w; x += 3) {
+        for (let x = 0; x <= w + 8; x += 8) {
           const p = x / w;
-          // Two summed sines + a slow envelope: organic, never repeats visibly
+          // Two summed sines: organic, never repeats visibly
           const y = baseY
             + Math.sin(p * Math.PI * 2 * tr.freq + t * tr.speed) * amp
             + Math.sin(p * Math.PI * 2 * tr.freq * 0.41 - t * tr.speed * 1.6) * amp * 0.42;
@@ -248,9 +238,10 @@
       ctx.globalAlpha = 1;
     }
 
+    // ~30 fps is plenty for a slow ambient trace and halves the main-thread cost.
     function loop() {
-      t += 1;
-      draw();
+      frame += 1;
+      if (frame % 2 === 0) { t += 1; draw(); }
       raf = requestAnimationFrame(loop);
     }
 
@@ -258,24 +249,31 @@
     function stop()  { if (raf) { cancelAnimationFrame(raf); raf = null; } }
 
     resize();
-    start();
+    draw();
 
-    let rt;
-    window.addEventListener('resize', () => {
-      clearTimeout(rt);
-      rt = setTimeout(() => { resize(); draw(); }, 150);
-    });
+    // Start after the page is interactive, so the animation never competes
+    // with first load.
+    const begin = () => {
+      start();
 
-    document.addEventListener('visibilitychange', () => {
-      document.hidden ? stop() : start();
-    });
+      let rt;
+      window.addEventListener('resize', () => {
+        clearTimeout(rt);
+        rt = setTimeout(() => { resize(); draw(); }, 150);
+      });
 
-    if ('IntersectionObserver' in window) {
-      new IntersectionObserver((entries) => {
-        visible = entries[0].isIntersecting;
-        visible ? start() : stop();
-      }, { threshold: 0 }).observe(canvas);
-    }
+      document.addEventListener('visibilitychange', () => {
+        document.hidden ? stop() : start();
+      });
+
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver((entries) => {
+          visible = entries[0].isIntersecting;
+          visible ? start() : stop();
+        }, { threshold: 0 }).observe(canvas);
+      }
+    };
+    'requestIdleCallback' in window ? requestIdleCallback(begin, { timeout: 2500 }) : setTimeout(begin, 1500);
   }
 
   /* --- Contact form -----------------------------------------------------

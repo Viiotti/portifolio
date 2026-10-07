@@ -1,6 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
-  <rect width="1200" height="630" fill="#0a0a0a"/>
-  <text x="600" y="280" font-family="monospace" font-size="80" font-weight="bold" fill="#00d4aa" text-anchor="middle">Rafael Viiotti</text>
-  <text x="600" y="380" font-family="sans-serif" font-size="40" fill="#a0a0a0" text-anchor="middle">IA · Automação · QA · Security</text>
-  <rect x="450" y="420" width="300" height="4" fill="#00d4aa" opacity="0.5"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#08090b"/>
+  <g stroke="#00d4aa" stroke-opacity=".06" stroke-width="1">
+    <path d="M0 126H1200M0 252H1200M0 378H1200M0 504H1200M150 0V630M300 0V630M450 0V630M600 0V630M750 0V630M900 0V630M1050 0V630"/>
+  </g>
+  <g fill="none" stroke="#00d4aa" stroke-linecap="round">
+    <path stroke-opacity=".55" stroke-width="2.5" d="M720 500 C 780 430, 830 430, 880 490 S 980 570, 1030 490 S 1120 420, 1200 460"/>
+    <path stroke-opacity=".3" stroke-width="1.6" d="M720 548 C 780 520, 830 588, 900 552 S 1010 492, 1070 540 S 1150 586, 1200 556"/>
+  </g>
+  <circle cx="96" cy="118" r="7" fill="#00d4aa"/>
+  <text x="116" y="126" fill="#9aa5b4" font-family="Geist Mono, ui-monospace, monospace" font-size="24">rafael viotti</text>
+  <text x="88" y="300" fill="#e8ecf1" font-family="Geist, Helvetica, Arial, sans-serif" font-size="96" font-weight="600" letter-spacing="-3">Rafael Viotti</text>
+  <text x="90" y="372" fill="#00d4aa" font-family="Geist Mono, ui-monospace, monospace" font-size="28" letter-spacing="1">AI ENGINEER · INFRASTRUCTURE · RAG · LLMOPS</text>
+  <text x="90" y="470" fill="#c9d1db" font-family="Geist, Helvetica, Arial, sans-serif" font-size="34">I build retrieval systems that stay up.</text>
+  <text x="90" y="540" fill="#808b9b" font-family="Geist Mono, ui-monospace, monospace" font-size="22">Operations first. Models second.</text>
 </svg>

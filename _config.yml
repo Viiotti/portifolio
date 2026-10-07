@@ -1,0 +1,7 @@
+# GitHub Pages builds this repository with Jekyll. Keep internal documents
+# and the next-generation site source out of the published site.
+exclude:
+  - README.md
+  - HANDOFF_OMP.md
+  - docs/
+  - site/
