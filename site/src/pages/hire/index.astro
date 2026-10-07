@@ -75,7 +75,7 @@ const calUrl = import.meta.env.PUBLIC_CAL_URL ?? '';
       <aside class="side">
         <section class="panel tz" aria-labelledby="tz-title">
           <h2 id="tz-title" class="label">Time zones · live</h2>
-          <p class="mono tz__time"><span data-tz-bh>—</span> <span class="tz__where">in Belo Horizonte</span></p>
+          <p class="mono tz__time"><span data-tz-bh>—</span> <span class="tz__where">in {person.location.split(",")[0]}</span></p>
           <p class="tz__you" data-tz-you>Your time zone could not be read.</p>
           <div class="tz__bars" aria-hidden="true">
             <div class="tz__track"><div class="tz__band tz__band--me" data-band-me></div></div>
@@ -156,6 +156,8 @@ const calUrl = import.meta.env.PUBLIC_CAL_URL ?? '';
 </style>
 
 <script>
+  import { person } from '../../lib/site';
+
   /* ---- Tabs ---------------------------------------------------------- */
   const tabs = [...document.querySelectorAll<HTMLButtonElement>('[role="tab"]')];
   const select = (name: string, focus = false) => {
@@ -180,8 +182,7 @@ const calUrl = import.meta.env.PUBLIC_CAL_URL ?? '';
   if (new URLSearchParams(location.search).get('type') === 'project') select('project');
 
   /* ---- Forms --------------------------------------------------------- */
-  const EMAIL = 'rafaelviotti@gmail.com';
-  const openedAt = Date.now();
+  const EMAIL = person.email;
   const status = document.querySelector<HTMLElement>('[data-status]')!;
   const say = (text: string, ok: boolean) => { status.textContent = text; status.dataset.ok = String(ok); };
 
@@ -199,8 +200,9 @@ const calUrl = import.meta.env.PUBLIC_CAL_URL ?? '';
 
       const data = Object.fromEntries(new FormData(form).entries()) as Record<string, string>;
       const kind = form.dataset.form === 'project' ? 'Project' : 'Hiring';
-      // Honeypot ticked or submitted faster than a person can type: pretend it worked.
-      if (data.botcheck || Date.now() - openedAt < 3000) { form.reset(); say('Thanks, your message is on its way.', true); return; }
+      // Only bots fill the hidden field: drop it quietly. (A time-based check was
+      // removed: autofill plus paste lets real people send in under 3 s.)
+      if (data.botcheck) { form.reset(); say('Thanks, your message is on its way.', true); return; }
       delete data.botcheck;
 
       const key = form.dataset.key;
@@ -244,7 +246,7 @@ const calUrl = import.meta.env.PUBLIC_CAL_URL ?? '';
   const overlap = (a0: number, a1: number, b0: number, b1: number) => Math.max(0, Math.min(a1, b1) - Math.max(a0, b0));
   const update = () => {
     const now = new Date();
-    set('[data-tz-bh]', new Intl.DateTimeFormat('en-GB', { timeZone: 'America/Sao_Paulo', hour: '2-digit', minute: '2-digit' }).format(now));
+    set('[data-tz-bh]', new Intl.DateTimeFormat('en-GB', { timeZone: person.timeZone, hour: '2-digit', minute: '2-digit' }).format(now));
     const zone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     const diff = (-now.getTimezoneOffset() - BH_OFFSET_MIN) / 60; // visitor minus BH, in hours
     const abs = Math.abs(diff);

@@ -1,13 +1,13 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { href } from '../../lib/site';
+import { href, platform } from '../../lib/site';
 
 // Only tools with a published use behind them (current site "Evidence" section and résumé).
 const groups = [
   {
     name: 'Retrieval & vectors',
     tools: [
-      { name: 'Qdrant', use: 'Self-hosted vector search: one collection per domain, 20 collections, 16,005 points. Index rebuild and recovery, scroll profiling.' },
+      { name: 'Qdrant', use: `Self-hosted vector search: one collection per domain, ${platform.collections} collections, ${platform.points} points. Index rebuild and recovery, scroll profiling.` },
       { name: 'LlamaIndex', use: 'Retrieval pipeline on the self-hosted platform.' },
     ],
   },

@@ -13,7 +13,7 @@ import { href, nav } from '../lib/site';
     </nav>
     <div class="nav__actions">
       <button class="iconbtn" type="button" data-palette-open aria-label="⌘K: open the command menu" aria-haspopup="dialog">
-        <span class="mono nav__kbd" aria-hidden="true">⌘K</span>
+        <span class="mono nav__kbd" aria-hidden="true" data-shortcut>⌘K</span>
         <svg class="nav__search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
       </button>
       <button class="iconbtn" type="button" data-theme-toggle aria-label="Switch theme">
@@ -50,6 +50,13 @@ import { href, nav } from '../lib/site';
 </style>
 
 <script>
+  // Show the shortcut this keyboard actually has; the accessible name starts
+  // with the visible text (WCAG 2.5.3).
+  const apple = /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent);
+  const shortcut = apple ? '⌘K' : 'Ctrl K';
+  document.querySelectorAll('[data-shortcut]').forEach((el) => { el.textContent = shortcut; });
+  document.querySelector('[data-palette-open]')?.setAttribute('aria-label', `${shortcut}: open the command menu`);
+
   const root = document.documentElement;
   const toggle = document.querySelector<HTMLButtonElement>('[data-theme-toggle]');
   const sync = () => {

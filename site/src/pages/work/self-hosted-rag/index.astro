@@ -1,6 +1,6 @@
 ---
 import Base from '../../../layouts/Base.astro';
-import { href } from '../../../lib/site';
+import { href, platform } from '../../../lib/site';
 
 // Sources: the "Evidence" section and résumé "Selected Project" published on the
 // current site (commit f67e2b7). The platform's name and internals beyond these
@@ -28,7 +28,7 @@ const decisions = [
     topic: 'Isolation',
     chosen: 'One Qdrant collection per domain',
     why: 'A query against one domain can never surface another domain’s passages, and each collection can be rebuilt on its own.',
-    cost: 'More collections to operate: 20 today.',
+    cost: `More collections to operate: ${platform.collections} today.`,
   },
   {
     topic: 'Embeddings',
@@ -63,9 +63,9 @@ const decisions = [
 ];
 
 const results = [
-  { value: '20', label: 'collections operated' },
-  { value: '16,005', label: 'indexed points' },
-  { value: '0', label: 'external embedding API calls' },
+  { value: platform.collections, label: 'collections operated' },
+  { value: platform.points, label: 'indexed points' },
+  { value: platform.externalEmbeddingCalls, label: 'external embedding API calls' },
 ];
 ---
 

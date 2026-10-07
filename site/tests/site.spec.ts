@@ -117,7 +117,6 @@ test.describe('contact page', () => {
 
   test('without a form key, a valid message goes to the email app', async ({ page }) => {
     await page.goto('hire/');
-    await page.waitForTimeout(3100); // the anti-bot timer ignores sends in the first 3 s
     await page.locator('#h-name').fill('Ada Lovelace');
     await page.locator('#h-email').fill('ada@example.com');
     await page.locator('#h-msg').fill('Retrieval platform');
@@ -127,7 +126,6 @@ test.describe('contact page', () => {
 
   test('a filled honeypot is silently dropped', async ({ page }) => {
     await page.goto('hire/');
-    await page.waitForTimeout(3100);
     await page.locator('#h-name').fill('Bot');
     await page.locator('#h-email').fill('bot@example.com');
     await page.locator('#h-msg').fill('spam');
@@ -141,10 +139,12 @@ test.describe('contact page', () => {
 
 test.describe('time zones: New York', () => {
   test.use({ timezoneId: 'America/New_York' });
-  test('shares 8 working hours with Belo Horizonte', async ({ page }) => {
+  test('overlap matches the current US offset (8 h in summer, 7 h in winter)', async ({ page }) => {
     await page.goto('hire/');
-    await expect(page.locator('[data-tz-overlap]')).toHaveText('8 h of our working days overlap.');
-    await expect(page.locator('[data-tz-you]')).toContainText(/1 h behind me|2 h behind me/);
+    const you = await page.locator('[data-tz-you]').textContent();
+    const behind = Number(/(\d) h behind me/.exec(you ?? '')?.[1]);
+    expect([1, 2]).toContain(behind);
+    await expect(page.locator('[data-tz-overlap]')).toHaveText(`${9 - behind} h of our working days overlap.`);
   });
 });
 

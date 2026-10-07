@@ -29,10 +29,12 @@ export const nav = [
 ] as const;
 
 /** Runtime-verified figures from the self-hosted platform (commit f67e2b7). */
+export const platform = { collections: '20', points: '16,005', externalEmbeddingCalls: '0' } as const;
+
 export const metrics = [
-  { value: '20', label: 'vector collections I operate' },
-  { value: '16,005', label: 'indexed points, self-hosted' },
-  { value: '0', label: 'external embedding API calls' },
+  { value: platform.collections, label: 'vector collections I operate' },
+  { value: platform.points, label: 'indexed points, self-hosted' },
+  { value: platform.externalEmbeddingCalls, label: 'external embedding API calls' },
   { value: '6 mo', label: "sole architect of a company's AI platform" },
 ] as const;
 

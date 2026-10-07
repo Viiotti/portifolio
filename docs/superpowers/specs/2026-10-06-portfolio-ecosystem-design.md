@@ -2,7 +2,7 @@
 
 - **Data:** 2026-10-06
 - **Decisões:** Rafael Viotti · redação: Claude Code
-- **Status:** SP0 concluído (commit `45e2427`). SP1 em implementação em `site/`. Revisão de código de 2026-10-07 aplicada (§14). A abordagem da §4 ainda aguarda confirmação do Rafael; o SP1 é construído de forma que sirva às duas opções de hospedagem.
+- **Status:** SP0 concluído e validado. SP1 concluído em `site/` (64 testes, Lighthouse 100 em todas as páginas), aguardando o Rafael ativar a publicação (§15). Revisão de código de 2026-10-07 aplicada (§14). A abordagem da §4 ainda aguarda confirmação do Rafael; o SP1 é construído de forma que sirva às duas opções de hospedagem.
 - **Mockups:** canvas privado "Rastro — Direção Visual" no claude.ai. Direção escolhida: **A · Telemetry**. Todas as telas de referência estão listadas na §13.
 
 ---
@@ -167,7 +167,7 @@ Todos mostram só valores medidos; se um valor não puder ser medido, aparece "�
   - **Vaga:** nome, email de trabalho, empresa, tipo de contrato, link da vaga (opcional), mensagem; link do Cal.com.
   - **Projeto:** nome, email, problema, prazo e faixa de orçamento.
 - Envio: Web3Forms (chave de acesso fornecida pelo Rafael via variável de build); depois, endpoint do Worker (OMP-6).
-- Antispam: campo honeypot e trava de tempo mínimo de preenchimento.
+- Antispam: campo honeypot. **Sem trava de tempo:** com preenchimento automático e colar, uma pessoa real envia em menos de 3 s, e a trava descartaria a mensagem dela em silêncio. O Web3Forms tem filtro de spam próprio.
 - Fallback para `mailto:` quando não há chave ou o envio falha.
 - **Sem resposta automática por email:** no plano grátis do Web3Forms não existe, e um autoresponder aberto pode ser usado para mandar spam a terceiros. A confirmação aparece na própria página, com o prazo de retorno.
 

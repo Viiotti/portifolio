@@ -184,22 +184,13 @@
     const ctx = canvas.getContext('2d', { alpha: true });
     if (!ctx) return;
 
-    let w = 0, h = 0, raf = null, t = 0, frame = 0, visible = true;
+    let w = 0, h = 0, raf = null, t = 0, last = 0, started = false, visible = true;
 
     const traces = [
       { amp: 0.13, freq: 1.5, speed: 0.011, width: 1.6, alpha: 0.55, y: 0.42 },
       { amp: 0.09, freq: 2.4, speed: 0.016, width: 1.1, alpha: 0.34, y: 0.55 },
       { amp: 0.06, freq: 3.6, speed: 0.022, width: 0.9, alpha: 0.20, y: 0.66 },
     ];
-
-    // Reading computed style every frame forces a style recalculation, so the
-    // accent is read once and again only when the theme changes.
-    let accent = '#00d4aa';
-    const readAccent = () => {
-      accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || accent;
-    };
-    readAccent();
-    new MutationObserver(readAccent).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
     function resize() {
       const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
@@ -210,6 +201,13 @@
       canvas.height = Math.round(h * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
+
+    // Reading computed style every frame forces a style recalculation, so the
+    // accent is read once and again only when the theme changes.
+    let accent = '#00d4aa';
+    const readAccent = () => {
+      accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || accent;
+    };
 
     function draw() {
       ctx.clearRect(0, 0, w, h);
@@ -238,41 +236,48 @@
       ctx.globalAlpha = 1;
     }
 
-    // ~30 fps is plenty for a slow ambient trace and halves the main-thread cost.
-    function loop() {
-      frame += 1;
-      if (frame % 2 === 0) { t += 1; draw(); }
+    // Time-based, capped at ~30 fps: the same speed on 60, 120 or 30 Hz screens,
+    // at half the main-thread cost of drawing every frame.
+    function loop(now) {
       raf = requestAnimationFrame(loop);
+      if (!last) last = now;
+      const dt = now - last;
+      if (dt < 32) return;
+      last = now;
+      t += Math.min(dt, 100) * 0.03;
+      draw();
     }
 
-    function start() { if (!raf && visible) loop(); }
+    function start() { if (started && !raf && visible && !document.hidden) { last = 0; raf = requestAnimationFrame(loop); } }
     function stop()  { if (raf) { cancelAnimationFrame(raf); raf = null; } }
 
+    readAccent();
     resize();
     draw();
 
-    // Start after the page is interactive, so the animation never competes
-    // with first load.
-    const begin = () => {
-      start();
+    new MutationObserver(() => { readAccent(); draw(); })
+      .observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
-      let rt;
-      window.addEventListener('resize', () => {
-        clearTimeout(rt);
-        rt = setTimeout(() => { resize(); draw(); }, 150);
-      });
+    let rt;
+    window.addEventListener('resize', () => {
+      clearTimeout(rt);
+      rt = setTimeout(() => { resize(); draw(); }, 150);
+    });
 
-      document.addEventListener('visibilitychange', () => {
-        document.hidden ? stop() : start();
-      });
+    document.addEventListener('visibilitychange', () => {
+      document.hidden ? stop() : start();
+    });
 
-      if ('IntersectionObserver' in window) {
-        new IntersectionObserver((entries) => {
-          visible = entries[0].isIntersecting;
-          visible ? start() : stop();
-        }, { threshold: 0 }).observe(canvas);
-      }
-    };
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver((entries) => {
+        visible = entries[0].isIntersecting;
+        visible ? start() : stop();
+      }, { threshold: 0 }).observe(canvas);
+    }
+
+    // Start moving after the page is interactive, so the animation never
+    // competes with first load. Re-measure first in case the layout changed.
+    const begin = () => { started = true; resize(); draw(); start(); };
     'requestIdleCallback' in window ? requestIdleCallback(begin, { timeout: 2500 }) : setTimeout(begin, 1500);
   }
 

@@ -13,7 +13,7 @@ const year = new Date().getFullYear();
     </nav>
     <p class="mono footer__meta">
       <span>this page · LCP <b data-tel-lcp>—</b> · <b data-tel-kb>—</b> · <b data-tel-cookies>—</b> cookies</span>
-      <span><b data-clock>—</b> in Belo Horizonte</span>
+      <span><b data-clock>—</b> in {person.location.split(",")[0]}</span>
     </p>
   </div>
 </footer>
@@ -31,6 +31,8 @@ const year = new Date().getFullYear();
 </style>
 
 <script>
+  import { person } from '../lib/site';
+
   // Real measurements of this page in this browser. Anything the browser
   // cannot measure stays "—".
   const set = (sel: string, text: string) => {
@@ -61,7 +63,7 @@ const year = new Date().getFullYear();
 
   set('[data-tel-cookies]', String(document.cookie.split(';').filter((c) => c.trim()).length));
 
-  const clock = new Intl.DateTimeFormat('en-GB', { timeZone: 'America/Sao_Paulo', hour: '2-digit', minute: '2-digit' });
+  const clock = new Intl.DateTimeFormat('en-GB', { timeZone: person.timeZone, hour: '2-digit', minute: '2-digit' });
   const tick = () => set('[data-clock]', clock.format(new Date()));
   tick();
   setInterval(tick, 30_000);
