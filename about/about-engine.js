@@ -17,8 +17,7 @@
   let isReducedMotion = reducedMotionQuery.matches;
 
   const root = document.documentElement;
-  const statusFill = document.querySelector('.statusbar__fill');
-  const nav = document.querySelector('.nav');
+  // .statusbar__fill and .nav[data-stuck] are owned by ../assets/js/main.js
   const spinePath = document.getElementById('telemetry-spine-path');
   const spineNodes = Array.from(document.querySelectorAll('.spine-node'));
   const actPanels = Array.from(document.querySelectorAll('.act-panel[data-act]'));
@@ -140,12 +139,7 @@
     const tiltDeg = isReducedMotion ? 0 : clamp(-1.4, velocity * -0.025, 1.4);
     root.style.setProperty('--scroll-tilt', `${tiltDeg.toFixed(3)}deg`);
 
-    if (statusFill) {
-      statusFill.style.width = `${(progress * 100).toFixed(2)}%`;
-    }
-    if (nav) {
-      nav.dataset.stuck = String(scrollY > 16);
-    }
+    // .statusbar__fill width and .nav[data-stuck] are updated by ../assets/js/main.js
 
     // Scrub main SVG spine path
     if (spinePath && spineLength > 0) {
