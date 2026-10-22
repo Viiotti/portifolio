@@ -15,7 +15,7 @@ const toc = [
 ];
 
 const constraints = [
-  'Documents and queries stay on my own machines',
+  'Data and queries stay on my own machines',
   'Zero cost per query, no rate limits',
   'Knowledge domains must not leak into each other',
   'Reachable only over a VPN',
@@ -109,7 +109,7 @@ const results = [
 
         <h2 id="constraints">Constraints</h2>
         <ol class="constraints">
-          {constraints.map((c, i) => <li><span class="mono">{String(i + 1).padStart(2, '0')}</span>{c}</li>)}
+          {constraints.map((c, i) => <li><span class="mono">{String(i + 1).padStart(2, '0')}.</span> <span>{c}</span></li>)}
         </ol>
 
         <h2 id="decisions">Decisions</h2>
