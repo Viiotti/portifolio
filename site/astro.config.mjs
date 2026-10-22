@@ -31,8 +31,8 @@ export default defineConfig({
     robots,
     sitemap({
       filter: (page) => !page.includes('/404'),
-      // The résumé is a hand-written page in public/, so the sitemap would miss it.
-      customPages: [new URL(`${base.replace(/\/$/, '')}/resume/`, site).href],
+      // About and résumé are hand-written pages in public/, so the sitemap would miss them.
+      customPages: ['about', 'resume'].map((p) => new URL(`${base.replace(/\/$/, '')}/${p}/`, site).href),
     }),
   ],
   build: { format: 'directory' },

@@ -2,9 +2,8 @@
 import Base from '../../../layouts/Base.astro';
 import { href, platform } from '../../../lib/site';
 
-// Sources: the "Evidence" section and résumé "Selected Project" published on the
-// current site (commit f67e2b7). The platform's name and internals beyond these
-// stay private by Rafael's decision.
+// Sources: the v2 home page and résumé on main (e4b71f3) and the sanitized
+// Mother / Hermes showcase (tanya-showcase/README.md). Nothing beyond them.
 
 const toc = [
   ['Problem', 'problem'],
@@ -28,11 +27,11 @@ const decisions = [
     topic: 'Isolation',
     chosen: 'One Qdrant collection per domain',
     why: 'A query against one domain can never surface another domain’s passages, and each collection can be rebuilt on its own.',
-    cost: `More collections to operate: ${platform.collections} today.`,
+    cost: 'More collections to operate, back up and rebuild.',
   },
   {
     topic: 'Embeddings',
-    chosen: 'Local, with Ollama and nomic-embed-text (768 dimensions)',
+    chosen: 'Local, with Ollama and nomic-embed-text (768d)',
     why: 'Zero cost per query, no rate limits, and embeddings that never leave the machine.',
     cost: 'RAM and CPU per batch. The right trade for this workload.',
   },
@@ -44,7 +43,7 @@ const decisions = [
   },
   {
     topic: 'Observability',
-    chosen: 'LangFuse v3, self-hosted',
+    chosen: 'Self-hosted LangFuse',
     why: 'Full traces of every retrieval and generation, kept on my own infrastructure instead of a SaaS endpoint.',
     cost: 'Four more services to run: ClickHouse, Postgres, MinIO and Redis.',
   },
@@ -55,6 +54,12 @@ const decisions = [
     cost: 'Less autonomy by design: deep agent chains are not possible.',
   },
   {
+    topic: 'Memory access',
+    chosen: 'Read-only MCP bridges, separate write path',
+    why: 'Workspaces query memory through MCP tools (search, grep, get, list collections). Writes are auditable Markdown files that a background daemon validates, chunks and indexes.',
+    cost: 'Writes are asynchronous: new knowledge appears after the sync, not instantly.',
+  },
+  {
     topic: 'Access',
     chosen: 'WireGuard-only boundary',
     why: 'Nothing is exposed to the public internet; nginx and systemd services sit behind the VPN.',
@@ -63,28 +68,28 @@ const decisions = [
 ];
 
 const results = [
-  { value: platform.collections, label: 'collections operated' },
-  { value: platform.points, label: 'indexed points' },
+  { value: platform.collections, label: 'isolated vector collections' },
+  { value: platform.dims, label: `local ${platform.embedder} vectors` },
   { value: platform.externalEmbeddingCalls, label: 'external embedding API calls' },
 ];
 ---
 
 <Base
-  title="Self-hosted RAG platform"
+  title="Mother / Hermes — self-hosted RAG platform"
   path="/work/self-hosted-rag/"
-  description="Case study: a self-hosted retrieval platform with collection-per-domain isolation, local embeddings, self-hosted LLM tracing and bounded agent delegation."
+  description="Case study: Mother / Hermes, a self-hosted subagentic RAG platform with collection-per-domain isolation, local 768d embeddings, read-only MCP memory bridges, self-hosted LangFuse and bounded delegation."
 >
   <div class="wrap">
     <header class="page-head">
-      <p class="mono crumb"><a href={href('/#work')}>Work</a> / Self-hosted RAG platform</p>
-      <h1>A self-hosted RAG platform that treats its index as disposable</h1>
+      <p class="mono crumb"><a href={href('/#work')}>Work</a> / Mother / Hermes</p>
+      <h1>Mother / Hermes: a self-hosted RAG platform that treats its index as disposable</h1>
       <p>Why the vector index is derived state, why embeddings never leave the machine, and what that costs.</p>
     </header>
 
     <dl class="meta">
       <div><dt class="label">Role</dt><dd>Architect and operator, end to end</dd></div>
       <div><dt class="label">Status</dt><dd>In production on my own infrastructure</dd></div>
-      <div><dt class="label">Stack</dt><dd>Qdrant, Ollama, LlamaIndex, LangFuse, Python, Linux</dd></div>
+      <div><dt class="label">Stack</dt><dd>Qdrant, Ollama, LangGraph, MCP, LangFuse, Python, Linux</dd></div>
       <div><dt class="label">Source</dt><dd>Private. Walkthrough on request</dd></div>
     </dl>
 
@@ -123,11 +128,11 @@ const results = [
         <p>Everything below runs behind a WireGuard boundary. Source files are the only state that matters.</p>
         <figure class="panel diagram" aria-label="Architecture overview">
           <div class="flow">
-            <div class="box"><span class="mono step">1 →</span>Source files<small class="mono">knowledge by trust tier</small></div>
+            <div class="box"><span class="mono step">1 →</span>Source files<small class="mono">raw · reviewed · canonical</small></div>
             <div class="box"><span class="mono step">2 →</span>Ingest &amp; chunk<small class="mono">per domain</small></div>
             <div class="box"><span class="mono step">3 →</span>Embed locally<small class="mono">Ollama · 768-d</small></div>
             <div class="box"><span class="mono step">4 →</span>Index<small class="mono">Qdrant · 1 collection per domain</small></div>
-            <div class="box box--accent"><span class="mono step">5</span>Retrieve &amp; answer<small class="mono">bounded agents</small></div>
+            <div class="box box--accent"><span class="mono step">5</span>Retrieve &amp; answer<small class="mono">MCP · depth-one subagents</small></div>
           </div>
           <div class="rail">
             <span class="mono">LangFuse traces every step</span>

@@ -7,15 +7,15 @@ const groups = [
   {
     name: 'Retrieval & vectors',
     tools: [
-      { name: 'Qdrant', use: `Self-hosted vector search: one collection per domain, ${platform.collections} collections, ${platform.points} points. Index rebuild and recovery, scroll profiling.` },
-      { name: 'LlamaIndex', use: 'Retrieval pipeline on the self-hosted platform.' },
+      { name: 'Qdrant', use: `Self-hosted ${platform.collections} vector search with collection-per-domain isolation. Index rebuild and recovery, scroll profiling.` },
+      { name: 'MCP', use: 'Read-only memory bridges (search, grep, get, list collections) between workspaces and Qdrant.' },
     ],
   },
   {
     name: 'Embeddings & local inference',
     tools: [
       { name: 'Ollama', use: 'Local model serving, so embeddings never leave the machine and cost nothing per query.' },
-      { name: 'nomic-embed-text', use: '768-dimension embeddings, batch-embedded locally.' },
+      { name: 'nomic-embed-text', use: `${platform.dims} cosine embeddings, generated locally.` },
     ],
   },
   {
@@ -28,8 +28,8 @@ const groups = [
   {
     name: 'LLM observability',
     tools: [
-      { name: 'LangFuse v3, self-hosted', use: 'Trace instrumentation for retrieval and generation, run on my own infrastructure.' },
-      { name: 'ClickHouse · Postgres · MinIO · Redis', use: 'The services LangFuse v3 needs, operated alongside it.' },
+      { name: 'Self-hosted LangFuse', use: 'Trace instrumentation for retrieval and generation, run on my own infrastructure.' },
+      { name: 'ClickHouse · Postgres · MinIO · Redis', use: 'The services LangFuse needs, operated alongside it.' },
     ],
   },
   {
@@ -65,7 +65,7 @@ const groups = [
         </section>
       ))}
     </div>
-    <p class="more">How these fit together: <a href={href('/work/self-hosted-rag/')}>the self-hosted RAG platform case study</a>.</p>
+    <p class="more">How these fit together: <a href={href('/work/self-hosted-rag/')}>the Mother / Hermes case study</a>.</p>
   </div>
 </Base>
 
