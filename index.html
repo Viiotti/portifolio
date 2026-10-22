@@ -55,7 +55,7 @@
   "url": "https://viiotti.github.io/portifolio/",
   "email": "rafaelviotti@gmail.com",
   "jobTitle": "AI Engineer",
-  "description": "AI engineer specialising in AI infrastructure, retrieval-augmented generation and LLMOps, with a background in IT and network operations.",
+  "description": "AI engineer specialising in AI infrastructure, retrieval-augmented generation and LLMOps, with a Systems & Reliability Foundation in IT and network operations.",
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Belo Horizonte",
@@ -93,6 +93,7 @@
       <a href="#work">Work</a>
       <a href="#evidence">Evidence</a>
       <a href="#path">Path</a>
+      <a href="about/">About</a>
       <a href="#contact">Contact</a>
     </nav>
 
@@ -124,7 +125,7 @@
     <p class="hero__transition">
       <b>AI Engineer</b>
       <span class="arrow" aria-hidden="true">·</span>
-      <b>Infrastructure &nbsp;·&nbsp; RAG &nbsp;·&nbsp; LLMOps</b>
+      <b>Infrastructure &nbsp;·&nbsp; RAG &nbsp;·&nbsp; LLMOps &nbsp;·&nbsp; Systems &amp; Reliability Foundation</b>
     </p>
 
     <h1 class="hero__name">Rafael Viotti</h1>
@@ -141,7 +142,7 @@
 
     <p class="hero__lede">
       I came to AI from operations — hardware, then network monitoring, then
-      observability and integrity analysis — before six months as sole architect of a
+      observability and integrity analysis — before 6 months as sole architect of a
       company's AI platform. That order matters: I think about latency, failure modes
       and recovery before I think about model choice. Today I design and operate
       self-hosted retrieval infrastructure end to end.
@@ -156,6 +157,10 @@
         Résumé
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 15h6"/></svg>
       </a>
+      <a class="btn btn--ghost" href="about/">
+        Evolution
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      </a>
       <a class="btn btn--ghost" href="https://github.com/Viiotti" target="_blank" rel="noopener">
         GitHub
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
@@ -169,12 +174,12 @@
   <div class="wrap">
     <div class="metrics reveal">
       <div class="metric">
-        <span class="metric__val">20</span>
-        <span class="metric__key">Vector collections operated</span>
+        <span class="metric__val">Multi-Domain</span>
+        <span class="metric__key">Isolated vector collections</span>
       </div>
       <div class="metric">
-        <span class="metric__val">16<em>K+</em></span>
-        <span class="metric__key">Indexed points in production</span>
+        <span class="metric__val">768d</span>
+        <span class="metric__key">Local nomic-embed-text vectors</span>
       </div>
       <div class="metric">
         <span class="metric__val">6<em>mo</em></span>
@@ -182,7 +187,7 @@
       </div>
       <div class="metric">
         <span class="metric__val"><em>~</em>4<em>y</em></span>
-        <span class="metric__key">IT operations to AI engineering</span>
+        <span class="metric__key">Systems &amp; Reliability Foundation</span>
       </div>
       <div class="metric">
         <span class="metric__val">0</span>
@@ -257,13 +262,13 @@
 
       <article class="card project reveal">
         <div class="project__top">
-          <h3 class="project__name">Self-Hosted RAG Platform</h3>
+          <h3 class="project__name">Mother / Hermes — Self-Hosted RAG Platform</h3>
           <span class="project__status" data-s="private">Private</span>
         </div>
         <p class="project__desc">
-          A retrieval platform I architected and operate end to end: collection-per-domain
-          vector isolation, local embeddings with no external API, LLM trace
-          instrumentation, and bounded agent delegation that fails closed. Knowledge is
+          A subagentic retrieval platform (Mother / Hermes) I architected and operate end to end:
+          collection-per-domain vector isolation, local embeddings with no external API, LLM trace
+          instrumentation, MCP protocols, and bounded agent delegation that fails closed. Knowledge is
           governed by trust tier and the index is treated as rebuildable derived state.
         </p>
         <div class="badges">
@@ -275,8 +280,8 @@
           <span class="badge">Linux</span>
         </div>
         <dl class="project__impact">
-          <div><dt>Collections</dt><dd>20</dd></div>
-          <div><dt>Indexed points</dt><dd>16,005</dd></div>
+          <div><dt>Collections</dt><dd>Multi-Domain</dd></div>
+          <div><dt>Embeddings</dt><dd>768d</dd></div>
           <div><dt>Embedding cost</dt><dd>Zero / query</dd></div>
         </dl>
         <div class="project__links">
@@ -438,9 +443,10 @@
             Qdrant · collection-per-domain isolation · chunking strategy · index rebuild and recovery · scroll profiling
           </p>
           <p class="evidence__proof">
-            Operate a self-hosted deployment of 20 collections and 16,005 points. Recovered
-            a corrupted collection by treating the index as derived state and rebuilding
-            from source — which is why I argue reindexing is a feature, not a failure.
+            Operate a self-hosted Multi-Domain Qdrant deployment with isolated vector collections
+            and 768d local embeddings. Recovered a corrupted collection by treating the index as
+            derived state and rebuilding from source — which is why I argue reindexing is a
+            feature, not a failure.
           </p>
         </div>
 
@@ -473,7 +479,7 @@
         <div class="evidence__group">
           <h3 class="evidence__title">LLM Observability <span>STRONG</span></h3>
           <p style="color:var(--ink-2);font-size:.93rem;margin:0">
-            LangFuse v3 self-hosted · ClickHouse · Postgres · MinIO · Redis · trace instrumentation
+            Self-hosted LangFuse · ClickHouse · Postgres · MinIO · Redis · trace instrumentation
           </p>
           <p class="evidence__proof">
             Run the full self-hosted stack rather than a SaaS trace endpoint, and
@@ -524,20 +530,20 @@
         <h3 class="tl__role">Independent — AI Systems &amp; Software</h3>
         <p class="tl__org">Freelance</p>
         <ul class="tl__body">
-          <li>Build websites, applications and SaaS products.</li>
+          <li>Applied research and development of resilient multi-agent architectures and distributed recovery infrastructure (Mother / Hermes ecosystem).</li>
+          <li>Build websites, applications and SaaS products combining business automation and local integrations via LLMs, Python, and MCP protocols.</li>
           <li>Developing autonomous marketing systems with integrated paid-traffic operation.</li>
-          <li>Operate a self-hosted retrieval platform as the primary technical project.</li>
         </ul>
       </div>
 
       <div class="tl__item">
         <p class="tl__when">Feb 2026 — Jul 2026</p>
-        <h3 class="tl__role">AI Engineer · Contract</h3>
+        <h3 class="tl__role">Senior AI Engineer (Contract)</h3>
         <p class="tl__org">MaxStartup — 6-month engagement</p>
         <ul class="tl__body">
           <li>Sole architect and developer of the company's AI integrations and automations.</li>
           <li>Built a multi-agent knowledge system with knowledge management by trust level, retrieval, and autonomous workflows.</li>
-          <li>LangGraph for orchestration, Crawl4AI for ingestion, LangFuse for observability, Qdrant for vector retrieval.</li>
+          <li>LangGraph for orchestration, Crawl4AI for ingestion, Self-hosted LangFuse for observability, Qdrant for vector retrieval.</li>
           <li>Designed around data integrity and end-to-end operational visibility.</li>
         </ul>
       </div>
@@ -547,16 +553,16 @@
         <h3 class="tl__role">Observability &amp; Integrity Security Analyst</h3>
         <p class="tl__org">Ana Gaming</p>
         <ul class="tl__body">
-          <li>Analysed operational graphs and ran query-based investigations.</li>
-          <li>Monitored signals related to business and system integrity.</li>
-          <li>Investigated anomalies and supported integrity assurance.</li>
+          <li>Developed Python/Bash automations for observability routines, log processing, and L1/L2 operational incident mitigation.</li>
+          <li>Built advanced analytical queries for telemetry, integrity analysis, and automated incident detection in 24/7 critical systems.</li>
+          <li>Analysed operational graphs, monitored signals related to business and system integrity, and supported integrity assurance.</li>
         </ul>
       </div>
 
       <div class="tl__item">
         <p class="tl__when">Jul 2024 — Jun 2025</p>
-        <h3 class="tl__role">NOC — Network Monitoring Analyst</h3>
-        <p class="tl__org">Hyti / SADA Transportes</p>
+        <h3 class="tl__role">NOC Network Monitoring Analyst (Contracted to SADA Transportes)</h3>
+        <p class="tl__org">Hyti</p>
         <ul class="tl__body">
           <li>Monitored and analysed the SADA Transportes network infrastructure.</li>
           <li>Investigated network health, availability and monitoring signals.</li>
