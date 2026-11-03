@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import { href, metrics, path, person } from '../lib/site';
+import { href, metrics, now, path, person } from '../lib/site';
 
 const work = [
   {
@@ -60,71 +60,17 @@ const work = [
         <p class="mono hero__where">{person.location} · remote · US and European hours</p>
       </div>
 
-      <!-- Interactive Mother / Hermes Architecture & Telemetry Inspector -->
-      <aside class="panel arch-panel" aria-labelledby="arch-title">
-        <div class="arch-panel__head">
-          <div class="arch-panel__badge">
-            <span class="live-pulse" aria-hidden="true"></span>
-            <span class="mono">LIVE TELEMETRY · TANYA HOST</span>
-          </div>
-          <span class="mono text-xs muted">Self-Hosted RAG</span>
+      <aside class="panel now" aria-labelledby="now-title">
+        <div class="now__head">
+          <h2 id="now-title" class="label">Currently</h2>
+          <span class="mono now__date">updated {now.updated}</span>
         </div>
-
-        <div class="arch-panel__pipeline">
-          <div class="pipeline-header">
-            <h2 id="arch-title" class="mono pipeline-label">Mother / Hermes Core Architecture</h2>
-            <span class="mono pipeline-tag">Qdrant · 768d · LangFuse</span>
-          </div>
-
-          <!-- Interactive Pipeline Stages -->
-          <div class="pipeline-stages" role="tablist" aria-label="Pipeline Architecture Stages">
-            <button class="stage-btn active" data-stage="0" role="tab" aria-selected="true" type="button">
-              <span class="stage-num">01</span>
-              <span class="stage-name">Ingest &amp; Route</span>
-              <span class="stage-stat mono">&lt;15ms</span>
-            </button>
-            <div class="stage-arrow" aria-hidden="true">→</div>
-            <button class="stage-btn" data-stage="1" role="tab" aria-selected="false" type="button">
-              <span class="stage-num">02</span>
-              <span class="stage-name">Multi-Domain</span>
-              <span class="stage-stat mono">768d</span>
-            </button>
-            <div class="stage-arrow" aria-hidden="true">→</div>
-            <button class="stage-btn" data-stage="2" role="tab" aria-selected="false" type="button">
-              <span class="stage-num">03</span>
-              <span class="stage-name">MCP Agents</span>
-              <span class="stage-stat mono">Depth-1</span>
-            </button>
-            <div class="stage-arrow" aria-hidden="true">→</div>
-            <button class="stage-btn" data-stage="3" role="tab" aria-selected="false" type="button">
-              <span class="stage-num">04</span>
-              <span class="stage-name">LangFuse</span>
-              <span class="stage-stat mono">Traced</span>
-            </button>
-          </div>
-
-          <!-- Live Stage Detail Card -->
-          <div id="stage-detail" class="stage-detail">
-            <div class="detail-header">
-              <h3 id="detail-title" class="mono detail-title">01 / Ingestion &amp; Bounded Routing</h3>
-              <span id="detail-pill" class="pill mono">LangGraph Engine</span>
-            </div>
-            <p id="detail-desc" class="detail-desc">
-              All user interactions enter through depth-one subagent delegation with fail-closed safeguards. Zero recursive hallucination loops.
-            </p>
-            <div class="detail-metrics mono">
-              <div><span class="muted">LATENCY:</span> <span id="detail-lat" class="accent-text">&lt;15ms</span></div>
-              <div><span class="muted">EMBED COST:</span> <span id="detail-cost" class="accent-text">$0.00 / local</span></div>
-              <div><span class="muted">SECURITY:</span> <span id="detail-sec" class="accent-text">Fail-Closed Boundary</span></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="arch-panel__footer">
-          <a class="mono arch-link" href={href('/work/self-hosted-rag/')}>
-            Explore Full Architecture Case Study →
-          </a>
-        </div>
+        <ul class="now__list">
+          {now.items.map((item) => (
+            <li><strong>{item.title}</strong><span>{item.body}</span></li>
+          ))}
+        </ul>
+        <a class="now__more" href={href('/now/')}>More on the now page</a>
       </aside>
     </div>
   </section>
@@ -191,218 +137,46 @@ const work = [
   </section>
 </Base>
 
-<script>
-  const stages = [
-    {
-      title: '01 / Ingestion & Bounded Routing',
-      pill: 'LangGraph Engine',
-      desc: 'All user interactions enter through depth-one subagent delegation with fail-closed safeguards. Zero recursive hallucination loops.',
-      lat: '<15ms',
-      cost: '$0.00 / local',
-      sec: 'Fail-Closed Boundary'
-    },
-    {
-      title: '02 / Multi-Domain Qdrant Retrieval',
-      pill: '768d nomic-embed-text',
-      desc: 'Per-domain collection isolation. Source documents are the authoritative ground truth; the vector index is derived, rebuildable state.',
-      lat: '~45ms',
-      cost: 'Local Ollama GPU',
-      sec: 'Per-Domain Isolation'
-    },
-    {
-      title: '03 / MCP Subagent Tool Execution',
-      pill: 'Read-Only Memory Bridges',
-      desc: 'Subagents access semantic knowledge through strictly isolated read-only MCP protocols, preventing unauthorized state corruption.',
-      lat: '~80ms',
-      cost: '$0.00 / Local Bridge',
-      sec: 'Immutable State Guard'
-    },
-    {
-      title: '04 / Self-Hosted LangFuse Observability',
-      pill: 'End-to-End Traces',
-      desc: 'Full observability stack (web, worker, ClickHouse, Postgres, MinIO) tracking latency percentiles, retrieval recall and token utilization.',
-      lat: '<8ms logging',
-      cost: 'Self-Hosted Infra',
-      sec: 'Zero Data Leaks'
-    }
-  ];
-
-  const buttons = document.querySelectorAll('.stage-btn');
-  const titleEl = document.getElementById('detail-title');
-  const pillEl = document.getElementById('detail-pill');
-  const descEl = document.getElementById('detail-desc');
-  const latEl = document.getElementById('detail-lat');
-  const costEl = document.getElementById('detail-cost');
-  const secEl = document.getElementById('detail-sec');
-
-  buttons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const idx = parseInt(btn.getAttribute('data-stage') || '0', 10);
-      const data = stages[idx];
-      if (!data) return;
-
-      buttons.forEach((b) => {
-        b.classList.remove('active');
-        b.setAttribute('aria-selected', 'false');
-      });
-      btn.classList.add('active');
-      btn.setAttribute('aria-selected', 'true');
-
-      if (titleEl) titleEl.textContent = data.title;
-      if (pillEl) pillEl.textContent = data.pill;
-      if (descEl) descEl.textContent = data.desc;
-      if (latEl) latEl.textContent = data.lat;
-      if (costEl) costEl.textContent = data.cost;
-      if (secEl) secEl.textContent = data.sec;
-    });
-  });
-</script>
-
 <style>
-  .hero {
-    padding: 72px 0 64px;
-    background-image:
-      linear-gradient(color-mix(in srgb, var(--accent) 7%, transparent) 1px, transparent 1px),
-      linear-gradient(90deg, color-mix(in srgb, var(--accent) 7%, transparent) 1px, transparent 1px);
-    background-size: 48px 48px;
-    background-position: center top;
-  }
-  .hero__grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: 40px; align-items: stretch; }
-  .hero__name { margin-top: 18px; font-size: clamp(44px, 7vw, 72px); line-height: 1; letter-spacing: -0.04em; color: var(--ink); }
-  .hero__sub { margin-top: 22px; font-size: clamp(19px, 2.2vw, 24px); line-height: 1.35; color: var(--accent); max-width: 30ch; font-weight: 500; }
+  .hero { padding: 72px 0 64px; background-image: linear-gradient(color-mix(in srgb, var(--accent) 6%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in srgb, var(--accent) 6%, transparent) 1px, transparent 1px); background-size: 64px 64px; background-position: center top; }
+  .hero__grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 48px; align-items: center; }
+  .hero__name { margin-top: 18px; font-size: clamp(44px, 7vw, 72px); line-height: 1; letter-spacing: -0.04em; }
+  .hero__sub { margin-top: 22px; font-size: clamp(19px, 2.2vw, 24px); line-height: 1.35; color: var(--ink); max-width: 28ch; }
   .hero__lede { margin-top: 18px; font-size: 16px; line-height: 1.7; color: var(--ink-2); max-width: 54ch; }
   .hero__cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
   .hero__where { margin-top: 22px; font-size: 12px; color: var(--ink-3); }
-
-  /* Interactive Architecture Panel */
-  .arch-panel {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 24px;
-    background: color-mix(in srgb, var(--bg-raised) 95%, transparent);
-    backdrop-filter: blur(8px);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.6);
-  }
-  .arch-panel__head { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--line); padding-bottom: 12px; }
-  .arch-panel__badge { display: flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 600; color: var(--ink); letter-spacing: 0.05em; }
-  .live-pulse {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--live);
-    box-shadow: 0 0 10px var(--live);
-    animation: pulse 2s infinite ease-in-out;
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.35; transform: scale(0.8); }
-  }
-  .text-xs { font-size: 11px; }
-
-  .arch-panel__pipeline { margin-top: 16px; display: flex; flex-direction: column; gap: 14px; }
-  .pipeline-header { display: flex; justify-content: space-between; align-items: baseline; }
-  .pipeline-label { font-size: 13px; font-weight: 600; color: var(--ink); }
-  .pipeline-tag { font-size: 11px; color: var(--accent); }
-
-  .pipeline-stages {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 4px;
-    background: var(--bg-inset);
-    padding: 6px;
-    border-radius: 10px;
-    border: 1px solid var(--line);
-  }
-  .stage-btn {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 8px 4px;
-    border-radius: 6px;
-    border: 1px solid transparent;
-    background: transparent;
-    color: var(--ink-2);
-    cursor: pointer;
-    transition: all 0.15s ease;
-  }
-  .stage-btn:hover { background: rgba(255, 255, 255, 0.03); color: var(--ink); }
-  .stage-btn.active {
-    background: var(--accent-soft);
-    border-color: var(--accent-line);
-    color: var(--ink);
-    box-shadow: 0 0 12px var(--accent-glow);
-  }
-  .stage-num { font-size: 9px; opacity: 0.6; font-family: var(--mono); }
-  .stage-name { font-size: 11px; font-weight: 600; margin-top: 2px; text-align: center; }
-  .stage-stat { font-size: 9.5px; color: var(--accent); margin-top: 2px; }
-  .stage-arrow { font-size: 11px; color: var(--line-2); user-select: none; }
-
-  .stage-detail {
-    background: var(--bg-inset);
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  .detail-header { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
-  .detail-title { font-size: 13px; font-weight: 600; color: var(--ink); }
-  .pill { font-size: 10.5px; padding: 2px 7px; border-radius: 4px; background: var(--accent-soft); color: var(--accent); border: 1px solid var(--accent-line); }
-  .detail-desc { font-size: 12.5px; line-height: 1.55; color: var(--ink-2); }
-  .detail-metrics {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-    margin-top: 4px;
-    padding-top: 8px;
-    border-top: 1px solid var(--line);
-    font-size: 11px;
-  }
-  .accent-text { color: var(--accent); font-weight: 600; }
-
-  .arch-panel__footer { margin-top: 16px; text-align: center; border-top: 1px solid var(--line); padding-top: 12px; }
-  .arch-link { font-size: 12px; color: var(--accent); text-decoration: none; font-weight: 500; transition: color 0.15s ease; }
-  .arch-link:hover { text-decoration: underline; color: var(--ink); }
-
-  .metrics { border-top: 1px solid var(--line); padding: 36px 0; background: var(--bg-inset); }
+  .now { padding: 22px; background: color-mix(in srgb, var(--bg-raised) 92%, transparent); backdrop-filter: blur(6px); }
+  .now__head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .now__date { font-size: 11px; color: var(--ink-3); }
+  .now__list { list-style: none; display: grid; gap: 14px; margin-top: 16px; }
+  .now__list li { display: grid; gap: 3px; font-size: 14px; line-height: 1.55; }
+  .now__list strong { font-weight: 600; }
+  .now__list span { color: var(--ink-2); }
+  .now__more { display: inline-flex; align-items: center; min-height: 44px; margin-top: 6px; font-size: 14px; }
+  .metrics { border-top: 1px solid var(--line); padding: 36px 0; }
   .metrics__grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); }
-  .metrics__value { font-size: clamp(26px, 2.6vw, 34px); font-weight: 600; letter-spacing: -0.03em; white-space: nowrap; color: var(--accent); }
+  .metrics__value { font-size: clamp(26px, 2.6vw, 34px); font-weight: 500; letter-spacing: -0.03em; white-space: nowrap; }
   .metrics__label { margin-top: 4px; font-size: 13.5px; color: var(--ink-2); }
-
   .work { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); margin-top: 32px; }
-  .card { padding: 24px; display: flex; flex-direction: column; gap: 12px; align-items: flex-start; transition: border-color 0.15s ease; }
-  .card:hover { border-color: var(--line-2); }
+  .card { padding: 22px; display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
   .card__name { font-size: 20px; }
   .card__desc { font-size: 14.5px; line-height: 1.6; color: var(--ink-2); }
-  .card__stack { font-size: 12px; color: var(--accent); }
+  .card__stack { font-size: 12px; color: var(--ink-3); }
   .card__link { margin-top: auto; }
-
   .path { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(170px, 100%), 1fr)); margin-top: 32px; }
   .path__item { position: relative; padding: 18px 16px 20px 0; border-top: 1px solid var(--line-2); }
   .path__item::before { content: ''; position: absolute; top: -5px; left: 0; width: 9px; height: 9px; border-radius: 50%; background: var(--ink-3); }
-  .path__item--now::before { background: var(--accent); box-shadow: 0 0 10px var(--accent); }
+  .path__item--now::before { background: var(--accent); }
   .path__when { font-size: 11.5px; color: var(--ink-3); }
   .path__role { margin-top: 6px; font-size: 15px; font-weight: 500; letter-spacing: -0.01em; }
   .path__org { margin-top: 4px; font-size: 13px; color: var(--ink-2); }
   .path__more { display: inline-flex; align-items: center; min-height: 44px; margin-top: 8px; font-size: 14px; }
-
   .contact { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); }
-  .contact__card { padding: 28px; display: flex; flex-direction: column; gap: 12px; align-items: flex-start; color: var(--ink); text-decoration: none; transition: all 0.18s var(--ease); }
-  .contact__card:hover { color: var(--ink); border-color: var(--accent); transform: translateY(-2px); }
-  .contact__card--accent { border-color: var(--accent-line); background: radial-gradient(circle at top right, var(--accent-soft), transparent 70%); }
+  .contact__card { padding: 28px; display: flex; flex-direction: column; gap: 12px; align-items: flex-start; color: var(--ink); text-decoration: none; transition: border-color 0.18s var(--ease); }
+  .contact__card:hover { color: var(--ink); border-color: var(--ink-3); }
+  .contact__card--accent { border-color: var(--accent-line); }
   .contact__label { color: var(--accent); }
   .contact__title { font-size: 24px; }
   .contact__card .btn { margin-top: 8px; }
-
-  @media (max-width: 900px) {
-    .hero__grid { grid-template-columns: 1fr; }
-    .hero { padding-top: 48px; }
-    .pipeline-stages { flex-wrap: wrap; }
-  }
+  @media (max-width: 900px) { .hero__grid { grid-template-columns: 1fr; } .hero { padding-top: 48px; } }
 </style>
