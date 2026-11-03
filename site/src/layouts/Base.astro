@@ -1,16 +1,13 @@
 ---
-import '@fontsource-variable/geist';
-import '@fontsource-variable/geist-mono';
-import '../styles/global.css';
-import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import Nav from '../components/Nav.astro';
 import CommandPalette from '../components/CommandPalette.astro';
 import { href, person } from '../lib/site';
+import '../styles/global.css';
 
 interface Props {
   title: string;
   description: string;
-  /** Route path, used for the canonical URL. */
   path: string;
   noindex?: boolean;
 }
@@ -48,14 +45,26 @@ const ogImage = new URL(href('/og.png'), Astro.site).href;
     <link rel="apple-touch-icon" href={href('/apple-touch-icon.png')} />
     <link rel="sitemap" href={href('/sitemap-index.xml')} />
 
-    <!-- Theme before first paint: saved choice, else the OS preference. -->
+    <!-- Theme before first paint: saved choice, else default to dark theme. Kill stale SW. -->
     <script is:inline>
       (function () {
         try {
           var saved = localStorage.getItem('theme');
-          var dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-          document.documentElement.dataset.theme = saved || (dark ? 'dark' : 'light');
+          document.documentElement.dataset.theme = saved || 'dark';
         } catch (e) {}
+
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.getRegistrations().then(function(regs) {
+            for (var r of regs) r.unregister();
+          });
+        }
+        if ('caches' in window) {
+          caches.keys().then(function(keys) {
+            for (var k of keys) {
+              if (k.startsWith('rv-portfolio-')) caches.delete(k);
+            }
+          });
+        }
       })();
     </script>
     <slot name="head" />
