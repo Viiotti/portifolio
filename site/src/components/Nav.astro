@@ -26,16 +26,29 @@ import { href, nav } from '../lib/site';
 </header>
 
 <style>
-  .nav { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: color-mix(in srgb, var(--bg) 92%, transparent);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
   .nav__inner { height: 68px; display: flex; align-items: center; gap: 24px; }
   .nav__brand { display: flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; font-weight: 600; font-size: 15px; white-space: nowrap; min-height: 44px; }
-  .nav__dot { width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+  .nav__dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent-glow);
+  }
   .nav__links { display: flex; gap: 4px; margin-left: auto; }
-  .nav__links a { color: var(--ink-2); text-decoration: none; font-size: 14px; padding: 0 12px; min-height: 44px; display: inline-flex; align-items: center; border-radius: 8px; }
-  .nav__links a:hover { color: var(--ink); background: var(--bg-raised); }
+  .nav__links a { color: var(--ink); text-decoration: none; font-size: 14px; padding: 0 12px; min-height: 44px; display: inline-flex; align-items: center; border-radius: 8px; transition: all 0.15s ease; font-weight: 500; }
+  .nav__links a:hover { color: var(--accent); background: var(--accent-soft); }
   .nav__actions { display: flex; align-items: center; gap: 8px; }
-  .iconbtn { min-width: 44px; height: 44px; padding: 0 10px; border-radius: 10px; border: 1px solid var(--line-2); background: var(--bg-raised); color: var(--ink-2); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; }
-  .iconbtn:hover { color: var(--ink); }
+  .iconbtn { min-width: 44px; height: 44px; padding: 0 10px; border-radius: 10px; border: 1px solid var(--line-2); background: var(--bg-raised); color: var(--ink); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.15s ease; }
+  .iconbtn:hover { color: var(--accent); border-color: var(--accent); }
   .iconbtn svg { width: 18px; height: 18px; }
   .nav__kbd { font-size: 12px; }
   .nav__search { display: none; }
@@ -50,8 +63,6 @@ import { href, nav } from '../lib/site';
 </style>
 
 <script>
-  // Show the shortcut this keyboard actually has; the accessible name starts
-  // with the visible text (WCAG 2.5.3).
   const apple = /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent);
   const shortcut = apple ? '⌘K' : 'Ctrl K';
   document.querySelectorAll('[data-shortcut]').forEach((el) => { el.textContent = shortcut; });
