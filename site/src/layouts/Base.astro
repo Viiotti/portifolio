@@ -13,7 +13,7 @@ interface Props {
 }
 
 const { title, description, path, noindex = false } = Astro.props;
-const fullTitle = path === '/' ? `${person.name} — ${person.role} · ${person.focus}` : `${title} — ${person.name}`;
+const fullTitle = path === '/' ? `${person.name}: ${person.role} · ${person.focus}` : `${title}: ${person.name}`;
 const canonical = new URL(href(path), Astro.site).href;
 const ogImage = new URL(href('/og.png'), Astro.site).href;
 ---
@@ -37,7 +37,7 @@ const ogImage = new URL(href('/og.png'), Astro.site).href;
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content={`${person.name} — ${person.role}, ${person.focus}`} />
+    <meta property="og:image:alt" content={`${person.name}: ${person.role}, ${person.focus}`} />
     <meta name="twitter:card" content="summary_large_image" />
 
     <link rel="icon" href={href('/favicon.ico')} sizes="32x32" />

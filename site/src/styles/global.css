@@ -1,5 +1,5 @@
 /* Modern AI Infrastructure Design System
-   High-contrast electric cyan/azure brand with titanium slate surfaces.
+   Soft steel blue palette with titanium slate surfaces.
    Every text colour below is checked for WCAG AA (4.5:1) on every surface. */
 
 :root {
@@ -11,11 +11,11 @@
   --ink: #f1f5f9;
   --ink-2: #94a3b8;
   --ink-3: #8da0b8;
-  --accent: #38bdf8;
-  --accent-ink: #020617;
-  --accent-soft: rgba(56, 189, 248, 0.12);
-  --accent-line: rgba(56, 189, 248, 0.35);
-  --accent-glow: rgba(56, 189, 248, 0.25);
+  --accent: #93c5fd;
+  --accent-ink: #030712;
+  --accent-soft: rgba(147, 197, 253, 0.12);
+  --accent-line: rgba(147, 197, 253, 0.3);
+  --accent-glow: rgba(147, 197, 253, 0.2);
   --warn: #fbbf24;
   --live: #10b981;
 
@@ -37,11 +37,11 @@
   --ink: #0f172a;
   --ink-2: #334155;
   --ink-3: #475569;
-  --accent: #0369a1;
+  --accent: #1e40af;
   --accent-ink: #ffffff;
-  --accent-soft: rgba(3, 105, 161, 0.08);
-  --accent-line: #7dd3fc;
-  --accent-glow: rgba(3, 105, 161, 0.15);
+  --accent-soft: rgba(30, 64, 175, 0.08);
+  --accent-line: #93c5fd;
+  --accent-glow: rgba(30, 64, 175, 0.15);
   --warn: #d97706;
   --live: #059669;
 
@@ -124,13 +124,13 @@ a:hover { color: var(--ink); }
   border-color: transparent;
   color: var(--accent-ink);
   font-weight: 600;
-  box-shadow: 0 0 15px var(--accent-glow);
+  box-shadow: 0 0 12px var(--accent-glow);
 }
 .btn--primary:hover {
   color: var(--accent-ink);
   transform: translateY(-1px);
   border-color: transparent;
-  box-shadow: 0 0 25px var(--accent-glow);
+  box-shadow: 0 0 20px var(--accent-glow);
 }
 .btn svg { width: 16px; height: 16px; flex: none; }
 

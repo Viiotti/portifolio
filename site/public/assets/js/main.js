@@ -204,7 +204,7 @@
 
     // Reading computed style every frame forces a style recalculation, so the
     // accent is read once and again only when the theme changes.
-    let accent = '#00d4aa';
+    let accent = '#93c5fd';
     const readAccent = () => {
       accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || accent;
     };

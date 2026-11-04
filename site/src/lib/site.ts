@@ -66,16 +66,16 @@ export const now = {
     },
     {
       title: 'Study',
-      body: 'Systems Analysis & Development at PUC Minas (2026–2028), and preparing for the CKA exam (not taken yet).',
+      body: 'Systems Analysis & Development at PUC Minas (2026-2028), and preparing for the CKA exam.',
     },
   ],
 } as const;
 
 export const path = [
-  { when: 'Jan 2019 — Jan 2020', role: 'Apprentice — Computer maintenance', org: 'Alongside a technical degree', points: ['Hardware diagnosis, repair and maintenance on desktop systems.'] },
-  { when: 'Feb 2020 — Jan 2021', role: 'IT Technician N2', org: 'Feluma', points: ['Local and field-based technical support.', 'Diagnosed workstation, connectivity and infrastructure issues.'] },
-  { when: 'Jul 2024 — Jun 2025', role: 'NOC network monitoring analyst', org: 'Hyti · contracted to SADA Transportes', points: ['Monitored and analysed the SADA Transportes network infrastructure.', 'Investigated network health, availability and monitoring signals.'] },
-  { when: 'Jul 2025 — Oct 2025', role: 'Observability & integrity security analyst', org: 'Ana Gaming', points: ['Python/Bash automations for observability routines, log processing and L1/L2 incident mitigation.', 'Analytical queries for telemetry, integrity analysis and automated incident detection in 24/7 critical systems.'] },
-  { when: 'Feb 2026 — Jul 2026', role: 'Senior AI Engineer · contract', org: 'MaxStartup — 6-month engagement', points: ["Sole architect and developer of the company's AI integrations.", 'Multi-agent knowledge system: trust-tiered knowledge, retrieval, autonomous workflows.'] },
-  { when: 'Ongoing', role: 'Independent — AI systems & software', org: 'Freelance', points: ['Applied research on resilient multi-agent architectures and recovery infrastructure (Mother / Hermes).', 'Websites, applications and SaaS combining automation and local LLM integrations via Python and MCP.'], current: true },
+  { when: 'Jan 2019 to Jan 2020', role: 'Apprentice: Computer maintenance', org: 'Alongside a technical degree', points: ['Hardware diagnosis, repair and maintenance on desktop systems.'] },
+  { when: 'Feb 2020 to Jan 2021', role: 'IT Technician N2', org: 'Feluma', points: ['Local and field-based technical support.', 'Diagnosed workstation, connectivity and infrastructure issues.'] },
+  { when: 'Jul 2024 to Jun 2025', role: 'NOC network monitoring analyst', org: 'Hyti (contracted to SADA Transportes)', points: ['Monitored and analysed the SADA Transportes network infrastructure.', 'Investigated network health, availability and monitoring signals.'] },
+  { when: 'Jul 2025 to Oct 2025', role: 'Observability & integrity security analyst', org: 'Ana Gaming', points: ['Python/Bash automations for observability routines, log processing and L1/L2 incident mitigation.', 'Analytical queries for telemetry, integrity analysis and automated incident detection in 24/7 critical systems.'] },
+  { when: 'Feb 2026 to Jul 2026', role: 'Senior AI Engineer (Contract)', org: 'MaxStartup (6-month engagement)', points: ["Sole architect and developer of the company's AI integrations.", 'Multi-agent knowledge system: trust-tiered knowledge, retrieval, autonomous workflows.'] },
+  { when: 'Ongoing', role: 'Independent: AI systems and software', org: 'Freelance', points: ['Applied research on resilient multi-agent architectures and recovery infrastructure (Mother / Hermes).', 'Websites, applications and SaaS combining automation and local LLM integrations via Python and MCP.'], current: true },
 ] as const;

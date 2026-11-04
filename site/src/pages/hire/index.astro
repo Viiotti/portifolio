@@ -82,7 +82,7 @@ const calUrl = import.meta.env.PUBLIC_CAL_URL ?? '';
             <div class="tz__track"><div class="tz__band tz__band--you" data-band-you></div><div class="tz__band tz__band--you" data-band-you2></div></div>
           </div>
           <div class="mono tz__axis" aria-hidden="true"><span>00</span><span>06</span><span>12</span><span>18</span><span>24 · BH time</span></div>
-          <div class="tz__legend" aria-hidden="true"><span><i class="tz__key tz__key--me"></i>my working day (09–18)</span><span><i class="tz__key tz__key--you"></i>yours</span></div>
+          <div class="tz__legend" aria-hidden="true"><span><i class="tz__key tz__key--me"></i>my working day (09:00 to 18:00)</span><span><i class="tz__key tz__key--you"></i>yours</span></div>
           <p class="tz__overlap" data-tz-overlap></p>
         </section>
 
@@ -208,7 +208,7 @@ const calUrl = import.meta.env.PUBLIC_CAL_URL ?? '';
       const key = form.dataset.key;
       if (!key) {
         const body = Object.entries(data).filter(([, v]) => v).map(([k, v]) => `${k}: ${v}`).join('\n');
-        location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(`${kind} — ${data.name}`)}&body=${encodeURIComponent(body)}`;
+        location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(`${kind}: ${data.name}`)}&body=${encodeURIComponent(body)}`;
         say('Your email app should open with the message ready to send.', true);
         return;
       }
@@ -220,7 +220,7 @@ const calUrl = import.meta.env.PUBLIC_CAL_URL ?? '';
         const res = await fetch('https://api.web3forms.com/submit', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify({ access_key: key, subject: `${kind} — ${data.name}`, from_name: 'Portfolio contact form', form: form.dataset.form, ...data }),
+          body: JSON.stringify({ access_key: key, subject: `${kind}: ${data.name}`, from_name: 'Portfolio contact form', form: form.dataset.form, ...data }),
         });
         if (!res.ok) throw new Error(String(res.status));
         form.reset();

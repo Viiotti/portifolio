@@ -4,8 +4,8 @@ import { href, nav, person } from '../lib/site';
 const commands = [
   { label: 'Home', hint: 'page', action: 'go', value: href('/') },
   ...nav.map((n) => ({ label: n.label, hint: 'page', action: 'go', value: href(n.path) })),
-  { label: 'Contact — hiring for a role', hint: 'page', action: 'go', value: href('/hire/') },
-  { label: 'Contact — I have a project', hint: 'page', action: 'go', value: href('/hire/?type=project') },
+  { label: 'Contact: hiring for a role', hint: 'page', action: 'go', value: href('/hire/') },
+  { label: 'Contact: I have a project', hint: 'page', action: 'go', value: href('/hire/?type=project') },
   { label: 'Privacy', hint: 'page', action: 'go', value: href('/privacy/') },
   { label: 'Copy email address', hint: person.email, action: 'copy', value: person.email },
   { label: 'Switch theme', hint: 'light / dark', action: 'theme', value: '' },

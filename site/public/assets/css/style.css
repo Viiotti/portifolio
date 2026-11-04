@@ -21,9 +21,9 @@
   --ink-3: #808b9b;   /* >= 4.9:1 on every dark surface */
 
   /* One confident accent + support */
-  --accent: #00d4aa;
-  --accent-dim: #00a686;
-  --accent-glow: rgba(0, 212, 170, .14);
+  --accent: #93c5fd;
+  --accent-dim: #60a5fa;
+  --accent-glow: rgba(147, 197, 253, .18);
   --signal: #7dd3fc;
   --warn: #fbbf24;
 
@@ -58,9 +58,9 @@
   --ink-3: #5d6878;   /* >= 5.0:1 on every light surface */
 
   /* Darkened for AA contrast on light surfaces */
-  --accent: #00806a;
-  --accent-dim: #006a58;
-  --accent-glow: rgba(0, 128, 106, .1);
+  --accent: #1e40af;
+  --accent-dim: #1d4ed8;
+  --accent-glow: rgba(30, 64, 175, .12);
   --signal: #0369a1;
   --warn: #a16207;
 
