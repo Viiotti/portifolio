@@ -8,6 +8,7 @@ const groups = [
     name: 'Retrieval & vectors',
     tools: [
       { name: 'Qdrant', use: `Self-hosted ${platform.collections} vector search with collection-per-domain isolation. Index rebuild and recovery, scroll profiling.` },
+      { name: 'LlamaIndex', use: 'Document indexing, chunking pipelines and semantic retrieval integration.' },
       { name: 'MCP', use: 'Read-only memory bridges (search, grep, get, list collections) between workspaces and Qdrant.' },
     ],
   },
@@ -43,7 +44,10 @@ const groups = [
   },
   {
     name: 'Languages',
-    tools: [{ name: 'Python', use: 'Pipelines, automation and evaluation.' }],
+    tools: [
+      { name: 'Python', use: 'Pipelines, automation and evaluation.' },
+      { name: 'FastAPI', use: 'Typed HTTP services and internal tool endpoints for agent and retrieval workflows.' },
+    ],
   },
 ];
 ---

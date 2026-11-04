@@ -79,25 +79,25 @@ const work = [
           <!-- Interactive Pipeline Stages -->
           <div class="pipeline-stages" role="tablist" aria-label="Pipeline Architecture Stages">
             <button class="stage-btn active" data-stage="0" role="tab" aria-selected="true" type="button">
-              <span class="stage-num mono">01</span>
+              <span class="stage-num mono">I</span>
               <span class="stage-name">Ingest &amp; Route</span>
-              <span class="stage-stat mono">&lt;15ms</span>
+              <span class="stage-stat mono">LangGraph</span>
             </button>
             <div class="stage-arrow" aria-hidden="true">→</div>
             <button class="stage-btn" data-stage="1" role="tab" aria-selected="false" type="button">
-              <span class="stage-num mono">02</span>
+              <span class="stage-num mono">II</span>
               <span class="stage-name">Multi-Domain</span>
               <span class="stage-stat mono">768d</span>
             </button>
             <div class="stage-arrow" aria-hidden="true">→</div>
             <button class="stage-btn" data-stage="2" role="tab" aria-selected="false" type="button">
-              <span class="stage-num mono">03</span>
+              <span class="stage-num mono">III</span>
               <span class="stage-name">MCP Agents</span>
-              <span class="stage-stat mono">Depth-1</span>
+              <span class="stage-stat mono">Depth-One</span>
             </button>
             <div class="stage-arrow" aria-hidden="true">→</div>
             <button class="stage-btn" data-stage="3" role="tab" aria-selected="false" type="button">
-              <span class="stage-num mono">04</span>
+              <span class="stage-num mono">IV</span>
               <span class="stage-name">LangFuse</span>
               <span class="stage-stat mono">Traced</span>
             </button>
@@ -106,16 +106,16 @@ const work = [
           <!-- Live Stage Detail Card -->
           <div id="stage-detail" class="stage-detail">
             <div class="detail-header">
-              <h3 id="detail-title" class="mono detail-title">01 / Ingestion &amp; Bounded Routing</h3>
+              <h3 id="detail-title" class="mono detail-title">I / Ingestion &amp; Bounded Routing</h3>
               <span id="detail-pill" class="pill mono">LangGraph Engine</span>
             </div>
             <p id="detail-desc" class="detail-desc">
               All user interactions enter through depth-one subagent delegation with fail-closed safeguards. Zero recursive hallucination loops.
             </p>
             <div class="detail-metrics mono">
-              <div><span class="muted">LATENCY:</span> <span id="detail-lat" class="accent-text">&lt;15ms</span></div>
-              <div><span class="muted">EMBED COST:</span> <span id="detail-cost" class="accent-text">$0.00 / local</span></div>
-              <div><span class="muted">SECURITY:</span> <span id="detail-sec" class="accent-text">Fail-Closed Boundary</span></div>
+              <div><span id="detail-k1" class="muted">BOUNDARY:</span> <span id="detail-lat" class="accent-text">WireGuard VPN</span></div>
+              <div><span id="detail-k2" class="muted">COST:</span> <span id="detail-cost" class="accent-text">Zero external calls</span></div>
+              <div><span id="detail-k3" class="muted">SECURITY:</span> <span id="detail-sec" class="accent-text">Fail-Closed Boundary</span></div>
             </div>
           </div>
         </div>
@@ -166,10 +166,12 @@ const work = [
             <p class="mono path__when">{p.when}</p>
             <h3 class="path__role">{p.role}</h3>
             <p class="path__org">{p.org}</p>
+            <p class="path__point">{p.points[0]}</p>
           </li>
         ))}
       </ol>
       <a class="path__more" href={href('/resume/')}>Full résumé</a>
+      <a class="path__more" href="about/" style="margin-left: 16px;">Read the 4-act evolution</a>
     </div>
   </section>
 
@@ -194,36 +196,48 @@ const work = [
 <script>
   const stages = [
     {
-      title: '01 / Ingestion & Bounded Routing',
+      title: 'I / Ingestion & Bounded Routing',
       pill: 'LangGraph Engine',
       desc: 'All user interactions enter through depth-one subagent delegation with fail-closed safeguards. Zero recursive hallucination loops.',
-      lat: '<15ms',
-      cost: '$0.00 / local',
+      k1: 'BOUNDARY:',
+      lat: 'WireGuard VPN',
+      k2: 'COST:',
+      cost: 'Zero external calls',
+      k3: 'SECURITY:',
       sec: 'Fail-Closed Boundary'
     },
     {
-      title: '02 / Multi-Domain Qdrant Retrieval',
+      title: 'II / Multi-Domain Qdrant Retrieval',
       pill: '768d nomic-embed-text',
       desc: 'Per-domain collection isolation. Source documents are the authoritative ground truth; the vector index is derived, rebuildable state.',
-      lat: '~45ms',
-      cost: 'Local Ollama GPU',
-      sec: 'Per-Domain Isolation'
+      k1: 'ISOLATION:',
+      lat: 'Per-Domain',
+      k2: 'COMPUTE:',
+      cost: 'Local CPU/RAM batch',
+      k3: 'STATE:',
+      sec: 'Rebuildable Index'
     },
     {
-      title: '03 / MCP Subagent Tool Execution',
+      title: 'III / MCP Subagent Tool Execution',
       pill: 'Read-Only Memory Bridges',
       desc: 'Subagents access semantic knowledge through strictly isolated read-only MCP protocols, preventing unauthorized state corruption.',
-      lat: '~80ms',
-      cost: '$0.00 / Local Bridge',
-      sec: 'Immutable State Guard'
+      k1: 'DELEGATION:',
+      lat: 'Depth-One',
+      k2: 'ACCESS:',
+      cost: 'Read-Only MCP',
+      k3: 'GUARD:',
+      sec: 'Fail-Closed'
     },
     {
-      title: '04 / Self-Hosted LangFuse Observability',
+      title: 'IV / Self-Hosted LangFuse Observability',
       pill: 'End-to-End Traces',
       desc: 'Full observability stack (web, worker, ClickHouse, Postgres, MinIO) tracking latency percentiles, retrieval recall and token utilization.',
-      lat: '<8ms logging',
-      cost: 'Self-Hosted Infra',
-      sec: 'Zero Data Leaks'
+      k1: 'STACK:',
+      lat: 'Self-hosted LangFuse',
+      k2: 'STORAGE:',
+      cost: 'ClickHouse & Postgres',
+      k3: 'PRIVACY:',
+      sec: 'On-Premise Only'
     }
   ];
 
@@ -231,8 +245,11 @@ const work = [
   const titleEl = document.getElementById('detail-title');
   const pillEl = document.getElementById('detail-pill');
   const descEl = document.getElementById('detail-desc');
+  const k1El = document.getElementById('detail-k1');
   const latEl = document.getElementById('detail-lat');
+  const k2El = document.getElementById('detail-k2');
   const costEl = document.getElementById('detail-cost');
+  const k3El = document.getElementById('detail-k3');
   const secEl = document.getElementById('detail-sec');
 
   buttons.forEach((btn) => {
@@ -251,8 +268,11 @@ const work = [
       if (titleEl) titleEl.textContent = data.title;
       if (pillEl) pillEl.textContent = data.pill;
       if (descEl) descEl.textContent = data.desc;
+      if (k1El) k1El.textContent = data.k1;
       if (latEl) latEl.textContent = data.lat;
+      if (k2El) k2El.textContent = data.k2;
       if (costEl) costEl.textContent = data.cost;
+      if (k3El) k3El.textContent = data.k3;
       if (secEl) secEl.textContent = data.sec;
     });
   });
@@ -390,6 +410,7 @@ const work = [
   .path__when { font-size: 11.5px; color: var(--ink-2); }
   .path__role { margin-top: 6px; font-size: 15px; font-weight: 500; letter-spacing: -0.01em; }
   .path__org { margin-top: 4px; font-size: 13px; color: var(--ink-2); }
+  .path__point { margin-top: 6px; font-size: 12.5px; line-height: 1.5; color: var(--ink-2); }
   .path__more { display: inline-flex; align-items: center; min-height: 44px; margin-top: 8px; font-size: 14px; }
 
   .contact { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(min(420px, 100%), 1fr)); }

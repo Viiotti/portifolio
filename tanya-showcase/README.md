@@ -1,4 +1,4 @@
-# Tanya Public Showcase — Mother / Hermes Subagentic RAG Platform
+# Tanya Public Showcase: Mother / Hermes Subagentic RAG Platform
 
 **Architect & Operator:** Rafael Viotti (`Senior AI Engineer (Contract)` · **Systems & Reliability Foundation**)  
 **Status:** Active Self-Hosted Production Environment (Sanitized Public Architecture Mirror)
@@ -84,8 +84,8 @@ This showcase follows strict public-release hygiene:
 
 ## 4. Engineering Changelog (Distilled Public Milestones)
 
-- **2026-10 — Factual & Privacy Governance Automation:** Added deterministic pre-publish verification (`verify-cv-facts.mjs` + Privacy Gate P-01) enforcing strict alignment between public documentation and verified architectural state.
-- **2026-10 — Hybrid Agent Memory & Smart Sync:** Established asynchronous Markdown-to-Qdrant (`768d` `nomic-embed-text`) synchronization with retry queuing and timeout guards across **Multi-Domain** collections.
-- **2026-10 — Read-Only MCP Memory Bridge:** Standardized **MCP protocols** for semantic (`768d`), regex, and payload-by-ID retrieval across allowlisted Qdrant collections over persistent encrypted tunnels.
-- **2026-09 — Self-Hosted LangFuse Telemetry Pilot:** Deployed and validated the multi-service **Self-hosted LangFuse** observability stack (Web, Worker, ClickHouse, Postgres, MinIO, Redis) behind the WireGuard + Nginx boundary.
-- **2026-08 — Mother / Hermes Core & Trust-Tier Storage:** Designed the filesystem-first knowledge hierarchy (`raw` / `reviewed` / `canonical`) and bounded `depth-one` subagent delegation model.
+- **2026-10: Factual & Privacy Governance Automation:** Added deterministic pre-publish verification (`verify-cv-facts.mjs` + Privacy Gate P-01) enforcing strict alignment between public documentation and verified architectural state.
+- **2026-10: Hybrid Agent Memory & Smart Sync:** Established asynchronous Markdown-to-Qdrant (`768d` `nomic-embed-text`) synchronization with retry queuing and timeout guards across **Multi-Domain** collections.
+- **2026-10: Read-Only MCP Memory Bridge:** Standardized **MCP protocols** for semantic (`768d`), regex, and payload-by-ID retrieval across allowlisted Qdrant collections over persistent encrypted tunnels.
+- **2026-09: Self-Hosted LangFuse Telemetry Pilot:** Deployed and validated the multi-service **Self-hosted LangFuse** observability stack (Web, Worker, ClickHouse, Postgres, MinIO, Redis) behind the WireGuard + Nginx boundary.
+- **2026-08: Mother / Hermes Core & Trust-Tier Storage:** Designed the filesystem-first knowledge hierarchy (`raw` / `reviewed` / `canonical`) and bounded `depth-one` subagent delegation model.
